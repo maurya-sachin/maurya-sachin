@@ -20,16 +20,12 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const fs = require('fs');
-            const { Octokit } = require('@octokit/rest');
-
-            // Initialize Octokit with authentication
-            const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
-
+            
             const path = './README.md';
             let readme = fs.readFileSync(path, 'utf-8');
 
-            // Fetch latest repositories dynamically using GitHub API
-            const response = await octokit.rest.repos.listForAuthenticatedUser({
+            // Fetch latest repositories dynamically using GitHub API (use the built-in github object)
+            const response = await github.rest.repos.listForAuthenticatedUser({
               sort: 'updated',
               per_page: 5
             });
