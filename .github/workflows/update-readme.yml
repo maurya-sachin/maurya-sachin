@@ -14,10 +14,14 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Install dependencies
+        run: |
+          npm install axios
+
       - name: Update README Latest Repositories
         uses: actions/github-script@v6
         with:
-          github-token: ${{ secrets.REPO_ACCESS_TOKEN }} 
+          github-token: ${{ secrets.REPO_ACCESS_TOKEN }}  # Use the PAT here
           script: |
             const fs = require('fs');
             
