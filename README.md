@@ -6,7 +6,7 @@ Hello, world! 👋 I’m **Sachin Maurya**, a **Frontend Developer** passionate 
 
 ## 👀 Visitor Count
 
-![Visitor Count](https://komarev.com/ghpvc/?username=maurya-sachin&color=blue)
+![Visitor Count](https://visitor-badge.laobi.icu/badge?page_id=maurya-sachin.maurya-sachin)
 
 ---
 
