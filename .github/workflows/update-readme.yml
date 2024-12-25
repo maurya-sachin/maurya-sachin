@@ -29,7 +29,7 @@ jobs:
             let readme = fs.readFileSync(path, 'utf-8');
 
             // Fetch latest repositories dynamically using GitHub API
-            const response = await github.rest.repos.listForAuthenticatedUser({
+            const response = await octokit.rest.repos.listForAuthenticatedUser({
               sort: 'updated',
               per_page: 5
             });
