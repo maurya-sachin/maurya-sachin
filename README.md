@@ -124,8 +124,8 @@ Here’s a glimpse of what I’ve built:
 ## 📚 Latest Repositories
 
 <!-- latest repos -->
-- [maurya-sachin](https://github.com/maurya-sachin/maurya-sachin): 
-- [todo-tailwind](https://github.com/maurya-sachin/todo-tailwind): 
+- [maurya-sachin](https://github.com/maurya-sachin/maurya-sachin) - ⭐ 0 stars | No language - No description
+- [todo-tailwind](https://github.com/maurya-sachin/todo-tailwind) - ⭐ 0 stars | JavaScript - No description
 
 ---
 
