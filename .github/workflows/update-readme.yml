@@ -52,15 +52,15 @@ jobs:
           const axios = require("axios");
 
           async function updateQuote() {
-            let readme = fs.readFileSync("README.md", "utf8");
-            try {
-                const response = await axios.get("https://programming-quotes-api.herokuapp.com/Quotes/random");
-                const quote = \`> "\${response.data.en}" - \${response.data.author}\`;
-                readme = readme.replace(/<!-- dynamic quotes -->[\s\S]*?(?=---)/, \`\${quote}\n\n\`);
-                fs.writeFileSync("README.md", readme);
-            } catch (error) {
-                console.error("Failed to fetch quote:", error);
-            }
+          let readme = fs.readFileSync("README.md", "utf8");
+          try {
+              const response = await axios.get("https://programming-quotes-api.herokuapp.com/Quotes/random");
+              const quote = "> \"" + response.data.en + "\" - " + response.data.author;
+              readme = readme.replace(/<!-- dynamic quotes -->[\s\S]*?(?=---)/, quote + "\n\n");
+              fs.writeFileSync("README.md", readme);
+          } catch (error) {
+              console.error("Failed to fetch quote:", error);
+          }
           }
 
           updateQuote().catch(console.error);
