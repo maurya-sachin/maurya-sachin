@@ -21,10 +21,10 @@ jobs:
       - name: Update README Latest Repositories
         uses: actions/github-script@v6
         with:
-          github-token: ${{ secrets.REPO_ACCESS_TOKEN }}  # Use the PAT here
+          github-token: ${{ secrets.REPO_ACCESS_TOKEN }} # Use the PAT here
           script: |
             const fs = require('fs');
-            
+
             const path = './README.md';
             let readme = fs.readFileSync(path, 'utf-8');
 
@@ -35,12 +35,12 @@ jobs:
             });
 
             const latestRepos = response.data
-              .map(repo => `- [${repo.name}](${repo.html_url}): ${repo.description || ''}`)
-              .join('\n');
+                .map(repo => `- [${repo.name}](${repo.html_url}) - ⭐ ${repo.stargazers_count} stars | ${repo.language || 'No language'} - ${repo.description || 'No description'}`)
+                .join('\n');
 
             const newReadme = readme.replace(
-              /<!-- latest repos -->[\s\S]*?(?=---)/,
-              `<!-- latest repos -->\n${latestRepos}\n\n`
+                /<!-- latest repos -->[\s\S]*?(?=---)/,
+                `<!-- latest repos -->\n${latestRepos}\n\n`
             );
 
             fs.writeFileSync('README.md', newReadme);
@@ -54,12 +54,12 @@ jobs:
           async function updateQuote() {
             let readme = fs.readFileSync("README.md", "utf8");
             try {
-              const response = await axios.get("https://programming-quotes-api.herokuapp.com/Quotes/random");
-              const quote = `> "${response.data.en}" - ${response.data.author}`;
-              readme = readme.replace(/<!-- dynamic quotes -->[\s\S]*?(?=---)/, `${quote}\n\n`);
-              fs.writeFileSync("README.md", readme);
+                const response = await axios.get("https://programming-quotes-api.herokuapp.com/Quotes/random");
+                const quote = \`> "\${response.data.en}" - \${response.data.author}\`;
+                readme = readme.replace(/<!-- dynamic quotes -->[\s\S]*?(?=---)/, \`\${quote}\n\n\`);
+                fs.writeFileSync("README.md", readme);
             } catch (error) {
-              console.error("Failed to fetch quote:", error);
+                console.error("Failed to fetch quote:", error);
             }
           }
 
