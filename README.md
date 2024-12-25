@@ -112,12 +112,12 @@ Here are the tools I use to bring ideas to life:
 
 Here’s a glimpse of what I’ve built:
 
-| Project                     | Description                                          | Tech Stack         | Demo                                        |
-| --------------------------- | ---------------------------------------------------- | ------------------ | ------------------------------------------- |
-| **Kreate Energy**           | Responsive & SEO-optimized web interfaces.           | Next.js, GraphQL   | [Live Demo](https://kreatenergy.com)        |
-| **Kreate Technologies**     | SEO-optimized website with custom fonts & Swiper.js. | Next.js, Sass      | [Live Demo](https://kreatetechnologies.com) |
-| **Atal Jal (Gov. Project)** | Enhanced UI/UX for a government tender portal.       | Angular.js, jQuery | [Demo](#)                                   |
-| **Kreate SPC**              | Front-end components with dynamic animations.        | HTML, CSS, GSAP    | [Demo](#)                                   |
+| Project                     | Description                                          | Tech Stack                           | Demo                                        |
+| --------------------------- | ---------------------------------------------------- | ------------------------------------ | ------------------------------------------- |
+| **Kreate Energy**           | Responsive & SEO-optimized web interfaces.           | Next.js, GraphQL                     | [Live Demo](https://kreatenergy.com)        |
+| **Kreate Technologies**     | SEO-optimized website with custom fonts & Swiper.js. | Next.js, Sass, React, RestAPI        | [Live Demo](https://kreatetechnologies.com) |
+| **Atal Jal (Gov. Project)** | Enhanced UI/UX for a government tender portal.       | HTML,CSS,JavaScript, jQuery          | [Live Demo](https://ataljal.mowr.gov.in/)   |
+| **Kreate SPC**              | Front-end components with dynamic animations.        | HTML, CSS, GSAP, ThreeJS, ParticleJS | [Live Demo](https://kreatetechnologies.om)  |
 
 ---
 
