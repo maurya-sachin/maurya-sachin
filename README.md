@@ -6,7 +6,7 @@ Hello, world! 👋 I’m **Sachin Maurya**, a **Frontend Developer** passionate 
 
 ## 👀 Visitor Count
 
-![Visitor Count](https://visitor-badge.laobi.icu/badge?page_id=maurya-sachin.maurya-sachin)
+![Visitors](https://api.visitorbadge.io/api/visitors?path=maurya-sachin&label=VISITORS&labelColor=%23697689&countColor=%23555555)
 
 ---
 

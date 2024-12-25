@@ -20,22 +20,29 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const fs = require('fs');
-            const readme = fs.readFileSync('README.md', 'utf8');
-            
+            const { Octokit } = require('@octokit/rest');
+
+            // Initialize Octokit with authentication
+            const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
+
+            const path = './README.md';
+            let readme = fs.readFileSync(path, 'utf-8');
+
+            // Fetch latest repositories dynamically using GitHub API
             const response = await github.rest.repos.listForAuthenticatedUser({
               sort: 'updated',
               per_page: 5
             });
-            
+
             const latestRepos = response.data
               .map(repo => `- [${repo.name}](${repo.html_url}): ${repo.description || ''}`)
               .join('\n');
-            
+
             const newReadme = readme.replace(
               /<!-- latest repos -->[\s\S]*?(?=---)/,
               `<!-- latest repos -->\n${latestRepos}\n\n`
             );
-            
+
             fs.writeFileSync('README.md', newReadme);
 
       - name: Update Programming Quote
@@ -43,7 +50,7 @@ jobs:
           node -e '
           const fs = require("fs");
           const axios = require("axios");
-          
+
           async function updateQuote() {
             let readme = fs.readFileSync("README.md", "utf8");
             try {
@@ -55,7 +62,7 @@ jobs:
               console.error("Failed to fetch quote:", error);
             }
           }
-          
+
           updateQuote().catch(console.error);
           '
 
