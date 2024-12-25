@@ -12,21 +12,57 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Update README
+      - name: Update README Visitor Count
         uses: actions/github-script@v6
         with:
           script: |
             const fs = require('fs');
             const path = './README.md';
-            const readme = fs.readFileSync(path, 'utf-8');
+            let readme = fs.readFileSync(path, 'utf-8');
 
-            // Example: Add dynamic visitor count
-            const updatedReadme = readme.replace(
+            // Dynamic Visitor Count
+            readme = readme.replace(
               /<!-- visitor count -->/g,
               `![Visitor Count](https://komarev.com/ghpvc/?username=${process.env.GITHUB_REPOSITORY_OWNER}&color=blue)`
             );
 
-            fs.writeFileSync(path, updatedReadme);
+            fs.writeFileSync(path, readme);
+
+      - name: Update README Latest Repositories
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const fs = require('fs');
+            const path = './README.md';
+            let readme = fs.readFileSync(path, 'utf-8');
+
+            // Fetch latest repositories dynamically using GitHub API
+            const repos = await github.repos.listForUser({
+              username: process.env.GITHUB_REPOSITORY_OWNER,
+              sort: 'updated',
+              per_page: 5,
+            });
+
+            const latestRepos = repos.data.map(repo => `- [${repo.name}](${repo.html_url}): ${repo.description}`).join('\n');
+            readme = readme.replace(/<!-- latest repos -->/g, latestRepos);
+
+            fs.writeFileSync(path, readme);
+
+      - name: Update README Quotes
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const axios = require('axios');
+            const fs = require('fs');
+            const path = './README.md';
+            let readme = fs.readFileSync(path, 'utf-8');
+
+            // Fetch a random programming quote
+            const response = await axios.get('https://programming-quotes-api.herokuapp.com/quotes/random');
+            const quote = `> "${response.data.en}" - ${response.data.author}`;
+            readme = readme.replace(/<!-- dynamic quotes -->/g, quote);
+
+            fs.writeFileSync(path, readme);
 
       - name: Commit Changes
         run: |

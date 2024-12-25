@@ -1,74 +1,154 @@
 # 🌟 Welcome to Sachin’s Digital Playground!
 
-Hello, world! 👋 I’m **Sachin Maurya**, a frontend developer with a passion for crafting responsive, high-performance web applications. I’m on a journey to master **full-stack development** and deliver exceptional web experiences. 🚀
+Hello, world! 👋 I’m **Sachin Maurya**, a **Frontend Developer** passionate about building responsive, high-performance web applications. 🚀
 
 ---
 
-### 🎨 My Tech Stack
+## 👀 Visitor Count
 
-Here are the "tools" I use to build dynamic and interactive web applications:  
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)  
-![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)  
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)  
-![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)  
-![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)  
-![GSAP](https://img.shields.io/badge/GSAP-88CE02?style=for-the-badge&logo=greensock&logoColor=white)  
-![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![Visitor Count](https://komarev.com/ghpvc/?username=maurya-sachin&color=blue)
 
 ---
 
-### 🔥 Projects & Demos
+## 🛠️ My Tech Stack
 
-**🚀 Interactive Portfolio (Coming Soon)**  
-I’m currently building my portfolio to showcase the skills I’ve acquired in **React**, **Next.js**, and **GSAP**. Expect immersive features like 3D animations, dynamic storytelling, and optimized performance for modern web standards.
+Here are the tools I use to bring ideas to life:
 
-**💡 Live Projects**  
-- 🌀 [Animation Playground](#): A dynamic collection of CSS and GSAP animations for experimentation.  
-- 🔗 [React Code Snippets](#): Reusable React components and hooks that I frequently use in my projects.
+### Front-End Development
 
-**🎭 UI & Animation Showcases**  
-- 🔥 [Scroll Adventure](#): A demo where each scroll triggers a mini-animation sequence powered by **GSAP ScrollTrigger**.
+<div style="display: flex; gap: 10px; flex-wrap: wrap;">
+  <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" style="text-decoration: none;">
+    <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white" 
+         alt="HTML5" 
+         style="transition: transform 0.3s ease; cursor: pointer;" 
+         onmouseover="this.style.transform='scale(1.2)'" 
+         onmouseout="this.style.transform='scale(1)'">
+  </a>
+  <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" style="text-decoration: none;">
+    <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white" 
+         alt="CSS3" 
+         style="transition: transform 0.3s ease; cursor: pointer;" 
+         onmouseover="this.style.transform='scale(1.2)'" 
+         onmouseout="this.style.transform='scale(1)'">
+  </a>
+  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" style="text-decoration: none;">
+    <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black" 
+         alt="JavaScript" 
+         style="transition: transform 0.3s ease; cursor: pointer;" 
+         onmouseover="this.style.transform='scale(1.2)'" 
+         onmouseout="this.style.transform='scale(1)'">
+  </a>
+  <a href="https://reactjs.org/" style="text-decoration: none;">
+    <img src="https://img.shields.io/badge/React-61DAFB?style=flat&logo=react&logoColor=black" 
+         alt="React" 
+         style="transition: transform 0.3s ease; cursor: pointer;" 
+         onmouseover="this.style.transform='scale(1.2)'" 
+         onmouseout="this.style.transform='scale(1)'">
+  </a>
+  <a href="https://nextjs.org/" style="text-decoration: none;">
+    <img src="https://img.shields.io/badge/Next.js-000000?style=flat&logo=nextdotjs&logoColor=white" 
+         alt="Next.js" 
+         style="transition: transform 0.3s ease; cursor: pointer;" 
+         onmouseover="this.style.transform='scale(1.2)'" 
+         onmouseout="this.style.transform='scale(1)'">
+  </a>
+  <a href="https://tailwindcss.com/" style="text-decoration: none;">
+    <img src="https://img.shields.io/badge/TailwindCSS-38B2AC?style=flat&logo=tailwind-css&logoColor=white" 
+         alt="TailwindCSS" 
+         style="transition: transform 0.3s ease; cursor: pointer;" 
+         onmouseover="this.style.transform='scale(1.2)'" 
+         onmouseout="this.style.transform='scale(1)'">
+  </a>
+  <a href="https://getbootstrap.com/" style="text-decoration: none;">
+    <img src="https://img.shields.io/badge/Bootstrap-7952B3?style=flat&logo=bootstrap&logoColor=white" 
+         alt="Bootstrap" 
+         style="transition: transform 0.3s ease; cursor: pointer;" 
+         onmouseover="this.style.transform='scale(1.2)'" 
+         onmouseout="this.style.transform='scale(1)'">
+  </a>
+</div>
+
+### Animation & 3D
+
+<div style="display: flex; gap: 10px; flex-wrap: wrap;">
+  <a href="https://greensock.com/gsap/" style="text-decoration: none;">
+    <img src="https://img.shields.io/badge/GSAP-88CE02?style=flat&logo=greensock&logoColor=white" 
+         alt="GSAP" 
+         style="transition: transform 0.3s ease; cursor: pointer;" 
+         onmouseover="this.style.transform='scale(1.2)'" 
+         onmouseout="this.style.transform='scale(1)'">
+  </a>
+  <a href="https://threejs.org/" style="text-decoration: none;">
+    <img src="https://img.shields.io/badge/Three.js-000000?style=flat&logo=three.js&logoColor=white" 
+         alt="Three.js" 
+         style="transition: transform 0.3s ease; cursor: pointer;" 
+         onmouseover="this.style.transform='scale(1.2)'" 
+         onmouseout="this.style.transform='scale(1)'">
+  </a>
+</div>
+
+### Back-End Development
+
+<div style="display: flex; gap: 10px; flex-wrap: wrap;">
+  <a href="https://nodejs.org/en/" style="text-decoration: none;">
+    <img src="https://img.shields.io/badge/Node.js-339933?style=flat&logo=nodedotjs&logoColor=white" 
+         alt="Node.js" 
+         style="transition: transform 0.3s ease; cursor: pointer;" 
+         onmouseover="this.style.transform='scale(1.2)'" 
+         onmouseout="this.style.transform='scale(1)'">
+  </a>
+  <a href="https://graphql.org/" style="text-decoration: none;">
+    <img src="https://img.shields.io/badge/GraphQL-E10098?style=flat&logo=graphql&logoColor=white" 
+         alt="GraphQL" 
+         style="transition: transform 0.3s ease; cursor: pointer;" 
+         onmouseover="this.style.transform='scale(1.2)'" 
+         onmouseout="this.style.transform='scale(1)'">
+  </a>
+</div>
 
 ---
 
-### 🚀 Featured Code Snippet
+## 🔥 My Projects & Demos
 
-**Magic Hover Card** ✨  
-A 3D hover effect card UI demonstrating **CSS perspective** and animation in React:  
-```javascript  
-const HoverCard = () => (  
-  <div style={{  
-    width: '200px',  
-    height: '300px',  
-    backgroundColor: '#f5f5f5',  
-    borderRadius: '15px',  
-    transform: 'rotateY(0deg)',  
-    transition: 'transform 0.3s ease-in-out',  
-    ':hover': { transform: 'rotateY(15deg)' },  
-  }}  
-  >  
-    <h3 style={{ textAlign: 'center' }}>✨ Hover Me ✨</h3>  
-  </div>  
-);  
-```
+Here’s a glimpse of what I’ve built:
 
-See it live in [CodeSandbox](#).
+| Project                     | Description                                          | Tech Stack         | Demo                                        |
+| --------------------------- | ---------------------------------------------------- | ------------------ | ------------------------------------------- |
+| **Kreate Energy**           | Responsive & SEO-optimized web interfaces.           | Next.js, GraphQL   | [Live Demo](https://kreatenergy.com)        |
+| **Kreate Technologies**     | SEO-optimized website with custom fonts & Swiper.js. | Next.js, Sass      | [Live Demo](https://kreatetechnologies.com) |
+| **Atal Jal (Gov. Project)** | Enhanced UI/UX for a government tender portal.       | Angular.js, jQuery | [Demo](#)                                   |
+| **Kreate SPC**              | Front-end components with dynamic animations.        | HTML, CSS, GSAP    | [Demo](#)                                   |
 
 ---
 
-### 🌱 Learning & Growth
+## 📚 Latest Repositories
 
-**🔍 What I’m Currently Exploring**  
-- 📜 Learning advanced **SEO optimization** techniques, specifically for SPAs (Single Page Applications).  
-- 🎨 Exploring **WebGL** for creating immersive 3D experiences with **Three.js**.  
-- 🛠️ Deepening my knowledge of **Node.js** and **Express.js** to build full-stack applications.  
+<!-- latest repos -->
 
 ---
 
-### 🎯 Let’s Connect!
+## 🌟 Contribution Graph
 
-I’m always excited to collaborate on innovative projects and create something meaningful. If you’re working on a cool idea or need a frontend developer, feel free to reach out!
+![GitHub Contribution Graph](https://github-readme-streak-stats.herokuapp.com/?user=maurya-sachin&theme=blue-green)
 
-- 📧 **Email**: sachinmaurya1710@gmail.com  
-- 🌐 **LinkedIn**: [linkedin.com/in/maurya-sachin](https://linkedin.com/in/maurya-sachin)  
-- 🎮 **Fun Fact**: When I’m not coding, I’m either solving puzzles or hunting for Easter eggs in video games and movies.
+---
+
+## 🤖 Daily Programming Quotes
+
+<!-- dynamic quotes -->
+
+---
+
+### 🌱 Let’s Connect!
+
+Want to collaborate or share ideas? Reach out!
+
+- 📧 **Email**: [sachinmaurya1710@gmail.com](mailto:sachinmaurya1710@gmail.com)
+- 🌐 **LinkedIn**: [linkedin.com/in/maurya-sachin](https://linkedin.com/in/maurya-sachin)
+- 💻 **GitHub**: [github.com/maurya-sachin](https://github.com/maurya-sachin)
+
+---
+
+### 🚀 Fun Fact
+
+When I’m not coding, I’m solving puzzles or finding Easter eggs in video games and movies. 🎮🎬
