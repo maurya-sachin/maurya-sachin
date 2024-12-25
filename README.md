@@ -124,6 +124,8 @@ Here’s a glimpse of what I’ve built:
 ## 📚 Latest Repositories
 
 <!-- latest repos -->
+- [maurya-sachin](https://github.com/maurya-sachin/maurya-sachin): 
+- [todo-tailwind](https://github.com/maurya-sachin/todo-tailwind): 
 
 ---
 
