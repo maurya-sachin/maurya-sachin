@@ -49,29 +49,9 @@ const techStack = {
 ## 📚 Latest Repositories
 
 <!-- latest repos -->
-
-## 📈 GitHub Stats
-
-<div align="center">
-
-![GitHub Streak](https://github-readme-streak-stats.herokuapp.com/?user=maurya-sachin&theme=blue-green)
-
-</div>
-
-## 💭 Today's Programming Quote
-
-<!-- dynamic quotes -->
-
-## 🤝 Let's Connect
-
-<div align="center">
-
-[![Portfolio](https://img.shields.io/badge/Portfolio-255E63?style=for-the-badge&logo=About.me&logoColor=white)](https://maurya-sachin.github.io)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/maurya-sachin)
-[![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:sachinmaurya1710@gmail.com)
-[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/maurya-sachin)
-
-</div>
+- [maurya-sachin](https://github.com/maurya-sachin/maurya-sachin) - ⭐ 1 stars | No language - No description
+- [weather-app](https://github.com/maurya-sachin/weather-app) - ⭐ 0 stars | JavaScript - No description
+- [todo-tailwind](https://github.com/maurya-sachin/todo-tailwind) - ⭐ 0 stars | JavaScript - No description
 
 ---
 
