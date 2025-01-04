@@ -46,25 +46,6 @@ const techStack = {
 | **Atal Jal** | HTML/CSS/JS | Government tender portal | [View →](https://ataljal.mowr.gov.in/) |
 | **Kreate SPC** | GSAP, Three.js | Interactive 3D animations | [View →](https://kreatetechnologies.om) |
 
-## 📚 Latest Repositories
-
-<!-- latest repos -->
-- [maurya-sachin](https://github.com/maurya-sachin/maurya-sachin) - ⭐ 1 stars | No language - No description
-- [weather-app](https://github.com/maurya-sachin/weather-app) - ⭐ 0 stars | JavaScript - No description
-- [todo-tailwind](https://github.com/maurya-sachin/todo-tailwind) - ⭐ 0 stars | JavaScript - No description
-- [maurya-sachin](https://github.com/maurya-sachin/maurya-sachin) - ⭐ 1 stars | No language - No description
-- [weather-app](https://github.com/maurya-sachin/weather-app) - ⭐ 0 stars | JavaScript - No description
-- [todo-tailwind](https://github.com/maurya-sachin/todo-tailwind) - ⭐ 0 stars | JavaScript - No description
-- [maurya-sachin](https://github.com/maurya-sachin/maurya-sachin) - ⭐ 1 stars | No language - No description
-- [weather-app](https://github.com/maurya-sachin/weather-app) - ⭐ 0 stars | JavaScript - No description
-- [todo-tailwind](https://github.com/maurya-sachin/todo-tailwind) - ⭐ 0 stars | JavaScript - No description
-- [weather-app](https://github.com/maurya-sachin/weather-app) - ⭐ 0 stars | JavaScript - No description
-- [maurya-sachin](https://github.com/maurya-sachin/maurya-sachin) - ⭐ 1 stars | No language - No description
-- [todo-tailwind](https://github.com/maurya-sachin/todo-tailwind) - ⭐ 0 stars | JavaScript - No description
-- [maurya-sachin](https://github.com/maurya-sachin/maurya-sachin) - ⭐ 1 stars | No language - No description
-- [weather-app](https://github.com/maurya-sachin/weather-app) - ⭐ 0 stars | JavaScript - No description
-- [todo-tailwind](https://github.com/maurya-sachin/todo-tailwind) - ⭐ 0 stars | JavaScript - No description
-
 ## 📈 GitHub Stats
 
 <div align="center">
