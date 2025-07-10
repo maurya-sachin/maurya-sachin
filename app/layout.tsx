@@ -38,14 +38,14 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://sachinmaurya.dev'),
+  // metadataBase: new URL('https://sachinmaurya.dev'),
   alternates: {
     canonical: '/',
   },
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://sachinmaurya.dev',
+    // url: 'https://sachinmaurya.dev',
     title: 'Sachin Maurya - Frontend Developer',
     description: 'Interactive portfolio showcasing modern frontend development skills with dark mode and advanced animations',
     siteName: 'Sachin Maurya Portfolio',
@@ -107,7 +107,6 @@ export default function RootLayout({
         <script
           dangerouslySetInnerHTML={{
             __html: `
-              // Prevent flash of unstyled content
               try {
                 const theme = localStorage.getItem('theme');
                 const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
