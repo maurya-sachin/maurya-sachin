@@ -38,17 +38,17 @@ I'm a **Frontend Developer** specializing in building exceptional digital experi
 
 ### 💭 Developer Motto
 
-*"Code is like humor. When you have to explain it, it's bad."* - Cory House
+_"Code is like humor. When you have to explain it, it's bad."_ - Cory House
 
 ### 🎯 Current Focus
 
 ```typescript
 const currentGoals = {
   learning: "Advanced React Patterns & Micro-frontends",
-  building: "Scalable Component Libraries", 
+  building: "Scalable Component Libraries",
   optimizing: "Core Web Vitals & Performance",
-  exploring: "AI-powered Development Tools"
-}
+  exploring: "AI-powered Development Tools",
+};
 ```
 
 </div>
@@ -61,12 +61,12 @@ const currentGoals = {
 
 <div align="center">
 
-| Achievement | Metric | Impact |
-|-------------|--------|--------|
-| ⚡ **Performance** | 80% faster | Load time optimization |
-| 🎯 **Quality** | 95+ Lighthouse | Consistent excellence |
-| 📦 **Efficiency** | 30% faster | Development cycles |
-| 🔗 **APIs** | 20% reduction | Latency improvements |
+| Achievement        | Metric         | Impact                 |
+| ------------------ | -------------- | ---------------------- |
+| ⚡ **Performance** | 80% faster     | Load time optimization |
+| 🎯 **Quality**     | 95+ Lighthouse | Consistent excellence  |
+| 📦 **Efficiency**  | 30% faster     | Development cycles     |
+| 🔗 **APIs**        | 20% reduction  | Latency improvements   |
 
 </div>
 
@@ -136,7 +136,7 @@ const currentGoals = {
 ## 🎨 Featured Projects
 
 ### 🤖 [GENAI Document Analyzer](https://github.com/maurya-sachin/genai-analyzer)
->
+
 > Enterprise AI-powered document processing platform
 
 **🔧 Tech Stack:** React, Redux Toolkit, Python API, TypeScript  
@@ -177,7 +177,7 @@ const debouncedSearch = useDebounce(searchTerm, 300);
 ---
 
 ### 🌐 [Kreate Technologies Website](https://github.com/maurya-sachin/kreate-website)
->
+
 > High-performance corporate website
 
 **🔧 Tech Stack:** Next.js, GSAP, Tailwind CSS, TypeScript  
@@ -196,22 +196,24 @@ const debouncedSearch = useDebounce(searchTerm, 300);
 ```typescript
 // Advanced theme toggle with persistence
 const useTheme = () => {
-  const [theme, setTheme] = useState<'light' | 'dark'>('light');
+  const [theme, setTheme] = useState<"light" | "dark">("light");
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem('theme') as 'light' | 'dark';
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    
-    const initialTheme = savedTheme || (prefersDark ? 'dark' : 'light');
+    const savedTheme = localStorage.getItem("theme") as "light" | "dark";
+    const prefersDark = window.matchMedia(
+      "(prefers-color-scheme: dark)",
+    ).matches;
+
+    const initialTheme = savedTheme || (prefersDark ? "dark" : "light");
     setTheme(initialTheme);
-    document.documentElement.classList.toggle('dark', initialTheme === 'dark');
+    document.documentElement.classList.toggle("dark", initialTheme === "dark");
   }, []);
 
   const toggleTheme = useCallback(() => {
-    const newTheme = theme === 'light' ? 'dark' : 'light';
+    const newTheme = theme === "light" ? "dark" : "light";
     setTheme(newTheme);
-    localStorage.setItem('theme', newTheme);
-    document.documentElement.classList.toggle('dark');
+    localStorage.setItem("theme", newTheme);
+    document.documentElement.classList.toggle("dark");
   }, [theme]);
 
   return { theme, toggleTheme };
@@ -223,7 +225,7 @@ const useTheme = () => {
 ---
 
 ### 📋 [Interactive Kanban Board](https://github.com/maurya-sachin/kanban-board)
->
+
 > Modern task management with real-time collaboration
 
 **🔧 Tech Stack:** React, TypeScript, React DND, Zustand  
@@ -304,14 +306,14 @@ const useTheme = () => {
 
 <div align="center">
 
-| 🎯 Metric | Before | After | 📈 Improvement |
-|-----------|--------|--------|----------------|
-| 🚀 Load Time | 4.2s | 0.8s | **80% faster** |
-| 📦 Bundle Size | 2.1MB | 890KB | **58% smaller** |
-| 🎯 Lighthouse | 68 | 95+ | **40% better** |
-| 🔄 API Calls | 15 | 8 | **47% fewer** |
-| 🎨 Paint Time | 2.1s | 0.6s | **71% faster** |
-| 📱 Mobile Score | 72 | 96 | **33% better** |
+| 🎯 Metric       | Before | After | 📈 Improvement  |
+| --------------- | ------ | ----- | --------------- |
+| 🚀 Load Time    | 4.2s   | 0.8s  | **80% faster**  |
+| 📦 Bundle Size  | 2.1MB  | 890KB | **58% smaller** |
+| 🎯 Lighthouse   | 68     | 95+   | **40% better**  |
+| 🔄 API Calls    | 15     | 8     | **47% fewer**   |
+| 🎨 Paint Time   | 2.1s   | 0.6s  | **71% faster**  |
+| 📱 Mobile Score | 72     | 96    | **33% better**  |
 
 </div>
 
@@ -326,7 +328,7 @@ graph LR
     C --> D[🔄 GraphQL Federation]
     D --> E[📅 Micro-frontends]
     E --> F[📅 Web3 Integration]
-    
+
     style A fill:#61DAFB
     style B fill:#000000
     style C fill:#007ACC
@@ -380,14 +382,14 @@ Testing & Debugging    ███████████████      80%
 
 <div align="center">
 
-| 🍕 **Pizza Debugging** | 73% of my bugs are solved during pizza breaks |
-|-------------------------|------------------------------------------------|
-| ☕ **Coffee to Code Ratio** | `1 cup = 50 lines of clean code` |
-| 🌙 **Peak Hours** | Most productive between 10 PM - 2 AM |
-| 🎵 **Coding Soundtrack** | Lo-fi beats + Deep house = Perfect focus |
-| 📚 **Learning Style** | Documentation reader + Video tutorials @ 1.5x |
-| 🔥 **Current Streak** | 47 days of coding without breaking the chain |
-| 🎯 **Daily Goal** | Learn one new thing, no matter how small |
+| 🍕 **Pizza Debugging**      | 73% of my bugs are solved during pizza breaks |
+| --------------------------- | --------------------------------------------- |
+| ☕ **Coffee to Code Ratio** | `1 cup = 50 lines of clean code`              |
+| 🌙 **Peak Hours**           | Most productive between 10 PM - 2 AM          |
+| 🎵 **Coding Soundtrack**    | Lo-fi beats + Deep house = Perfect focus      |
+| 📚 **Learning Style**       | Documentation reader + Video tutorials @ 1.5x |
+| 🔥 **Current Streak**       | 47 days of coding without breaking the chain  |
+| 🎯 **Daily Goal**           | Learn one new thing, no matter how small      |
 
 </div>
 
@@ -430,14 +432,14 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 <div align="center">
 
-| Feature | Status | Description |
-|---------|--------|-------------|
-| 🌙 **Dark Mode** | ✅ Complete | System preference + manual toggle |
-| ⚡ **Performance** | ✅ Optimized | 95+ Lighthouse score |
-| 🎨 **Animations** | ✅ Advanced | Framer Motion + GSAP |
-| 📱 **PWA Ready** | ✅ Enabled | Offline capabilities |
-| 🔍 **SEO** | ✅ Optimized | Structured data + meta tags |
-| ♿ **Accessibility** | ✅ WCAG 2.1 AA | Full compliance |
+| Feature              | Status         | Description                       |
+| -------------------- | -------------- | --------------------------------- |
+| 🌙 **Dark Mode**     | ✅ Complete    | System preference + manual toggle |
+| ⚡ **Performance**   | ✅ Optimized   | 95+ Lighthouse score              |
+| 🎨 **Animations**    | ✅ Advanced    | Framer Motion + GSAP              |
+| 📱 **PWA Ready**     | ✅ Enabled     | Offline capabilities              |
+| 🔍 **SEO**           | ✅ Optimized   | Structured data + meta tags       |
+| ♿ **Accessibility** | ✅ WCAG 2.1 AA | Full compliance                   |
 
 </div>
 

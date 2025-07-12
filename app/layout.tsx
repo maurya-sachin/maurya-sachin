@@ -1,29 +1,30 @@
-import type React from "react"
-import type { Metadata } from "next"
-import { Inter, JetBrains_Mono, Poppins } from "next/font/google"
-import "./globals.css"
+import type React from "react";
+import type { Metadata } from "next";
+import { Inter, JetBrains_Mono, Poppins } from "next/font/google";
+import "./globals.css";
 
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-inter",
-})
+});
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-mono",
-})
+});
 
 const poppins = Poppins({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-poppins",
   weight: ["300", "400", "500", "600", "700", "800", "900"],
-})
+});
 
 export const metadata: Metadata = {
-  title: "Sachin Maurya - Frontend Developer | React.js Specialist | UI/UX Developer",
+  title:
+    "Sachin Maurya - Frontend Developer | React.js Specialist | UI/UX Developer",
   description:
     "Experienced Frontend Developer specializing in React.js, Next.js, TypeScript. Expert in performance optimization, web accessibility, GSAP animations, and modern UI/UX development. 2+ years building scalable web applications.",
   keywords: [
@@ -107,12 +108,12 @@ export const metadata: Metadata = {
   },
   category: "technology",
   classification: "Portfolio",
-}
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html
@@ -125,7 +126,10 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/manifest.json" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, viewport-fit=cover"
+        />
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -145,5 +149,5 @@ export default function RootLayout({
         {children}
       </body>
     </html>
-  )
+  );
 }

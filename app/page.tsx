@@ -1,8 +1,8 @@
 // app/page.tsx
-'use client'
+"use client";
 
-import ResumeApp from '@/components/ResumeApp'
+import ResumeApp from "@/components/ResumeApp";
 
 export default function Home() {
-  return <ResumeApp />
+  return <ResumeApp />;
 }

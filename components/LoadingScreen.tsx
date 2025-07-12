@@ -9,8 +9,9 @@ interface LoadingScreenProps {
 const LoadingScreen: React.FC<LoadingScreenProps> = ({ isDarkMode }) => {
   return (
     <div
-      className={`fixed inset-0 z-50 flex items-center justify-center ${isDarkMode ? "bg-gray-900" : "bg-white"
-        }`}
+      className={`fixed inset-0 z-50 flex items-center justify-center ${
+        isDarkMode ? "bg-gray-900" : "bg-white"
+      }`}
     >
       <motion.div
         className="text-center"
@@ -85,8 +86,9 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ isDarkMode }) => {
           transition={{ delay: 1 }}
         >
           <div
-            className={`h-2 rounded-full overflow-hidden ${isDarkMode ? "bg-gray-800" : "bg-gray-200"
-              }`}
+            className={`h-2 rounded-full overflow-hidden ${
+              isDarkMode ? "bg-gray-800" : "bg-gray-200"
+            }`}
           >
             <motion.div
               className="h-full bg-gradient-to-r from-blue-500 to-purple-600 rounded-full"
@@ -99,8 +101,9 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ isDarkMode }) => {
 
         {/* Loading Text */}
         <motion.p
-          className={`mt-6 text-sm ${isDarkMode ? "text-gray-400" : "text-gray-600"
-            }`}
+          className={`mt-6 text-sm ${
+            isDarkMode ? "text-gray-400" : "text-gray-600"
+          }`}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5 }}

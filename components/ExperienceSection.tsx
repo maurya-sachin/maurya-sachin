@@ -1,34 +1,49 @@
 // components/ExperienceSection.tsx
-import React, { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
-  Calendar, ChevronRight, MapPin, Award, TrendingUp,
-  Zap, Code, Globe, Database, Palette, ExternalLink,
-  Building, Users, Target, Star, Briefcase
-} from 'lucide-react'
+  Calendar,
+  ChevronRight,
+  MapPin,
+  Award,
+  TrendingUp,
+  Zap,
+  Code,
+  Globe,
+  Database,
+  Palette,
+  ExternalLink,
+  Building,
+  Users,
+  Target,
+  Star,
+  Briefcase,
+} from "lucide-react";
 
 interface Experience {
-  role: string
-  company: string
-  period: string
-  location: string
-  type: "Full-time" | "Internship" | "Freelance" | "Contract"
-  achievements: string[]
-  tech: string[]
-  highlights: string[]
-  keywords: string[]
-  logo?: string
-  companyUrl?: string
-  projects?: string[]
-  metrics?: { [key: string]: string }
+  role: string;
+  company: string;
+  period: string;
+  location: string;
+  type: "Full-time" | "Internship" | "Freelance" | "Contract";
+  achievements: string[];
+  tech: string[];
+  highlights: string[];
+  keywords: string[];
+  logo?: string;
+  companyUrl?: string;
+  projects?: string[];
+  metrics?: { [key: string]: string };
 }
 
 interface ExperienceSectionProps {
-  isDarkMode: boolean
+  isDarkMode: boolean;
 }
 
-const ExperienceSection: React.FC<ExperienceSectionProps> = ({ isDarkMode }) => {
-  const [expandedIndex, setExpandedIndex] = useState<number | null>(0)
+const ExperienceSection: React.FC<ExperienceSectionProps> = ({
+  isDarkMode,
+}) => {
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(0);
 
   const experience: Experience[] = [
     {
@@ -44,19 +59,41 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({ isDarkMode }) => 
         "Achieved consistent 95+ Lighthouse performance scores across all web applications",
         "Built reusable React component library reducing development time by 30%",
         "Implemented WCAG 2.1 AA accessibility standards for government portals",
-        "Led frontend architecture decisions for 3 major client projects"
+        "Led frontend architecture decisions for 3 major client projects",
       ],
-      tech: ["React.js", "Next.js", "TypeScript", "GraphQL", "Tailwind CSS", "GSAP", "Performance Optimization"],
-      highlights: ["Performance Expert", "Component Architecture", "Accessibility Specialist"],
-      keywords: ["React Developer", "Frontend Developer", "UI Developer", "Performance Optimization", "Web Accessibility"],
+      tech: [
+        "React.js",
+        "Next.js",
+        "TypeScript",
+        "GraphQL",
+        "Tailwind CSS",
+        "GSAP",
+        "Performance Optimization",
+      ],
+      highlights: [
+        "Performance Expert",
+        "Component Architecture",
+        "Accessibility Specialist",
+      ],
+      keywords: [
+        "React Developer",
+        "Frontend Developer",
+        "UI Developer",
+        "Performance Optimization",
+        "Web Accessibility",
+      ],
       logo: "/placeholder.svg?height=50&width=50",
-      projects: ["GENAI Document Analyzer", "Kreate Technologies Website", "Government Portals"],
+      projects: [
+        "GENAI Document Analyzer",
+        "Kreate Technologies Website",
+        "Government Portals",
+      ],
       metrics: {
         "Performance Improvement": "80%",
         "Lighthouse Score": "95+",
         "API Latency Reduction": "20%",
-        "Development Efficiency": "+30%"
-      }
+        "Development Efficiency": "+30%",
+      },
     },
     {
       role: "Frontend Development Trainee",
@@ -71,19 +108,40 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({ isDarkMode }) => 
         "Led Next.js adoption initiative across development teams",
         "Implemented comprehensive web accessibility standards and best practices",
         "Built interactive data visualizations for internal business tools",
-        "Mentored 2 junior developers in React.js best practices"
+        "Mentored 2 junior developers in React.js best practices",
       ],
-      tech: ["HTML5", "CSS3", "JavaScript ES6+", "React.js", "Bootstrap", "Responsive Design"],
-      highlights: ["Accessibility Expert", "Responsive Design", "Modern Frameworks"],
-      keywords: ["Frontend Trainee", "Web Development", "Government Portal", "Responsive Design", "JavaScript Developer"],
+      tech: [
+        "HTML5",
+        "CSS3",
+        "JavaScript ES6+",
+        "React.js",
+        "Bootstrap",
+        "Responsive Design",
+      ],
+      highlights: [
+        "Accessibility Expert",
+        "Responsive Design",
+        "Modern Frameworks",
+      ],
+      keywords: [
+        "Frontend Trainee",
+        "Web Development",
+        "Government Portal",
+        "Responsive Design",
+        "JavaScript Developer",
+      ],
       logo: "/placeholder.svg?height=50&width=50",
-      projects: ["Government Dashboards", "Data Visualization Tools", "Responsive Web Apps"],
+      projects: [
+        "Government Dashboards",
+        "Data Visualization Tools",
+        "Responsive Web Apps",
+      ],
       metrics: {
         "Daily Users": "10,000+",
         "Accessibility Score": "AA",
         "Team Growth": "Next.js Adoption",
-        "Mentoring": "2 Developers"
-      }
+        Mentoring: "2 Developers",
+      },
     },
     {
       role: "WordPress Developer Intern",
@@ -97,19 +155,29 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({ isDarkMode }) => 
         "Optimized website performance achieving 40% faster load times",
         "Implemented SEO best practices resulting in 60% improved search rankings",
         "Built e-commerce solutions using WooCommerce for 5+ clients",
-        "Collaborated with design team to implement pixel-perfect UI/UX"
+        "Collaborated with design team to implement pixel-perfect UI/UX",
       ],
       tech: ["WordPress", "PHP", "MySQL", "JavaScript", "CSS3", "WooCommerce"],
-      highlights: ["Custom Development", "Performance Optimization", "SEO Specialist"],
-      keywords: ["WordPress Developer", "PHP Development", "Custom Themes", "Plugin Development", "E-commerce"],
+      highlights: [
+        "Custom Development",
+        "Performance Optimization",
+        "SEO Specialist",
+      ],
+      keywords: [
+        "WordPress Developer",
+        "PHP Development",
+        "Custom Themes",
+        "Plugin Development",
+        "E-commerce",
+      ],
       logo: "/placeholder.svg?height=50&width=50",
       projects: ["E-commerce Websites", "Custom Plugins", "SEO Optimization"],
       metrics: {
         "Websites Built": "15+",
         "Performance Gain": "40%",
         "SEO Improvement": "60%",
-        "E-commerce Sites": "5+"
-      }
+        "E-commerce Sites": "5+",
+      },
     },
     {
       role: "Engineering Apprentice",
@@ -125,15 +193,22 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({ isDarkMode }) => 
         "Contributed to digital documentation and data entry in SAP systems",
         "Learned petroleum storage tank maintenance and pipeline inspection protocols",
         "Assisted in customer service operations and retail fuel station management",
-        "Participated in environmental compliance monitoring and waste management"
+        "Participated in environmental compliance monitoring and waste management",
       ],
-      tech: ["SAP ERP", "Excel", "AutoCAD", "PLC Systems", "SCADA", "MS Office"],
+      tech: [
+        "SAP ERP",
+        "Excel",
+        "AutoCAD",
+        "PLC Systems",
+        "SCADA",
+        "MS Office",
+      ],
       highlights: [
         "Petroleum Operations",
         "Quality Control",
         "Safety Compliance",
         "Digital Systems",
-        "Inventory Management"
+        "Inventory Management",
       ],
       keywords: [
         "Petroleum Engineering",
@@ -142,30 +217,31 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({ isDarkMode }) => 
         "Safety Protocols",
         "SAP Systems",
         "Fuel Dispensing",
-        "Environmental Compliance"
+        "Environmental Compliance",
       ],
       logo: "/bpcl-logo.png", // BPCL official logo
       projects: [
         "Depot Inventory System",
         "Quality Testing Procedures",
         "Safety Protocol Documentation",
-        "Customer Service Operations"
+        "Customer Service Operations",
       ],
       metrics: {
         "Safety Incidents": "0",
         "Quality Tests": "200+",
         "Training Hours": "480+",
         "System Efficiency": "98%",
-        "Compliance Rate": "100%"
+        "Compliance Rate": "100%",
       },
-      description: "Comprehensive engineering apprenticeship program focusing on petroleum depot operations, quality assurance, safety protocols, and digital systems management at one of India's leading oil marketing companies.",
+      description:
+        "Comprehensive engineering apprenticeship program focusing on petroleum depot operations, quality assurance, safety protocols, and digital systems management at one of India's leading oil marketing companies.",
       learningOutcomes: [
         "Understanding of petroleum supply chain and logistics",
         "Proficiency in quality control testing methodologies",
         "Knowledge of safety protocols in petroleum handling",
         "Experience with enterprise SAP systems",
         "Exposure to automated fuel dispensing technologies",
-        "Environmental compliance and sustainability practices"
+        "Environmental compliance and sustainability practices",
       ],
       skills: [
         "Petroleum Operations Management",
@@ -175,28 +251,35 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({ isDarkMode }) => 
         "Data Analysis & Reporting",
         "Customer Service Excellence",
         "Environmental Compliance",
-        "Team Collaboration"
-      ]
-    }
-  ]
+        "Team Collaboration",
+      ],
+    },
+  ];
 
   const getTypeColor = (type: string) => {
     switch (type) {
-      case "Full-time": return "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
-      case "Internship": return "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
-      case "Freelance": return "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200"
-      default: return "bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-200"
+      case "Full-time":
+        return "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200";
+      case "Internship":
+        return "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200";
+      case "Freelance":
+        return "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200";
+      default:
+        return "bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-200";
     }
-  }
+  };
 
   return (
-    <section id="experience" className={`py-20 px-4 sm:px-6 lg:px-8 ${isDarkMode ? "bg-gray-800/30" : "bg-gray-50/50"}`}>
+    <section
+      id="experience"
+      className={`py-20 px-4 sm:px-6 lg:px-8 ${isDarkMode ? "bg-gray-800/30" : "bg-gray-50/50"}`}
+    >
       {/* Background Pattern */}
       <div className="absolute inset-0 overflow-hidden">
         {[...Array(8)].map((_, i) => (
           <motion.div
             key={i}
-            className={`absolute w-32 h-32 rounded-full ${isDarkMode ? 'bg-blue-500' : 'bg-blue-400'} opacity-5`}
+            className={`absolute w-32 h-32 rounded-full ${isDarkMode ? "bg-blue-500" : "bg-blue-400"} opacity-5`}
             style={{
               left: `${15 + i * 12}%`,
               top: `${10 + i * 8}%`,
@@ -244,7 +327,8 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({ isDarkMode }) => 
             transition={{ delay: 0.3, duration: 0.8 }}
             viewport={{ once: true }}
           >
-            Building expertise through impactful contributions and continuous learning in modern web development
+            Building expertise through impactful contributions and continuous
+            learning in modern web development
           </motion.p>
         </motion.div>
 
@@ -253,10 +337,11 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({ isDarkMode }) => 
           {experience.map((exp, index) => (
             <motion.div
               key={`${exp.role}-${exp.company}`}
-              className={`rounded-xl border backdrop-blur-sm relative overflow-hidden group ${isDarkMode
-                ? "bg-gray-900/50 border-gray-700 hover:border-gray-600"
-                : "bg-white/70 border-gray-200 hover:border-gray-300"
-                }`}
+              className={`rounded-xl border backdrop-blur-sm relative overflow-hidden group ${
+                isDarkMode
+                  ? "bg-gray-900/50 border-gray-700 hover:border-gray-600"
+                  : "bg-white/70 border-gray-200 hover:border-gray-300"
+              }`}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.2, duration: 0.6 }}
@@ -264,9 +349,7 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({ isDarkMode }) => 
               whileHover={{ y: -5 }}
             >
               {/* Background Gradient */}
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-purple-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-              />
+              <motion.div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-purple-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
               <div className="relative z-10 p-8">
                 {/* Header Section */}
@@ -282,9 +365,9 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({ isDarkMode }) => 
                           alt={`${exp.company} logo`}
                           className="w-full h-full object-cover"
                           onError={(e) => {
-                            const target = e.target as HTMLImageElement
-                            target.style.display = 'none'
-                            target.parentElement!.innerHTML = `<span class="text-white font-bold text-lg">${exp.company.charAt(0)}</span>`
+                            const target = e.target as HTMLImageElement;
+                            target.style.display = "none";
+                            target.parentElement!.innerHTML = `<span class="text-white font-bold text-lg">${exp.company.charAt(0)}</span>`;
                           }}
                         />
                       </motion.div>
@@ -298,7 +381,9 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({ isDarkMode }) => 
                         {exp.role}
                       </motion.h3>
 
-                      <div className={`flex flex-wrap items-center gap-4 mb-3 ${isDarkMode ? "text-gray-300" : "text-gray-600"}`}>
+                      <div
+                        className={`flex flex-wrap items-center gap-4 mb-3 ${isDarkMode ? "text-gray-300" : "text-gray-600"}`}
+                      >
                         <motion.div
                           className="flex items-center space-x-2"
                           whileHover={{ scale: 1.05 }}
@@ -315,7 +400,9 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({ isDarkMode }) => 
                               <ExternalLink className="w-3 h-3" />
                             </a>
                           ) : (
-                            <span className="font-semibold text-blue-500">{exp.company}</span>
+                            <span className="font-semibold text-blue-500">
+                              {exp.company}
+                            </span>
                           )}
                         </motion.div>
 
@@ -328,7 +415,9 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({ isDarkMode }) => 
 
                         <span>•</span>
 
-                        <span className={`px-3 py-1 rounded-full text-xs font-medium ${getTypeColor(exp.type)}`}>
+                        <span
+                          className={`px-3 py-1 rounded-full text-xs font-medium ${getTypeColor(exp.type)}`}
+                        >
                           {exp.type}
                         </span>
                       </div>
@@ -347,7 +436,9 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({ isDarkMode }) => 
                     </div>
                   </div>
 
-                  <div className={`flex items-center space-x-2 mt-4 lg:mt-0 ${isDarkMode ? "text-gray-400" : "text-gray-500"}`}>
+                  <div
+                    className={`flex items-center space-x-2 mt-4 lg:mt-0 ${isDarkMode ? "text-gray-400" : "text-gray-500"}`}
+                  >
                     <Calendar className="w-5 h-5" />
                     <span className="font-medium">{exp.period}</span>
                   </div>
@@ -355,11 +446,15 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({ isDarkMode }) => 
 
                 {/* Expandable Content */}
                 <motion.button
-                  onClick={() => setExpandedIndex(expandedIndex === index ? null : index)}
+                  onClick={() =>
+                    setExpandedIndex(expandedIndex === index ? null : index)
+                  }
                   className="w-full text-left mb-6"
                 >
                   <div className="flex items-center justify-between">
-                    <h4 className="text-lg font-semibold">Key Achievements & Responsibilities</h4>
+                    <h4 className="text-lg font-semibold">
+                      Key Achievements & Responsibilities
+                    </h4>
                     <motion.div
                       animate={{ rotate: expandedIndex === index ? 90 : 0 }}
                       transition={{ duration: 0.3 }}
@@ -380,24 +475,32 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({ isDarkMode }) => 
                     >
                       {/* Achievements Grid */}
                       <div className="grid md:grid-cols-2 gap-4">
-                        {exp.achievements.map((achievement, achievementIndex) => (
-                          <motion.div
-                            key={achievementIndex}
-                            className={`flex items-start space-x-3 p-4 rounded-lg backdrop-blur-sm ${isDarkMode ? "bg-gray-800/50" : "bg-white/50"
+                        {exp.achievements.map(
+                          (achievement, achievementIndex) => (
+                            <motion.div
+                              key={achievementIndex}
+                              className={`flex items-start space-x-3 p-4 rounded-lg backdrop-blur-sm ${
+                                isDarkMode ? "bg-gray-800/50" : "bg-white/50"
                               }`}
-                            initial={{ opacity: 0, x: -20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: achievementIndex * 0.1, duration: 0.5 }}
-                            whileHover={{ scale: 1.02, x: 5 }}
-                          >
-                            <div className="flex-shrink-0 mt-1">
-                              <div className="w-2 h-2 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full"></div>
-                            </div>
-                            <span className={`leading-relaxed text-sm ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}>
-                              {achievement}
-                            </span>
-                          </motion.div>
-                        ))}
+                              initial={{ opacity: 0, x: -20 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              transition={{
+                                delay: achievementIndex * 0.1,
+                                duration: 0.5,
+                              }}
+                              whileHover={{ scale: 1.02, x: 5 }}
+                            >
+                              <div className="flex-shrink-0 mt-1">
+                                <div className="w-2 h-2 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full"></div>
+                              </div>
+                              <span
+                                className={`leading-relaxed text-sm ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}
+                              >
+                                {achievement}
+                              </span>
+                            </motion.div>
+                          ),
+                        )}
                       </div>
 
                       {/* Metrics */}
@@ -416,7 +519,9 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({ isDarkMode }) => 
                               >
                                 {value}
                               </motion.div>
-                              <div className={`text-xs ${isDarkMode ? "text-gray-400" : "text-gray-500"}`}>
+                              <div
+                                className={`text-xs ${isDarkMode ? "text-gray-400" : "text-gray-500"}`}
+                              >
                                 {key}
                               </div>
                             </div>
@@ -435,10 +540,11 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({ isDarkMode }) => 
                             {exp.projects.map((project) => (
                               <motion.span
                                 key={project}
-                                className={`px-3 py-1 rounded-md text-sm ${isDarkMode
-                                  ? "bg-gray-700 text-gray-300 border border-gray-600"
-                                  : "bg-gray-100 text-gray-700 border border-gray-200"
-                                  }`}
+                                className={`px-3 py-1 rounded-md text-sm ${
+                                  isDarkMode
+                                    ? "bg-gray-700 text-gray-300 border border-gray-600"
+                                    : "bg-gray-100 text-gray-700 border border-gray-200"
+                                }`}
                                 whileHover={{ scale: 1.05, y: -2 }}
                               >
                                 {project}
@@ -461,10 +567,11 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({ isDarkMode }) => 
                     {exp.tech.map((tech, techIndex) => (
                       <motion.span
                         key={tech}
-                        className={`px-4 py-2 rounded-lg text-sm font-medium border ${isDarkMode
-                          ? "bg-gray-800 border-gray-600 text-gray-300 hover:bg-gray-700"
-                          : "bg-white border-gray-200 text-gray-700 hover:bg-gray-50"
-                          }`}
+                        className={`px-4 py-2 rounded-lg text-sm font-medium border ${
+                          isDarkMode
+                            ? "bg-gray-800 border-gray-600 text-gray-300 hover:bg-gray-700"
+                            : "bg-white border-gray-200 text-gray-700 hover:bg-gray-50"
+                        }`}
                         initial={{ opacity: 0, scale: 0.8 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: techIndex * 0.05, duration: 0.3 }}
@@ -507,7 +614,7 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({ isDarkMode }) => 
         </motion.div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default ExperienceSection
+export default ExperienceSection;
