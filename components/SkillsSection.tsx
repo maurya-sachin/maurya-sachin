@@ -159,7 +159,6 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ isDarkMode }) => {
       id="skills"
       className="py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden"
     >
-      {/* Reduced background elements - only 3 instead of 10 */}
       <div className="absolute inset-0">
         {[...Array(3)].map((_, i) => (
           <motion.div
@@ -257,7 +256,6 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ isDarkMode }) => {
           ))}
         </motion.div>
 
-        {/* OPTIMIZED Skills Grid - Fixed Hover Performance */}
         <AnimatePresence mode="wait">
           <motion.div
             key={activeCategory}
@@ -282,7 +280,6 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ isDarkMode }) => {
                 onHoverStart={() => setHoveredSkill(skill.name)}
                 onHoverEnd={() => setHoveredSkill(null)}
               >
-                {/* SIMPLIFIED Hover Background Effect - No complex gradients */}
                 <motion.div
                   className={`absolute inset-0 bg-blue-500 opacity-0 group-hover:opacity-5 transition-opacity duration-300`}
                 />
@@ -340,7 +337,6 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ isDarkMode }) => {
                     {skill.experience}
                   </motion.p>
 
-                  {/* OPTIMIZED Keywords - Simplified Animation */}
                   <AnimatePresence>
                     {hoveredSkill === skill.name && (
                       <motion.div
@@ -371,8 +367,6 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ isDarkMode }) => {
                     )}
                   </AnimatePresence>
                 </div>
-
-                {/* REMOVED Floating Particles - Performance killer */}
               </motion.div>
             ))}
           </motion.div>

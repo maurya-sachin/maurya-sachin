@@ -11,7 +11,6 @@ import {
   Download,
   Star,
   Rocket,
-  Send,
   ExternalLink,
 } from "lucide-react";
 
@@ -166,7 +165,7 @@ const ContactSection: React.FC<ContactSectionProps> = ({
               viewport={{ once: true }}
               whileHover={{ scale: 1.02 }}
             >
-              Let's Build Something Amazing
+              Let&apos;s Build Something Amazing
             </motion.h2>
 
             {/* Description */}
@@ -177,7 +176,7 @@ const ContactSection: React.FC<ContactSectionProps> = ({
               transition={{ duration: 0.6, delay: 0.4 }}
               viewport={{ once: true }}
             >
-              Ready to bring your ideas to life? I'm available for exciting
+              Ready to bring your ideas to life? I&apos;m available for exciting
               projects, collaborations, and full-time opportunities in frontend
               development.
             </motion.p>
@@ -340,7 +339,7 @@ const ContactSection: React.FC<ContactSectionProps> = ({
           >
             <span className="text-2xl">🚀</span>
             <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent font-semibold">
-              Let's create something extraordinary!
+              Let&apos;s create something extraordinary!
             </span>
           </motion.div>
         </motion.div>

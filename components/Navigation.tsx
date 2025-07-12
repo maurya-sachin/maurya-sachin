@@ -18,7 +18,7 @@ interface NavigationProps {
   isMenuOpen: boolean;
   setIsMenuOpen: (open: boolean) => void;
   currentTime: string;
-  headerOpacity: any;
+  headerOpacity: unknown;
 }
 
 const Navigation: React.FC<NavigationProps> = ({

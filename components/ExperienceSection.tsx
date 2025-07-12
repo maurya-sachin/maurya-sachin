@@ -5,19 +5,11 @@ import {
   Calendar,
   ChevronRight,
   MapPin,
-  Award,
-  TrendingUp,
-  Zap,
   Code,
-  Globe,
-  Database,
-  Palette,
   ExternalLink,
   Building,
-  Users,
   Target,
   Star,
-  Briefcase,
 } from "lucide-react";
 
 interface Experience {
@@ -44,6 +36,30 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({
   isDarkMode,
 }) => {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(0);
+
+  // Function to generate company logo fallback
+  const generateCompanyLogo = (companyName: string, type: string) => {
+    const initial = companyName.charAt(0).toUpperCase();
+    const colors =
+      type === "Full-time"
+        ? ["#10B981", "#059669"]
+        : type === "Internship"
+          ? ["#3B82F6", "#1D4ED8"]
+          : ["#8B5CF6", "#7C3AED"];
+
+    return `data:image/svg+xml;base64,${btoa(`
+      <svg width="64" height="64" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:${colors[0]};stop-opacity:1" />
+            <stop offset="100%" style="stop-color:${colors[1]};stop-opacity:1" />
+          </linearGradient>
+        </defs>
+        <rect width="64" height="64" rx="12" fill="url(#grad)"/>
+        <text x="32" y="40" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="white" text-anchor="middle">${initial}</text>
+      </svg>
+    `)}`;
+  };
 
   const experience: Experience[] = [
     {
@@ -82,7 +98,7 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({
         "Performance Optimization",
         "Web Accessibility",
       ],
-      logo: "/placeholder.svg?height=50&width=50",
+      logo: generateCompanyLogo("Kreate Technologies", "Full-time"),
       projects: [
         "GENAI Document Analyzer",
         "Kreate Technologies Website",
@@ -130,7 +146,7 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({
         "Responsive Design",
         "JavaScript Developer",
       ],
-      logo: "/placeholder.svg?height=50&width=50",
+      logo: generateCompanyLogo("Kreate Technologies", "Internship"),
       projects: [
         "Government Dashboards",
         "Data Visualization Tools",
@@ -170,7 +186,7 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({
         "Plugin Development",
         "E-commerce",
       ],
-      logo: "/placeholder.svg?height=50&width=50",
+      logo: generateCompanyLogo("Digidex Labs", "Internship"),
       projects: ["E-commerce Websites", "Custom Plugins", "SEO Optimization"],
       metrics: {
         "Websites Built": "15+",
@@ -219,7 +235,7 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({
         "Fuel Dispensing",
         "Environmental Compliance",
       ],
-      logo: "/bpcl-logo.png", // BPCL official logo
+      logo: generateCompanyLogo("BPCL", "Internship"),
       projects: [
         "Depot Inventory System",
         "Quality Testing Procedures",
@@ -233,39 +249,19 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({
         "System Efficiency": "98%",
         "Compliance Rate": "100%",
       },
-      description:
-        "Comprehensive engineering apprenticeship program focusing on petroleum depot operations, quality assurance, safety protocols, and digital systems management at one of India's leading oil marketing companies.",
-      learningOutcomes: [
-        "Understanding of petroleum supply chain and logistics",
-        "Proficiency in quality control testing methodologies",
-        "Knowledge of safety protocols in petroleum handling",
-        "Experience with enterprise SAP systems",
-        "Exposure to automated fuel dispensing technologies",
-        "Environmental compliance and sustainability practices",
-      ],
-      skills: [
-        "Petroleum Operations Management",
-        "Quality Assurance & Testing",
-        "Safety Protocol Implementation",
-        "SAP ERP Systems",
-        "Data Analysis & Reporting",
-        "Customer Service Excellence",
-        "Environmental Compliance",
-        "Team Collaboration",
-      ],
     },
   ];
 
   const getTypeColor = (type: string) => {
     switch (type) {
       case "Full-time":
-        return "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200";
+        return "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-200";
       case "Internship":
-        return "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200";
+        return "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-200";
       case "Freelance":
-        return "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200";
+        return "bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-200";
       default:
-        return "bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-200";
+        return "bg-gray-100 text-gray-800 dark:bg-gray-900/30 dark:text-gray-200";
     }
   };
 
@@ -274,25 +270,24 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({
       id="experience"
       className={`py-20 px-4 sm:px-6 lg:px-8 ${isDarkMode ? "bg-gray-800/30" : "bg-gray-50/50"}`}
     >
-      {/* Background Pattern */}
+      {/* Simplified Background Pattern */}
       <div className="absolute inset-0 overflow-hidden">
-        {[...Array(8)].map((_, i) => (
+        {[...Array(4)].map((_, i) => (
           <motion.div
             key={i}
-            className={`absolute w-32 h-32 rounded-full ${isDarkMode ? "bg-blue-500" : "bg-blue-400"} opacity-5`}
+            className={`absolute w-32 h-32 rounded-full ${isDarkMode ? "bg-blue-500/10" : "bg-blue-400/10"}`}
             style={{
-              left: `${15 + i * 12}%`,
-              top: `${10 + i * 8}%`,
+              left: `${15 + i * 20}%`,
+              top: `${10 + i * 15}%`,
             }}
             animate={{
               scale: [1, 1.2, 1],
-              rotate: [0, 180, 360],
-              opacity: [0.05, 0.15, 0.05],
+              opacity: [0.1, 0.3, 0.1],
             }}
             transition={{
-              duration: 25 + i * 3,
+              duration: 12 + i * 2,
               repeat: Infinity,
-              delay: i * 2,
+              delay: i * 1,
             }}
           />
         ))}
@@ -307,12 +302,9 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <motion.h2
-            className="text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
-            whileHover={{ scale: 1.02 }}
-          >
+          <h2 className="text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
             Professional Journey
-          </motion.h2>
+          </h2>
           <motion.div
             className="w-32 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto mb-8"
             initial={{ width: 0 }}
@@ -320,16 +312,12 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({
             transition={{ delay: 0.5, duration: 1 }}
             viewport={{ once: true }}
           />
-          <motion.p
+          <p
             className={`text-xl max-w-3xl mx-auto ${isDarkMode ? "text-gray-300" : "text-gray-600"}`}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-            viewport={{ once: true }}
           >
             Building expertise through impactful contributions and continuous
             learning in modern web development
-          </motion.p>
+          </p>
         </motion.div>
 
         {/* Experience Timeline */}
@@ -337,7 +325,7 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({
           {experience.map((exp, index) => (
             <motion.div
               key={`${exp.role}-${exp.company}`}
-              className={`rounded-xl border backdrop-blur-sm relative overflow-hidden group ${
+              className={`rounded-xl border overflow-hidden group ${
                 isDarkMode
                   ? "bg-gray-900/50 border-gray-700 hover:border-gray-600"
                   : "bg-white/70 border-gray-200 hover:border-gray-300"
@@ -349,45 +337,31 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({
               whileHover={{ y: -5 }}
             >
               {/* Background Gradient */}
-              <motion.div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-purple-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-purple-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
               <div className="relative z-10 p-8">
                 {/* Header Section */}
                 <div className="flex flex-col lg:flex-row lg:items-center justify-between mb-8">
                   <div className="flex items-start space-x-4">
-                    {exp.logo && (
-                      <motion.div
-                        className="w-16 h-16 rounded-xl overflow-hidden flex-shrink-0 bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center"
-                        whileHover={{ scale: 1.1, rotate: 5 }}
-                      >
-                        <img
-                          src={exp.logo}
-                          alt={`${exp.company} logo`}
-                          className="w-full h-full object-cover"
-                          onError={(e) => {
-                            const target = e.target as HTMLImageElement;
-                            target.style.display = "none";
-                            target.parentElement!.innerHTML = `<span class="text-white font-bold text-lg">${exp.company.charAt(0)}</span>`;
-                          }}
-                        />
-                      </motion.div>
-                    )}
+                    {/* Company Logo */}
+                    <div className="w-16 h-16 rounded-xl overflow-hidden flex-shrink-0 bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+                      <img
+                        src={exp.logo}
+                        alt={`${exp.company} logo`}
+                        className="w-full h-full object-cover"
+                        style={{ imageRendering: "pixelated" }}
+                      />
+                    </div>
 
                     <div>
-                      <motion.h3
-                        className="text-2xl lg:text-3xl font-bold mb-2"
-                        whileHover={{ scale: 1.02 }}
-                      >
+                      <h3 className="text-2xl lg:text-3xl font-bold mb-2">
                         {exp.role}
-                      </motion.h3>
+                      </h3>
 
                       <div
                         className={`flex flex-wrap items-center gap-4 mb-3 ${isDarkMode ? "text-gray-300" : "text-gray-600"}`}
                       >
-                        <motion.div
-                          className="flex items-center space-x-2"
-                          whileHover={{ scale: 1.05 }}
-                        >
+                        <div className="flex items-center space-x-2">
                           <Building className="w-4 h-4" />
                           {exp.companyUrl ? (
                             <a
@@ -404,7 +378,7 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({
                               {exp.company}
                             </span>
                           )}
-                        </motion.div>
+                        </div>
 
                         <span>•</span>
 
@@ -424,13 +398,12 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({
 
                       <div className="flex flex-wrap gap-2 mb-4">
                         {exp.highlights.map((highlight) => (
-                          <motion.span
+                          <span
                             key={highlight}
                             className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-3 py-1 rounded-full text-sm font-medium"
-                            whileHover={{ scale: 1.05 }}
                           >
                             {highlight}
-                          </motion.span>
+                          </span>
                         ))}
                       </div>
                     </div>
@@ -479,7 +452,7 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({
                           (achievement, achievementIndex) => (
                             <motion.div
                               key={achievementIndex}
-                              className={`flex items-start space-x-3 p-4 rounded-lg backdrop-blur-sm ${
+                              className={`flex items-start space-x-3 p-4 rounded-lg ${
                                 isDarkMode ? "bg-gray-800/50" : "bg-white/50"
                               }`}
                               initial={{ opacity: 0, x: -20 }}
@@ -505,20 +478,12 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({
 
                       {/* Metrics */}
                       {exp.metrics && (
-                        <motion.div
-                          className="grid grid-cols-2 md:grid-cols-4 gap-4"
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: 0.3 }}
-                        >
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                           {Object.entries(exp.metrics).map(([key, value]) => (
                             <div key={key} className="text-center">
-                              <motion.div
-                                className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
-                                whileHover={{ scale: 1.1 }}
-                              >
+                              <div className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                                 {value}
-                              </motion.div>
+                              </div>
                               <div
                                 className={`text-xs ${isDarkMode ? "text-gray-400" : "text-gray-500"}`}
                               >
@@ -526,7 +491,7 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({
                               </div>
                             </div>
                           ))}
-                        </motion.div>
+                        </div>
                       )}
 
                       {/* Projects */}
@@ -538,17 +503,16 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({
                           </h5>
                           <div className="flex flex-wrap gap-2">
                             {exp.projects.map((project) => (
-                              <motion.span
+                              <span
                                 key={project}
                                 className={`px-3 py-1 rounded-md text-sm ${
                                   isDarkMode
                                     ? "bg-gray-700 text-gray-300 border border-gray-600"
                                     : "bg-gray-100 text-gray-700 border border-gray-200"
                                 }`}
-                                whileHover={{ scale: 1.05, y: -2 }}
                               >
                                 {project}
-                              </motion.span>
+                              </span>
                             ))}
                           </div>
                         </div>
@@ -595,22 +559,18 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <motion.p
+          <p
             className={`text-lg mb-6 ${isDarkMode ? "text-gray-300" : "text-gray-600"}`}
-            whileHover={{ scale: 1.02 }}
           >
             Ready to add value to your team with proven expertise and dedication
-          </motion.p>
-          <motion.div
-            className="flex items-center justify-center space-x-2"
-            whileHover={{ scale: 1.05 }}
-          >
+          </p>
+          <div className="flex items-center justify-center space-x-2">
             <Star className="w-5 h-5 text-yellow-500" />
             <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent font-semibold">
-              Let's discuss how I can contribute to your next project!
+              Let&apos;s discuss how I can contribute to your next project!
             </span>
             <Star className="w-5 h-5 text-yellow-500" />
-          </motion.div>
+          </div>
         </motion.div>
       </div>
     </section>

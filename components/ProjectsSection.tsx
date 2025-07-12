@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 // components/ProjectsSection.tsx
 import React, { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -10,6 +11,7 @@ import {
   Filter,
   X,
 } from "lucide-react";
+import Image from "next/image";
 
 interface Project {
   id: number;
@@ -38,6 +40,28 @@ interface ProjectsSectionProps {
 const ProjectsSection: React.FC<ProjectsSectionProps> = ({ isDarkMode }) => {
   const [activeCategory, setActiveCategory] = useState<string>("All");
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+
+  // Function to generate a fallback SVG
+  const generateFallbackImage = (title: string, gradient: string) => {
+    const colors = gradient.includes("violet")
+      ? ["#8B5CF6", "#3B82F6"]
+      : gradient.includes("emerald")
+        ? ["#10B981", "#06B6D4"]
+        : ["#3B82F6", "#8B5CF6"];
+
+    return `data:image/svg+xml;base64,${btoa(`
+      <svg width="600" height="400" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:${colors[0]};stop-opacity:1" />
+            <stop offset="100%" style="stop-color:${colors[1]};stop-opacity:1" />
+          </linearGradient>
+        </defs>
+        <rect width="600" height="400" fill="url(#grad)"/>
+        <text x="300" y="200" font-family="Arial, sans-serif" font-size="24" fill="white" text-anchor="middle" dy=".3em">${title}</text>
+      </svg>
+    `)}`;
+  };
 
   const projects: Project[] = [
     {
@@ -82,7 +106,7 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ isDarkMode }) => {
       ],
       github: "https://github.com/maurya-sachin/genai-analyzer",
       live: "https://genai-analyzer.vercel.app",
-      image: "/api/placeholder/600/400",
+      image: generateFallbackImage("GENAI Document Analyzer", "violet"),
       featured: true,
       year: "2024",
       highlights: [
@@ -133,7 +157,7 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ isDarkMode }) => {
       ],
       github: "https://github.com/maurya-sachin/kreate-website",
       live: "https://kreatetech.com",
-      image: "/api/placeholder/600/400",
+      image: generateFallbackImage("Kreate Technologies", "emerald"),
       featured: true,
       year: "2024",
       highlights: [
@@ -184,7 +208,7 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ isDarkMode }) => {
       ],
       github: "https://github.com/maurya-sachin/kanban-board",
       live: "https://kanban-demo.vercel.app",
-      image: "/api/placeholder/600/400",
+      image: generateFallbackImage("Kanban Board", "orange"),
       featured: true,
       year: "2024",
       highlights: [
@@ -235,7 +259,7 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ isDarkMode }) => {
       ],
       github: "https://github.com/maurya-sachin/react-ui-lib",
       live: "https://ui-lib-demo.vercel.app",
-      image: "/api/placeholder/600/400",
+      image: generateFallbackImage("React Components", "indigo"),
       featured: false,
       year: "2024",
       highlights: [
@@ -279,7 +303,7 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ isDarkMode }) => {
       ],
       github: "https://github.com/maurya-sachin/weather-app",
       live: "https://weather-dashboard-demo.vercel.app",
-      image: "/api/placeholder/600/400",
+      image: generateFallbackImage("Weather Dashboard", "blue"),
       featured: false,
       year: "2023",
       highlights: [
@@ -322,7 +346,7 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ isDarkMode }) => {
         "MERN Stack",
       ],
       github: "https://github.com/maurya-sachin/ecommerce-platform",
-      image: "/api/placeholder/600/400",
+      image: generateFallbackImage("E-commerce Platform", "green"),
       featured: false,
       year: "2024",
       highlights: [
@@ -387,7 +411,7 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ isDarkMode }) => {
       id="projects"
       className="py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden"
     >
-      {/* Simplified background - only 3 elements instead of 12 */}
+      {/* Simplified background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {[...Array(6)].map((_, i) => (
           <motion.div
@@ -471,26 +495,13 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ isDarkMode }) => {
 
                 {/* Project Image */}
                 <div className="relative overflow-hidden h-48">
-                  <img
+                  <Image
                     src={project.image}
                     alt={project.title}
+                    fill
                     className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                     loading="lazy"
-                    onError={(e) => {
-                      const target = e.target as HTMLImageElement;
-                      target.src = `data:image/svg+xml;base64,${btoa(`
-                                <svg width="600" height="400" xmlns="http://www.w3.org/2000/svg">
-                                  <defs>
-                                    <linearGradient id="grad${project.id}" x1="0%" y1="0%" x2="100%" y2="100%">
-                                      <stop offset="0%" style="stop-color:#3B82F6;stop-opacity:1" />
-                                      <stop offset="100%" style="stop-color:#8B5CF6;stop-opacity:1" />
-                                    </linearGradient>
-                                  </defs>
-                                  <rect width="600" height="400" fill="url(#grad${project.id})"/>
-                                  <text x="300" y="200" font-family="Arial, sans-serif" font-size="24" fill="white" text-anchor="middle" dy=".3em">${project.title}</text>
-                                </svg>
-                            `)}`;
-                    }}
+                    unoptimized // Add this to prevent Next.js optimization issues
                   />
 
                   {/* Overlay */}

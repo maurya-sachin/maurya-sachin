@@ -15,7 +15,7 @@ import {
 
 interface AboutSectionProps {
   isDarkMode: boolean;
-  parallaxY: any;
+  parallaxY: unknown;
 }
 
 const AboutSection: React.FC<AboutSectionProps> = ({
@@ -133,7 +133,7 @@ const AboutSection: React.FC<AboutSectionProps> = ({
             transition={{ delay: 0.3, duration: 0.8 }}
             viewport={{ once: true }}
           >
-            I'm a passionate{" "}
+            I&apos;m a passionate{" "}
             <motion.strong
               className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
               whileHover={{ scale: 1.05 }}
@@ -333,7 +333,7 @@ const AboutSection: React.FC<AboutSectionProps> = ({
           >
             <span className="text-2xl">🚀</span>
             <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent font-semibold">
-              Let's build something amazing together!
+              Let&apos;s build something amazing together!
             </span>
           </motion.div>
         </motion.div>

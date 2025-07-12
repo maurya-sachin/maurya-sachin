@@ -16,7 +16,7 @@ interface HeroSectionProps {
   isDarkMode: boolean;
   scrollToSection: (sectionId: string) => void;
   currentTime: string;
-  heroY: any;
+  heroY: unknown;
 }
 
 const HeroSection: React.FC<HeroSectionProps> = ({
@@ -248,7 +248,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
               >
                 <motion.div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity" />
                 <span className="group-hover:mr-2 transition-all relative z-10">
-                  Let's Connect
+                  Let&apos;s Connect
                 </span>
                 <ArrowRight className="w-0 group-hover:w-5 h-5 inline-block transition-all duration-300 overflow-hidden relative z-10" />
               </motion.button>

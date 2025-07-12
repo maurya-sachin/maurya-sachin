@@ -7,16 +7,13 @@ import {
   Users,
   Activity,
   Code,
-  Eye,
-  TrendingUp,
-  Award,
   Calendar,
   ExternalLink,
 } from "lucide-react";
 
 interface GitHubStatsProps {
   isDarkMode: boolean;
-  githubData: any;
+  githubData: unknown;
   loading: boolean;
   error: string | null;
 }
@@ -235,7 +232,7 @@ const GitHubStatsSection: React.FC<GitHubStatsProps> = ({
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {githubData.repositories
               .slice(0, 6)
-              .map((repo: any, index: number) => (
+              .map((repo: unknown, index: number) => (
                 <motion.a
                   key={repo.name}
                   href={repo.url}
