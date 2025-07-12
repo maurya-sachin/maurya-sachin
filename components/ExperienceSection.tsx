@@ -260,6 +260,8 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({
         return "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-200";
       case "Freelance":
         return "bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-200";
+      case "Apprentice":
+        return "bg-stone-100 text-stone-800 dark:bg-stone-900/30 dark:text-stone-200";
       default:
         return "bg-gray-100 text-gray-800 dark:bg-gray-900/30 dark:text-gray-200";
     }
@@ -325,11 +327,10 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({
           {experience.map((exp, index) => (
             <motion.div
               key={`${exp.role}-${exp.company}`}
-              className={`rounded-xl border overflow-hidden group ${
-                isDarkMode
-                  ? "bg-gray-900/50 border-gray-700 hover:border-gray-600"
-                  : "bg-white/70 border-gray-200 hover:border-gray-300"
-              }`}
+              className={`rounded-xl border overflow-hidden group ${isDarkMode
+                ? "bg-gray-900/50 border-gray-700 hover:border-gray-600"
+                : "bg-white/70 border-gray-200 hover:border-gray-300"
+                }`}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.2, duration: 0.6 }}
@@ -452,9 +453,8 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({
                           (achievement, achievementIndex) => (
                             <motion.div
                               key={achievementIndex}
-                              className={`flex items-start space-x-3 p-4 rounded-lg ${
-                                isDarkMode ? "bg-gray-800/50" : "bg-white/50"
-                              }`}
+                              className={`flex items-start space-x-3 p-4 rounded-lg ${isDarkMode ? "bg-gray-800/50" : "bg-white/50"
+                                }`}
                               initial={{ opacity: 0, x: -20 }}
                               animate={{ opacity: 1, x: 0 }}
                               transition={{
@@ -505,11 +505,10 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({
                             {exp.projects.map((project) => (
                               <span
                                 key={project}
-                                className={`px-3 py-1 rounded-md text-sm ${
-                                  isDarkMode
-                                    ? "bg-gray-700 text-gray-300 border border-gray-600"
-                                    : "bg-gray-100 text-gray-700 border border-gray-200"
-                                }`}
+                                className={`px-3 py-1 rounded-md text-sm ${isDarkMode
+                                  ? "bg-gray-700 text-gray-300 border border-gray-600"
+                                  : "bg-gray-100 text-gray-700 border border-gray-200"
+                                  }`}
                               >
                                 {project}
                               </span>
@@ -531,11 +530,10 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({
                     {exp.tech.map((tech, techIndex) => (
                       <motion.span
                         key={tech}
-                        className={`px-4 py-2 rounded-lg text-sm font-medium border ${
-                          isDarkMode
-                            ? "bg-gray-800 border-gray-600 text-gray-300 hover:bg-gray-700"
-                            : "bg-white border-gray-200 text-gray-700 hover:bg-gray-50"
-                        }`}
+                        className={`px-4 py-2 rounded-lg text-sm font-medium border ${isDarkMode
+                          ? "bg-gray-800 border-gray-600 text-gray-300 hover:bg-gray-700"
+                          : "bg-white border-gray-200 text-gray-700 hover:bg-gray-50"
+                          }`}
                         initial={{ opacity: 0, scale: 0.8 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: techIndex * 0.05, duration: 0.3 }}
