@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // components/AboutSection.tsx
 import React from "react";
 import { motion } from "framer-motion";
