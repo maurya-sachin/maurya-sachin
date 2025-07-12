@@ -17,7 +17,7 @@ interface Experience {
   company: string;
   period: string;
   location: string;
-  type: "Full-time" | "Internship" | "Freelance" | "Contract";
+  type: "Full-time" | "Internship" | "Freelance" | "Contract" | "Apprentice";
   achievements: string[];
   tech: string[];
   highlights: string[];
@@ -200,7 +200,7 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({
       company: "Bharat Petroleum Corporation Limited (BPCL)",
       period: "Mar 2022 - Mar 2023",
       location: "Haridwar Depot, Uttarakhand",
-      type: "Apprenticeship",
+      type: "Apprentice",
       achievements: [
         "Gained hands-on experience in petroleum product handling and depot operations",
         "Assisted in quality control testing and product sampling procedures",
