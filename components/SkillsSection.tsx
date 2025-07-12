@@ -160,7 +160,7 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ isDarkMode }) => {
       className="py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden"
     >
       <div className="absolute inset-0">
-        {[...Array(3)].map((_, i) => (
+        {[...Array(8)].map((_, i) => (
           <motion.div
             key={i}
             className={`absolute rounded-full ${isDarkMode ? "bg-blue-500" : "bg-blue-400"} opacity-5`}
