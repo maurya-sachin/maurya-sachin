@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import React, { useState, useEffect, useCallback, useRef } from "react";
@@ -40,7 +41,7 @@ const ResumeApp = () => {
     springConfig,
   );
 
-  const updateMousePosition = useCallback((e) => {
+  const updateMousePosition = useCallback((e: { clientX: any; clientY: any; }) => {
     setMousePosition({ x: e.clientX, y: e.clientY });
   }, []);
 
@@ -135,7 +136,7 @@ const ResumeApp = () => {
     }
   };
 
-  const scrollToSection = (sectionId) => {
+  const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
