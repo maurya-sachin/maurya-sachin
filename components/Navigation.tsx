@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // components/Navigation.tsx
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -18,7 +19,7 @@ interface NavigationProps {
   isMenuOpen: boolean;
   setIsMenuOpen: (open: boolean) => void;
   currentTime: string;
-  headerOpacity: unknown;
+  headerOpacity: any;
 }
 
 const Navigation: React.FC<NavigationProps> = ({

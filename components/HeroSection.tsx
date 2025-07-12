@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // components/HeroSection.tsx
 import React from "react";
 import { motion } from "framer-motion";
@@ -16,7 +17,7 @@ interface HeroSectionProps {
   isDarkMode: boolean;
   scrollToSection: (sectionId: string) => void;
   currentTime: string;
-  heroY: unknown;
+  heroY: any;
 }
 
 const HeroSection: React.FC<HeroSectionProps> = ({

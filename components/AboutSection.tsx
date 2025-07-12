@@ -15,7 +15,7 @@ import {
 
 interface AboutSectionProps {
   isDarkMode: boolean;
-  parallaxY: unknown;
+  parallaxY: any;
 }
 
 const AboutSection: React.FC<AboutSectionProps> = ({

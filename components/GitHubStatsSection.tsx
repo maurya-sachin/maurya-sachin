@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // components/GitHubStatsSection.tsx
 import React from "react";
 import { motion } from "framer-motion";
@@ -13,7 +14,7 @@ import {
 
 interface GitHubStatsProps {
   isDarkMode: boolean;
-  githubData: unknown;
+  githubData: any;
   loading: boolean;
   error: string | null;
 }
@@ -232,7 +233,7 @@ const GitHubStatsSection: React.FC<GitHubStatsProps> = ({
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {githubData.repositories
               .slice(0, 6)
-              .map((repo: unknown, index: number) => (
+              .map((repo: any, index: number) => (
                 <motion.a
                   key={repo.name}
                   href={repo.url}
