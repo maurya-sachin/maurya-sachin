@@ -401,7 +401,6 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ isDarkMode }) => {
       y: 0,
       transition: {
         duration: 0.4,
-        ease: "easeOut",
       },
     },
   };
@@ -477,11 +476,10 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ isDarkMode }) => {
               <motion.div
                 key={project.id}
                 variants={itemVariants}
-                className={`group relative rounded-xl border overflow-hidden cursor-pointer ${
-                  isDarkMode
-                    ? "bg-gray-800/80 border-gray-700 hover:border-gray-600"
-                    : "bg-white/80 border-gray-200 hover:border-gray-300"
-                } transition-all duration-300 will-change-transform`}
+                className={`group relative rounded-xl border overflow-hidden cursor-pointer ${isDarkMode
+                  ? "bg-gray-800/80 border-gray-700 hover:border-gray-600"
+                  : "bg-white/80 border-gray-200 hover:border-gray-300"
+                  } transition-all duration-300 will-change-transform`}
                 whileHover={{
                   y: -8,
                   transition: { duration: 0.2, ease: "easeOut" },
@@ -534,11 +532,10 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ isDarkMode }) => {
                           href={project.github}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className={`p-2 rounded-lg transition-colors ${
-                            isDarkMode
-                              ? "bg-gray-700/50 hover:bg-gray-600"
-                              : "bg-gray-100 hover:bg-gray-200"
-                          }`}
+                          className={`p-2 rounded-lg transition-colors ${isDarkMode
+                            ? "bg-gray-700/50 hover:bg-gray-600"
+                            : "bg-gray-100 hover:bg-gray-200"
+                            }`}
                           onClick={(e) => e.stopPropagation()}
                         >
                           <Github className="w-4 h-4" />
@@ -549,11 +546,10 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ isDarkMode }) => {
                           href={project.live}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className={`p-2 rounded-lg transition-colors ${
-                            isDarkMode
-                              ? "bg-gray-700/50 hover:bg-gray-600"
-                              : "bg-gray-100 hover:bg-gray-200"
-                          }`}
+                          className={`p-2 rounded-lg transition-colors ${isDarkMode
+                            ? "bg-gray-700/50 hover:bg-gray-600"
+                            : "bg-gray-100 hover:bg-gray-200"
+                            }`}
                           onClick={(e) => e.stopPropagation()}
                         >
                           <ExternalLink className="w-4 h-4" />
@@ -620,13 +616,12 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ isDarkMode }) => {
             <motion.button
               key={category}
               onClick={() => setActiveCategory(category)}
-              className={`px-6 py-3 rounded-xl font-medium transition-all duration-200 flex items-center space-x-2 ${
-                activeCategory === category
-                  ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg"
-                  : isDarkMode
-                    ? "bg-gray-800/50 text-gray-300 hover:bg-gray-700/50"
-                    : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-              }`}
+              className={`px-6 py-3 rounded-xl font-medium transition-all duration-200 flex items-center space-x-2 ${activeCategory === category
+                ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg"
+                : isDarkMode
+                  ? "bg-gray-800/50 text-gray-300 hover:bg-gray-700/50"
+                  : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                }`}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
@@ -650,11 +645,10 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ isDarkMode }) => {
               <motion.div
                 key={project.id}
                 variants={itemVariants}
-                className={`rounded-xl border overflow-hidden cursor-pointer transition-all duration-200 ${
-                  isDarkMode
-                    ? "bg-gray-800/50 border-gray-700 hover:border-gray-600"
-                    : "bg-white/50 border-gray-200 hover:border-gray-300"
-                } will-change-transform`}
+                className={`rounded-xl border overflow-hidden cursor-pointer transition-all duration-200 ${isDarkMode
+                  ? "bg-gray-800/50 border-gray-700 hover:border-gray-600"
+                  : "bg-white/50 border-gray-200 hover:border-gray-300"
+                  } will-change-transform`}
                 whileHover={{ y: -4 }}
                 onClick={() => setSelectedProject(project)}
               >
@@ -676,11 +670,10 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ isDarkMode }) => {
                     {project.tech.slice(0, 4).map((tech) => (
                       <span
                         key={tech}
-                        className={`px-2 py-1 rounded text-xs ${
-                          isDarkMode
-                            ? "bg-gray-700/50 text-gray-300"
-                            : "bg-gray-100 text-gray-600"
-                        }`}
+                        className={`px-2 py-1 rounded text-xs ${isDarkMode
+                          ? "bg-gray-700/50 text-gray-300"
+                          : "bg-gray-100 text-gray-600"
+                          }`}
                       >
                         {tech}
                       </span>
@@ -720,11 +713,10 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ isDarkMode }) => {
             onClick={() => setSelectedProject(null)}
           >
             <motion.div
-              className={`max-w-4xl w-full max-h-[90vh] overflow-y-auto rounded-xl border ${
-                isDarkMode
-                  ? "bg-gray-900 border-gray-700"
-                  : "bg-white border-gray-200"
-              }`}
+              className={`max-w-4xl w-full max-h-[90vh] overflow-y-auto rounded-xl border ${isDarkMode
+                ? "bg-gray-900 border-gray-700"
+                : "bg-white border-gray-200"
+                }`}
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
@@ -746,9 +738,8 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ isDarkMode }) => {
                   </div>
                   <button
                     onClick={() => setSelectedProject(null)}
-                    className={`p-2 rounded-lg transition-colors ${
-                      isDarkMode ? "hover:bg-gray-800" : "hover:bg-gray-100"
-                    }`}
+                    className={`p-2 rounded-lg transition-colors ${isDarkMode ? "hover:bg-gray-800" : "hover:bg-gray-100"
+                      }`}
                   >
                     <X className="w-6 h-6" />
                   </button>
@@ -836,11 +827,10 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ isDarkMode }) => {
                         href={selectedProject.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className={`flex-1 border px-6 py-3 rounded-xl font-semibold flex items-center justify-center space-x-2 transition-colors ${
-                          isDarkMode
-                            ? "border-gray-600 text-gray-300 hover:bg-gray-800"
-                            : "border-gray-300 text-gray-700 hover:bg-gray-50"
-                        }`}
+                        className={`flex-1 border px-6 py-3 rounded-xl font-semibold flex items-center justify-center space-x-2 transition-colors ${isDarkMode
+                          ? "border-gray-600 text-gray-300 hover:bg-gray-800"
+                          : "border-gray-300 text-gray-700 hover:bg-gray-50"
+                          }`}
                       >
                         <Github className="w-5 h-5" />
                         <span>View Code</span>
