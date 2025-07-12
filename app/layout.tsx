@@ -1,70 +1,95 @@
-import type { Metadata } from 'next'
-import { Inter, JetBrains_Mono } from 'next/font/google'
-import './globals.css'
+import type React from "react"
+import type { Metadata } from "next"
+import { Inter, JetBrains_Mono, Poppins } from "next/font/google"
+import "./globals.css"
 
 const inter = Inter({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-inter',
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
 })
 
 const jetbrainsMono = JetBrains_Mono({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-mono',
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-mono",
+})
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-poppins",
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
 })
 
 export const metadata: Metadata = {
-  title: 'Sachin Maurya - Frontend Developer & React Specialist',
-  description: 'Interactive portfolio showcasing modern web development skills with React.js, Next.js, TypeScript, and dark mode. 2+ years experience with proven 80% performance improvements.',
+  title: "Sachin Maurya - Frontend Developer | React.js Specialist | UI/UX Developer",
+  description:
+    "Experienced Frontend Developer specializing in React.js, Next.js, TypeScript. Expert in performance optimization, web accessibility, GSAP animations, and modern UI/UX development. 2+ years building scalable web applications.",
   keywords: [
-    'Frontend Developer',
-    'React Developer',
-    'Next.js Developer',
-    'TypeScript Developer',
-    'JavaScript Developer',
-    'UI/UX Developer',
-    'Dark Mode Developer',
-    'Performance Optimization',
-    'Sachin Maurya',
-    'Web Developer India',
-    'Interactive Portfolio'
+    "Frontend Developer",
+    "React Developer",
+    "React.js Specialist",
+    "Next.js Developer",
+    "TypeScript Developer",
+    "JavaScript Developer",
+    "UI Developer",
+    "UX Developer",
+    "Performance Optimization",
+    "Web Accessibility",
+    "GSAP Animation",
+    "Tailwind CSS",
+    "Redux Developer",
+    "GraphQL Developer",
+    "Responsive Design",
+    "Modern Web Development",
+    "Sachin Maurya",
+    "Frontend Developer India",
+    "React Developer Delhi",
+    "Web Developer Portfolio",
+    "Junior UI Developer",
+    "Kreate Technologies",
+    "WCAG Compliance",
+    "Lighthouse Performance",
+    "Component Library",
+    "Enterprise Web Applications",
   ],
-  authors: [{ name: 'Sachin Maurya', url: 'https://github.com/maurya-sachin' }],
-  creator: 'Sachin Maurya',
-  publisher: 'Sachin Maurya',
+  authors: [{ name: "Sachin Maurya", url: "https://github.com/maurya-sachin" }],
+  creator: "Sachin Maurya",
+  publisher: "Sachin Maurya",
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
-  // metadataBase: new URL('https://sachinmaurya.dev'),
+  metadataBase: new URL("https://maurya-sachin.vercel.app"),
   alternates: {
-    canonical: '/',
+    canonical: "/",
   },
   openGraph: {
-    type: 'website',
-    locale: 'en_US',
-    // url: 'https://sachinmaurya.dev',
-    title: 'Sachin Maurya - Frontend Developer',
-    description: 'Interactive portfolio showcasing modern frontend development skills with dark mode and advanced animations',
-    siteName: 'Sachin Maurya Portfolio',
+    type: "website",
+    locale: "en_US",
+    url: "https://maurya-sachin.vercel.app",
+    title: "Sachin Maurya - Frontend Developer | React.js Specialist",
+    description:
+      "Experienced Frontend Developer specializing in React.js, Next.js, TypeScript with expertise in performance optimization and modern web development",
+    siteName: "Sachin Maurya Portfolio",
     images: [
       {
-        url: '/og-image.png',
+        url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: 'Sachin Maurya - Frontend Developer Portfolio',
-        type: 'image/png',
+        alt: "Sachin Maurya - Frontend Developer Portfolio",
+        type: "image/png",
       },
     ],
   },
   twitter: {
-    card: 'summary_large_image',
-    title: 'Sachin Maurya - Frontend Developer',
-    description: 'Interactive portfolio with dark mode showcasing modern frontend development skills',
-    images: ['/og-image.png'],
-    creator: '@sachinmaurya',
+    card: "summary_large_image",
+    title: "Sachin Maurya - Frontend Developer | React.js Specialist",
+    description:
+      "Frontend Developer specializing in React.js, Next.js, TypeScript. Expert in performance optimization and modern web development.",
+    images: ["/og-image.png"],
   },
   robots: {
     index: true,
@@ -72,20 +97,17 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
     },
   },
   verification: {
-    google: 'your-google-verification-code',
-    yandex: 'your-yandex-verification-code',
-    yahoo: 'your-yahoo-verification-code',
+    google: "your-google-verification-code",
   },
-  category: 'technology',
-  classification: 'Portfolio',
+  category: "technology",
+  classification: "Portfolio",
 }
-
 
 export default function RootLayout({
   children,
@@ -95,7 +117,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${jetbrainsMono.variable}`}
+      className={`${inter.variable} ${jetbrainsMono.variable} ${poppins.variable}`}
       suppressHydrationWarning
     >
       <head>

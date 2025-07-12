@@ -1,19 +1,33 @@
 {
-  "name": "resume-portfolio",
-  "version": "0.1.0",
+  "name": "sachin-maurya-portfolio",
+  "version": "3.0.0",
   "private": true,
+  "description": "Sachin Maurya - Frontend Developer Portfolio with advanced animations and real GitHub integration",
+  "author": {
+    "name": "Sachin Maurya",
+    "email": "sachinmaurya1710@gmail.com",
+    "url": "https://maurya-sachin.vercel.app"
+  },
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "type-check": "tsc --noEmit",
+    "format": "prettier --write .",
+    "analyze": "cross-env ANALYZE=true next build"
   },
   "dependencies": {
     "framer-motion": "^12.23.2",
+    "gsap": "^3.12.5",
     "lucide-react": "^0.525.0",
     "next": "15.3.5",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "swiper": "^11.1.14",
+    "three": "^0.170.0",
+    "@react-three/fiber": "^8.17.10",
+    "@react-three/drei": "^9.117.3"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
@@ -21,9 +35,32 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/three": "^0.170.0",
     "eslint": "^9",
     "eslint-config-next": "15.3.5",
     "tailwindcss": "^4",
-    "typescript": "^5"
-  }
+    "typescript": "^5",
+    "prettier": "^3.0.0",
+    "cross-env": "^7.0.3",
+    "@next/bundle-analyzer": "^15.3.5"
+  },
+  "keywords": [
+    "portfolio",
+    "frontend-developer",
+    "react",
+    "nextjs",
+    "typescript",
+    "tailwindcss",
+    "framer-motion",
+    "gsap",
+    "web-development",
+    "ui-ux",
+    "performance-optimization"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/maurya-sachin/portfolio-v3"
+  },
+  "homepage": "https://maurya-sachin.vercel.app",
+  "license": "MIT"
 }

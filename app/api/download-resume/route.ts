@@ -4,7 +4,7 @@ import fs from 'fs'
 
 export async function GET(request: NextRequest) {
     try {
-        const filePath = path.join(process.cwd(), 'public', 'resume', 'Sachin_Maurya_Resume.pdf')
+        const filePath = path.join(process.cwd(), 'public', 'resume', 'Sachin-Maurya.pdf')
 
         if (!fs.existsSync(filePath)) {
             return NextResponse.json({ error: 'Resume not found' }, { status: 404 })
@@ -12,7 +12,6 @@ export async function GET(request: NextRequest) {
 
         const fileBuffer = fs.readFileSync(filePath)
 
-        // Enhanced logging
         const userAgent = request.headers.get('user-agent') || 'Unknown'
         const timestamp = new Date().toISOString()
 
@@ -22,7 +21,7 @@ export async function GET(request: NextRequest) {
             status: 200,
             headers: {
                 'Content-Type': 'application/pdf',
-                'Content-Disposition': 'attachment; filename="Sachin_Maurya_Frontend_Developer_Resume.pdf"',
+                'Content-Disposition': 'attachment; filename="Sachin-Maurya_Frontend_Developer_Resume.pdf"',
                 'Content-Length': fileBuffer.length.toString(),
                 'Cache-Control': 'public, max-age=3600',
                 'X-Download-Success': 'true',
