@@ -41,38 +41,32 @@ export async function POST(request) {
       to: process.env.SMTP_USER, // Your email
       subject: `Portfolio Contact: ${subject}`,
       html: `
-                <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-                    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 20px; border-radius: 10px 10px 0 0;">
-                        <h2 style="color: white; margin: 0;">New Contact Form Submission</h2>
-                    </div>
-                    <div style="background: #f8f9fa; padding: 20px; border-radius: 0 0 10px 10px; border: 1px solid #e9ecef;">
-                        <div style="margin-bottom: 15px;">
-                            <strong style="color: #495057;">Name:</strong>
-                            <p style="margin: 5px 0; color: #6c757d;">${name}</p>
-                        </div>
-                        <div style="margin-bottom: 15px;">
-                            <strong style="color: #495057;">Email:</strong>
-                            <p style="margin: 5px 0; color: #6c757d;"><a href="mailto:${email}" style="color: #007bff;">${email}</a></p>
-                        </div>
-                        <div style="margin-bottom: 15px;">
-                            <strong style="color: #495057;">Subject:</strong>
-                            <p style="margin: 5px 0; color: #6c757d;">${subject}</p>
-                        </div>
-                        <div style="margin-bottom: 15px;">
-                            <strong style="color: #495057;">Message:</strong>
-                            <div style="background: white; padding: 15px; border-radius: 5px; border-left: 4px solid #007bff; margin-top: 10px;">
-                                <p style="margin: 0; color: #495057; line-height: 1.6;">${message.replace(/\n/g, "<br>")}</p>
-                            </div>
-                        </div>
-                        <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #dee2e6;">
-                            <p style="margin: 0; color: #6c757d; font-size: 14px;">
-                                <strong>Sent from:</strong> Portfolio Contact Form<br>
-                                <strong>Time:</strong> ${new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" })} IST
-                            </p>
-                        </div>
-                    </div>
+          <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f4f6f9; padding: 30px;">
+            <div style="max-width: 600px; margin: auto; background: white; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); overflow: hidden;">
+              <div style="background: linear-gradient(135deg, #1d3557, #457b9d); padding: 20px 30px;">
+                <h2 style="margin: 0; color: #ffffff;">📩 New Contact Message</h2>
+              </div>
+              <div style="padding: 25px 30px; color: #333;">
+                <p style="font-size: 16px; margin-bottom: 20px;">You received a new message via your portfolio contact form:</p>
+                
+                <div style="margin-bottom: 15px;"><strong>Name:</strong> ${name}</div>
+                <div style="margin-bottom: 15px;"><strong>Email:</strong> <a href="mailto:${email}" style="color: #1d3557;">${email}</a></div>
+                <div style="margin-bottom: 15px;"><strong>Subject:</strong> ${subject}</div>
+                
+                <div style="margin: 25px 0; padding: 20px; background: #f1f5f9; border-left: 4px solid #1d3557; border-radius: 6px;">
+                  <strong style="display: block; margin-bottom: 10px;">Message:</strong>
+                  <div style="line-height: 1.6; color: #555;">${message.replace(/\n/g, "<br>")}</div>
                 </div>
-            `,
+
+                <div style="font-size: 13px; color: #888; margin-top: 20px; border-top: 1px solid #eee; padding-top: 15px;">
+                  Sent on: ${new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" })} IST<br>
+                  <em>This message was sent from your portfolio site.</em>
+                </div>
+              </div>
+            </div>
+          </div>
+        `
+
     };
 
     // Auto-reply email to the sender
@@ -81,40 +75,41 @@ export async function POST(request) {
       to: email,
       subject: "Thank you for reaching out! - Sachin Maurya",
       html: `
-                <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-                    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 20px; border-radius: 10px 10px 0 0;">
-                        <h2 style="color: white; margin: 0;">Thank You for Contacting Me!</h2>
+              <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f4f6f9; padding: 30px;">
+                <div style="max-width: 600px; margin: auto; background: white; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); overflow: hidden;">
+                  <div style="background: linear-gradient(135deg, #06b6d4, #3b82f6); padding: 20px 30px;">
+                    <h2 style="margin: 0; color: #ffffff;">👋 Thank You for Reaching Out!</h2>
+                  </div>
+                  <div style="padding: 25px 30px; color: #333;">
+                    <p style="font-size: 16px; margin-bottom: 20px;">Hi <strong>${name}</strong>,</p>
+
+                    <p style="line-height: 1.6;">
+                      Thanks for reaching out through my portfolio! I’ve received your message regarding <strong>"${subject}"</strong> and will get back to you shortly.
+                    </p>
+
+                    <div style="margin: 25px 0; padding: 20px; background: #f1f5f9; border-left: 4px solid #10b981; border-radius: 6px;">
+                      <strong style="display: block; margin-bottom: 10px;">Your Message:</strong>
+                      <p style="margin: 0; color: #555; font-style: italic;">"${message.length > 100 ? message.substring(0, 100) + "..." : message}"</p>
                     </div>
-                    <div style="background: #f8f9fa; padding: 20px; border-radius: 0 0 10px 10px; border: 1px solid #e9ecef;">
-                        <p style="color: #495057; line-height: 1.6;">Hi <strong>${name}</strong>,</p>
-                        
-                        <p style="color: #495057; line-height: 1.6;">
-                            Thank you for reaching out to me through my portfolio website! I've received your message regarding "<strong>${subject}</strong>" and I really appreciate you taking the time to get in touch.
-                        </p>
-                        
-                        <p style="color: #495057; line-height: 1.6;">
-                            I'll review your message carefully and get back to you as soon as possible, typically within 24-48 hours. In the meantime, feel free to check out my latest projects and connect with me on social media.
-                        </p>
-                        
-                        <div style="background: white; padding: 15px; border-radius: 5px; border-left: 4px solid #28a745; margin: 20px 0;">
-                            <p style="margin: 0; color: #495057;"><strong>Your message:</strong></p>
-                            <p style="margin: 10px 0 0 0; color: #6c757d; font-style: italic;">"${message.length > 100 ? message.substring(0, 100) + "..." : message}"</p>
-                        </div>
-                        
-                        <p style="color: #495057; line-height: 1.6;">
-                            Best regards,<br>
-                            <strong>Sachin Maurya</strong><br>
-                            <span style="color: #6c757d;">Frontend Developer</span>
-                        </p>
-                        
-                        <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #dee2e6;">
-                            <p style="margin: 0; color: #6c757d; font-size: 14px;">
-                                This is an automated response. Please do not reply to this email directly.
-                            </p>
-                        </div>
+
+                    <p style="line-height: 1.6;">
+                      I typically respond within 24–48 hours. Feel free to check out my <a href="https://github.com/maurya-sachin" style="color: #3b82f6;">GitHub</a> or <a href="https://linkedin.com/in/maurya-sachin" style="color: #3b82f6;">LinkedIn</a> in the meantime.
+                    </p>
+
+                    <p style="margin-top: 30px;">
+                      Best regards,<br>
+                      <strong>Sachin Maurya</strong><br>
+                      <span style="color: #6c757d;">Frontend Developer</span>
+                    </p>
+
+                    <div style="font-size: 13px; color: #888; margin-top: 20px; border-top: 1px solid #eee; padding-top: 15px;">
+                      This is an automated reply. Please don’t respond directly to this email.
                     </div>
+                  </div>
                 </div>
-            `,
+              </div>
+            `
+
     };
 
     // Send both emails
