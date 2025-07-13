@@ -5,6 +5,14 @@ const nextConfig = {
   },
   images: {
     formats: ["image/webp", "image/avif"],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'api.placeholder.com',
+        port: '',
+        pathname: '/**',
+      },
+    ],
   },
   compiler: {
     removeConsole: process.env.NODE_ENV === "production",
@@ -23,5 +31,4 @@ const nextConfig = {
     ];
   },
 };
-
 export default nextConfig;

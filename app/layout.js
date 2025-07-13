@@ -1,5 +1,3 @@
-import type React from "react";
-import type { Metadata } from "next";
 import { Inter, JetBrains_Mono, Poppins } from "next/font/google";
 import "./globals.css";
 
@@ -22,17 +20,14 @@ const poppins = Poppins({
   weight: ["300", "400", "500", "600", "700", "800", "900"],
 });
 
-export const metadata: Metadata = {
-  title:
-    "Sachin Maurya - Frontend Developer | React.js Specialist | UI/UX Developer",
-  description:
-    "Experienced Frontend Developer specializing in React.js, Next.js, TypeScript. Expert in performance optimization, web accessibility, GSAP animations, and modern UI/UX development. 2+ years building scalable web applications.",
+export const metadata = {
+  title: "Sachin Maurya - Frontend Developer | React.js Specialist | UI/UX Developer",
+  description: "Experienced Frontend Developer specializing in React.js, Next.js, JavaScript. Expert in performance optimization, web accessibility, GSAP animations, and modern UI/UX development. 2+ years building scalable web applications.",
   keywords: [
     "Frontend Developer",
     "React Developer",
     "React.js Specialist",
     "Next.js Developer",
-    "TypeScript Developer",
     "JavaScript Developer",
     "UI Developer",
     "UX Developer",
@@ -72,8 +67,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://maurya-sachin.vercel.app",
     title: "Sachin Maurya - Frontend Developer | React.js Specialist",
-    description:
-      "Experienced Frontend Developer specializing in React.js, Next.js, TypeScript with expertise in performance optimization and modern web development",
+    description: "Experienced Frontend Developer specializing in React.js, Next.js, JavaScript with expertise in performance optimization and modern web development",
     siteName: "Sachin Maurya Portfolio",
     images: [
       {
@@ -88,8 +82,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Sachin Maurya - Frontend Developer | React.js Specialist",
-    description:
-      "Frontend Developer specializing in React.js, Next.js, TypeScript. Expert in performance optimization and modern web development.",
+    description: "Frontend Developer specializing in React.js, Next.js, JavaScript. Expert in performance optimization and modern web development.",
     images: ["/og-image.png"],
   },
   robots: {
@@ -110,11 +103,7 @@ export const metadata: Metadata = {
   classification: "Portfolio",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
@@ -141,6 +130,23 @@ export default function RootLayout({
                 }
               } catch (e) {}
             `,
+          }}
+        />
+        <script
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}', {
+        page_title: document.title,
+        page_location: window.location.href,
+      });
+    `,
           }}
         />
       </head>
