@@ -49,7 +49,7 @@ const sachinMaurya = {
   role: "Frontend Developer",
   company: "Kreate Technologies",
   experience: "2+ years",
-  
+
   expertise: {
     frameworks: ["React.js", "Next.js", "TypeScript"],
     specializations: [
@@ -57,23 +57,23 @@ const sachinMaurya = {
       "Component Architecture",
       "API Integration (REST, GraphQL)",
       "Accessibility (WCAG 2.1 AA)",
-      "SEO Optimization"
-    ]
+      "SEO Optimization",
+    ],
   },
-  
+
   currentGoals: {
     learning: "Advanced React Patterns & Micro-frontends",
     building: "Scalable Component Libraries",
     optimizing: "Core Web Vitals & Performance",
-    exploring: "AI-powered Development Tools"
+    exploring: "AI-powered Development Tools",
   },
-  
+
   achievements: {
     performanceImprovements: "80% faster load times",
     lighthouseScores: "95+ consistently",
     apiOptimization: "20% latency reduction",
-    developmentEfficiency: "30% faster cycles"
-  }
+    developmentEfficiency: "30% faster cycles",
+  },
 };
 ```
 
@@ -87,14 +87,14 @@ const sachinMaurya = {
 
 <div align="center">
 
-| 🎯 **Metric** | 📊 **Achievement** | 🚀 **Impact** |
-|---|---|---|
-| ⚡ **Performance** | 80% faster load times | Enhanced user experience & SEO |
-| 🎯 **Quality Score** | 95+ Lighthouse consistently | Industry-leading performance standards |
-| 📦 **Development** | 30% faster delivery cycles | Improved team productivity |
-| 🔗 **API Efficiency** | 20% latency reduction | Better app responsiveness |
-| ♿ **Accessibility** | WCAG 2.1 AA compliance | Inclusive user experience |
-| 📱 **Mobile Score** | 96+ mobile performance | Excellent mobile experience |
+| 🎯 **Metric**         | 📊 **Achievement**          | 🚀 **Impact**                          |
+| --------------------- | --------------------------- | -------------------------------------- |
+| ⚡ **Performance**    | 80% faster load times       | Enhanced user experience & SEO         |
+| 🎯 **Quality Score**  | 95+ Lighthouse consistently | Industry-leading performance standards |
+| 📦 **Development**    | 30% faster delivery cycles  | Improved team productivity             |
+| 🔗 **API Efficiency** | 20% latency reduction       | Better app responsiveness              |
+| ♿ **Accessibility**  | WCAG 2.1 AA compliance      | Inclusive user experience              |
+| 📱 **Mobile Score**   | 96+ mobile performance      | Excellent mobile experience            |
 
 </div>
 
@@ -178,7 +178,7 @@ const sachinMaurya = {
 ## 🎨 Featured Projects Portfolio
 
 ### 🤖 [GENAI Document Analyzer](https://github.com/maurya-sachin/genai-analyzer)
->
+
 > **Enterprise AI-powered document processing platform**
 
 **🔧 Tech Stack:** `React.js` `Redux Toolkit` `TypeScript` `Python API` `WebSockets`
@@ -235,7 +235,7 @@ const useDocumentWebSocket = (documentId: string) => {
     if (!documentId) return;
 
     const ws = new WebSocket(`${WS_BASE_URL}/documents/${documentId}`);
-    
+
     ws.onopen = () => {
       setConnectionStatus('connected');
       setSocket(ws);
@@ -257,7 +257,7 @@ const useDocumentWebSocket = (documentId: string) => {
 
 // Performance-optimized Document Renderer
 const DocumentRenderer = React.memo(({ document, viewport }) => {
-  const virtualizedItems = useMemo(() => 
+  const virtualizedItems = useMemo(() =>
     document.pages.slice(
       viewport.startIndex,
       viewport.endIndex + BUFFER_SIZE
@@ -269,7 +269,7 @@ const DocumentRenderer = React.memo(({ document, viewport }) => {
       items={virtualizedItems}
       itemHeight={ITEM_HEIGHT}
       renderItem={({ item, index }) => (
-        <DocumentPage 
+        <DocumentPage
           key={`page-${item.id}`}
           page={item}
           onAnnotationAdd={handleAnnotationAdd}
@@ -285,7 +285,7 @@ const DocumentRenderer = React.memo(({ document, viewport }) => {
 ---
 
 ### 🌐 [Kreate Technologies Corporate Website](https://github.com/maurya-sachin/kreate-website)
->
+
 > **High-performance corporate website with advanced animations**
 
 **🔧 Tech Stack:** `Next.js 14` `GSAP` `Tailwind CSS` `TypeScript` `React Query`
@@ -344,7 +344,7 @@ class AnimationController {
 
     // Scroll-triggered section animations
     gsap.utils.toArray('.fade-in-section').forEach((section: any) => {
-      gsap.fromTo(section, 
+      gsap.fromTo(section,
         { y: 60, opacity: 0 },
         {
           y: 0,
@@ -369,15 +369,15 @@ class AnimationController {
 }
 
 // Performance-optimized Image Component
-const OptimizedImage = ({ 
-  src, 
-  alt, 
+const OptimizedImage = ({
+  src,
+  alt,
   className,
   priority = false,
-  ...props 
+  ...props
 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
-  
+
   return (
     <div className={`relative overflow-hidden ${className}`}>
       <Image
@@ -410,7 +410,7 @@ const useAdvancedTheme = () => {
     setTheme(savedTheme);
 
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    
+
     const updateResolvedTheme = () => {
       if (savedTheme === 'system') {
         setResolvedTheme(mediaQuery.matches ? 'dark' : 'light');
@@ -428,14 +428,14 @@ const useAdvancedTheme = () => {
   const toggleTheme = useCallback((newTheme: 'light' | 'dark' | 'system') => {
     setTheme(newTheme);
     localStorage.setItem('theme', newTheme);
-    
+
     if (newTheme === 'system') {
       const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
       setResolvedTheme(prefersDark ? 'dark' : 'light');
     } else {
       setResolvedTheme(newTheme);
     }
-    
+
     document.documentElement.classList.toggle('dark', resolvedTheme === 'dark');
   }, [resolvedTheme]);
 
@@ -448,7 +448,7 @@ const useAdvancedTheme = () => {
 ---
 
 ### 📋 [Interactive Kanban Board](https://github.com/maurya-sachin/kanban-board)
->
+
 > **Modern task management system with real-time collaboration**
 
 **🔧 Tech Stack:** `React.js` `TypeScript` `React DND` `Zustand` `Socket.io`
@@ -477,18 +477,18 @@ interface KanbanStore {
   boards: Board[];
   activeBoard: string | null;
   draggedTask: Task | null;
-  
+
   // Actions
   createBoard: (board: Omit<Board, 'id'>) => void;
   updateBoard: (id: string, updates: Partial<Board>) => void;
   deleteBoard: (id: string) => void;
-  
+
   // Task actions
   createTask: (boardId: string, columnId: string, task: Omit<Task, 'id'>) => void;
   updateTask: (boardId: string, taskId: string, updates: Partial<Task>) => void;
   moveTask: (boardId: string, taskId: string, fromColumn: string, toColumn: string, position: number) => void;
   deleteTask: (boardId: string, taskId: string) => void;
-  
+
   // Drag actions
   setDraggedTask: (task: Task | null) => void;
 }
@@ -505,7 +505,7 @@ const useKanbanStore = create<KanbanStore>((set, get) => ({
       createdAt: Date.now(),
       updatedAt: Date.now(),
     };
-    
+
     set((state) => ({
       boards: [...state.boards, newBoard],
       activeBoard: newBoard.id,
@@ -519,12 +519,12 @@ const useKanbanStore = create<KanbanStore>((set, get) => ({
 
       const board = { ...state.boards[boardIndex] };
       const task = board.columns[fromColumn].tasks.find(t => t.id === taskId);
-      
+
       if (!task) return state;
 
       // Remove from source column
       board.columns[fromColumn].tasks = board.columns[fromColumn].tasks.filter(t => t.id !== taskId);
-      
+
       // Add to destination column at specific position
       board.columns[toColumn].tasks.splice(position, 0, {
         ...task,
@@ -543,8 +543,8 @@ const useKanbanStore = create<KanbanStore>((set, get) => ({
 const DraggableTask: React.FC<{ task: Task; columnId: string }> = ({ task, columnId }) => {
   const [{ isDragging }, drag, preview] = useDrag({
     type: 'TASK',
-    item: { 
-      id: task.id, 
+    item: {
+      id: task.id,
       columnId,
       type: 'TASK'
     },
@@ -557,7 +557,7 @@ const DraggableTask: React.FC<{ task: Task; columnId: string }> = ({ task, colum
     accept: 'TASK',
     drop: (item: DragItem, monitor) => {
       if (!monitor.isOver({ shallow: true })) return;
-      
+
       const { moveTask } = useKanbanStore.getState();
       moveTask(
         activeBoardId,
@@ -591,12 +591,12 @@ const DraggableTask: React.FC<{ task: Task; columnId: string }> = ({ task, colum
       <div className="task-content">
         <h3 className="font-semibold text-gray-800">{task.title}</h3>
         <p className="text-sm text-gray-600 mt-1">{task.description}</p>
-        
+
         <div className="flex items-center justify-between mt-3">
           <TaskPriority priority={task.priority} />
           <TaskAssignees assignees={task.assignees} />
         </div>
-        
+
         <div className="flex items-center justify-between mt-2">
           <TaskLabels labels={task.labels} />
           <span className="text-xs text-gray-500">
@@ -622,11 +622,11 @@ const useRealtimeKanban = (boardId: string) => {
       updateTask(boardId, data.taskId, data.updates);
     };
 
-    const handleTaskMove = (data: { 
-      taskId: string; 
-      fromColumn: string; 
-      toColumn: string; 
-      position: number; 
+    const handleTaskMove = (data: {
+      taskId: string;
+      fromColumn: string;
+      toColumn: string;
+      position: number;
     }) => {
       moveTask(boardId, data.taskId, data.fromColumn, data.toColumn, data.position);
     };
@@ -739,16 +739,16 @@ const useRealtimeKanban = (boardId: string) => {
 
 <div align="center">
 
-| 🎯 **Performance Metric** | **Before** | **After** | 🚀 **Improvement** |
-|---|---|---|---|
-| ⚡ **Page Load Time** | 4.2s | 0.8s | **80% faster** |
-| 📦 **Bundle Size** | 2.1MB | 890KB | **58% smaller** |
-| 🎯 **Lighthouse Score** | 68 | 95+ | **40% improvement** |
-| 🔄 **API Response Time** | 850ms | 320ms | **62% faster** |
-| 🎨 **First Paint** | 2.1s | 0.6s | **71% faster** |
-| 📱 **Mobile Performance** | 72 | 96+ | **33% improvement** |
-| ♿ **Accessibility Score** | 78 | 98+ | **26% improvement** |
-| 🔍 **SEO Score** | 82 | 97+ | **18% improvement** |
+| 🎯 **Performance Metric**  | **Before** | **After** | 🚀 **Improvement**  |
+| -------------------------- | ---------- | --------- | ------------------- |
+| ⚡ **Page Load Time**      | 4.2s       | 0.8s      | **80% faster**      |
+| 📦 **Bundle Size**         | 2.1MB      | 890KB     | **58% smaller**     |
+| 🎯 **Lighthouse Score**    | 68         | 95+       | **40% improvement** |
+| 🔄 **API Response Time**   | 850ms      | 320ms     | **62% faster**      |
+| 🎨 **First Paint**         | 2.1s       | 0.6s      | **71% faster**      |
+| 📱 **Mobile Performance**  | 72         | 96+       | **33% improvement** |
+| ♿ **Accessibility Score** | 78         | 98+       | **26% improvement** |
+| 🔍 **SEO Score**           | 82         | 97+       | **18% improvement** |
 
 </div>
 
@@ -845,16 +845,16 @@ SEO & Web Standards        ████████████████     
 
 <div align="center">
 
-| **Category** | **Technologies** | **Proficiency** | **Experience** |
-|---|---|---|---|
-| **Frontend Frameworks** | React.js, Next.js, Vue.js | 95% | 2+ years |
-| **Programming Languages** | JavaScript, TypeScript, HTML5, CSS3 | 90% | 2+ years |
-| **State Management** | Redux Toolkit, Zustand, React Query | 88% | 1.5+ years |
-| **Styling Solutions** | Tailwind CSS, SCSS, Styled Components | 92% | 2+ years |
-| **Animation Libraries** | Framer Motion, GSAP, CSS Animations | 85% | 1+ year |
-| **API Technologies** | REST, GraphQL, WebSockets | 87% | 1.5+ years |
-| **Development Tools** | Git, Webpack, Vite, ESLint, Prettier | 90% | 2+ years |
-| **Testing Frameworks** | Jest, React Testing Library, Cypress | 80% | 1+ year |
+| **Category**              | **Technologies**                      | **Proficiency** | **Experience** |
+| ------------------------- | ------------------------------------- | --------------- | -------------- |
+| **Frontend Frameworks**   | React.js, Next.js, Vue.js             | 95%             | 2+ years       |
+| **Programming Languages** | JavaScript, TypeScript, HTML5, CSS3   | 90%             | 2+ years       |
+| **State Management**      | Redux Toolkit, Zustand, React Query   | 88%             | 1.5+ years     |
+| **Styling Solutions**     | Tailwind CSS, SCSS, Styled Components | 92%             | 2+ years       |
+| **Animation Libraries**   | Framer Motion, GSAP, CSS Animations   | 85%             | 1+ year        |
+| **API Technologies**      | REST, GraphQL, WebSockets             | 87%             | 1.5+ years     |
+| **Development Tools**     | Git, Webpack, Vite, ESLint, Prettier  | 90%             | 2+ years       |
+| **Testing Frameworks**    | Jest, React Testing Library, Cypress  | 80%             | 1+ year        |
 
 </div>
 
@@ -876,23 +876,38 @@ SEO & Web Standards        ████████████████     
 const developmentPhilosophy = {
   codeQuality: {
     principle: "Clean, readable, and maintainable code",
-    practices: ["DRY", "SOLID", "Component composition", "Type safety"]
+    practices: ["DRY", "SOLID", "Component composition", "Type safety"],
   },
-  
+
   performance: {
     principle: "Performance is a feature, not an afterthought",
-    practices: ["Core Web Vitals", "Bundle optimization", "Lazy loading", "Caching strategies"]
+    practices: [
+      "Core Web Vitals",
+      "Bundle optimization",
+      "Lazy loading",
+      "Caching strategies",
+    ],
   },
-  
+
   accessibility: {
     principle: "Inclusive design for all users",
-    practices: ["WCAG 2.1 AA", "Semantic HTML", "ARIA attributes", "Keyboard navigation"]
+    practices: [
+      "WCAG 2.1 AA",
+      "Semantic HTML",
+      "ARIA attributes",
+      "Keyboard navigation",
+    ],
   },
-  
+
   userExperience: {
     principle: "User-centered design and development",
-    practices: ["Mobile-first", "Progressive enhancement", "Intuitive interfaces", "Fast interactions"]
-  }
+    practices: [
+      "Mobile-first",
+      "Progressive enhancement",
+      "Intuitive interfaces",
+      "Fast interactions",
+    ],
+  },
 };
 ```
 
@@ -932,7 +947,7 @@ const developmentPhilosophy = {
 ### 🤝 Open to Opportunities
 
 - 💼 **Frontend Developer** positions at innovative companies
-- 🚀 **React Developer** roles with growth opportunities  
+- 🚀 **React Developer** roles with growth opportunities
 - 🎯 **UI Developer** positions focusing on user experience
 - 🌐 **Full-stack** roles with frontend focus
 - 📈 **Contract/Freelance** projects for exciting startups
@@ -978,16 +993,16 @@ This project and portfolio are licensed under the **MIT License** - see the [LIC
 
 <div align="center">
 
-| **Feature** | **Status** | **Description** |
-|---|---|---|
-| 🌙 **Dark Mode** | ✅ Complete | System preference + manual toggle |
-| ⚡ **Performance** | ✅ Optimized | 95+ Lighthouse score consistently |
-| 🎨 **Animations** | ✅ Advanced | Framer Motion + GSAP integration |
-| 📱 **PWA Ready** | ✅ Enabled | Offline capabilities & app-like experience |
-| 🔍 **SEO Optimized** | ✅ Complete | Structured data + comprehensive meta tags |
-| ♿ **Accessibility** | ✅ WCAG 2.1 AA | Full compliance with web standards |
-| 🚀 **Performance** | ✅ Optimized | Code splitting + lazy loading |
-| 🔒 **Security** | ✅ Secured | Content Security Policy + HTTPS |
+| **Feature**          | **Status**     | **Description**                            |
+| -------------------- | -------------- | ------------------------------------------ |
+| 🌙 **Dark Mode**     | ✅ Complete    | System preference + manual toggle          |
+| ⚡ **Performance**   | ✅ Optimized   | 95+ Lighthouse score consistently          |
+| 🎨 **Animations**    | ✅ Advanced    | Framer Motion + GSAP integration           |
+| 📱 **PWA Ready**     | ✅ Enabled     | Offline capabilities & app-like experience |
+| 🔍 **SEO Optimized** | ✅ Complete    | Structured data + comprehensive meta tags  |
+| ♿ **Accessibility** | ✅ WCAG 2.1 AA | Full compliance with web standards         |
+| 🚀 **Performance**   | ✅ Optimized   | Code splitting + lazy loading              |
+| 🔒 **Security**      | ✅ Secured     | Content Security Policy + HTTPS            |
 
 </div>
 
@@ -1014,7 +1029,7 @@ This project and portfolio are licensed under the **MIT License** - see the [LIC
 
 ```
 Status: ✅ Available for exciting opportunities
-Focus: 🎯 Building scalable, performant web applications  
+Focus: 🎯 Building scalable, performant web applications
 Goal: 📈 Creating exceptional user experiences
 Motto: 💡 "Code with purpose, optimize with passion"
 ```
