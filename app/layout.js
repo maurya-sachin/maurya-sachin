@@ -21,8 +21,10 @@ const poppins = Poppins({
 });
 
 export const metadata = {
-  title: "Sachin Maurya - Frontend Developer | React.js Specialist | UI/UX Developer",
-  description: "Experienced Frontend Developer specializing in React.js, Next.js, JavaScript. Expert in performance optimization, web accessibility, GSAP animations, and modern UI/UX development. 2+ years building scalable web applications.",
+  title:
+    "Sachin Maurya - Frontend Developer | React.js Specialist | UI/UX Developer",
+  description:
+    "Experienced Frontend Developer specializing in React.js, Next.js, JavaScript. Expert in performance optimization, web accessibility, GSAP animations, and modern UI/UX development. 2+ years building scalable web applications.",
   keywords: [
     "Frontend Developer",
     "React Developer",
@@ -67,7 +69,8 @@ export const metadata = {
     locale: "en_US",
     url: "https://maurya-sachin.vercel.app",
     title: "Sachin Maurya - Frontend Developer | React.js Specialist",
-    description: "Experienced Frontend Developer specializing in React.js, Next.js, JavaScript with expertise in performance optimization and modern web development",
+    description:
+      "Experienced Frontend Developer specializing in React.js, Next.js, JavaScript with expertise in performance optimization and modern web development",
     siteName: "Sachin Maurya Portfolio",
     images: [
       {
@@ -82,7 +85,8 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Sachin Maurya - Frontend Developer | React.js Specialist",
-    description: "Frontend Developer specializing in React.js, Next.js, JavaScript. Expert in performance optimization and modern web development.",
+    description:
+      "Frontend Developer specializing in React.js, Next.js, JavaScript. Expert in performance optimization and modern web development.",
     images: ["/og-image.png"],
   },
   robots: {
@@ -119,36 +123,47 @@ export default function RootLayout({ children }) {
           name="viewport"
           content="width=device-width, initial-scale=1, viewport-fit=cover"
         />
+
+        {/* Theme initialization script */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
-              try {
-                const theme = localStorage.getItem('theme');
-                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                if (theme === 'dark' || (!theme && prefersDark)) {
-                  document.documentElement.classList.add('dark');
+              (function() {
+                try {
+                  const theme = localStorage.getItem('theme');
+                  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                  const mode = theme || (prefersDark ? 'dark' : 'light');
+                  document.documentElement.setAttribute('data-theme', mode);
+                } catch (e) {
+                  console.error('Theme initialization error:', e);
                 }
-              } catch (e) {}
+              })();
             `,
           }}
         />
-        <script
-          async
-          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
-        />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}', {
-        page_title: document.title,
-        page_location: window.location.href,
-      });
-    `,
-          }}
-        />
+
+        {/* Google Analytics */}
+        {process.env.NEXT_PUBLIC_GA_ID && (
+          <>
+            <script
+              async
+              src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
+            />
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag(){dataLayer.push(arguments);}
+                  gtag('js', new Date());
+                  gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}', {
+                    page_title: document.title,
+                    page_location: window.location.href,
+                  });
+                `,
+              }}
+            />
+          </>
+        )}
       </head>
       <body className="font-sans antialiased overflow-x-hidden">
         <div id="portal-root"></div>

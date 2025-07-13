@@ -41,7 +41,7 @@ const HeroSection = ({ scrollToSection, heroY, downloadResume }) => {
         setTypedText((current) =>
           isDeleting
             ? currentWord.substring(0, current.length - 1)
-            : currentWord.substring(0, current.length + 1)
+            : currentWord.substring(0, current.length + 1),
         );
       }
     }, typeSpeed);

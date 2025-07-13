@@ -20,6 +20,22 @@ const ServicesSection = lazy(() => import("./ServicesSection"));
 const ContactSection = lazy(() => import("./ContactSection"));
 const FloatingElements = lazy(() => import("./FloatingElements"));
 
+const SuspenseLoader = () => (
+  <div className="flex items-center justify-center py-20">
+    <div className="relative">
+      <motion.div
+        className="w-12 h-12 border-4 border-blue-500/20 border-t-blue-500 rounded-full"
+        animate={{ rotate: 360 }}
+        transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+      />
+      <motion.div
+        className="absolute inset-2 border-2 border-purple-500/20 border-r-purple-500 rounded-full"
+        animate={{ rotate: -360 }}
+        transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+      />
+    </div>
+  </div>
+);
 const ResumeApp = () => {
   const containerRef = useRef(null);
   const { scrollY } = useScroll();
@@ -137,7 +153,7 @@ const ResumeApp = () => {
 
   if (isLoading) {
     return (
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<SuspenseLoader />}>
         <LoadingScreen />
       </Suspense>
     );
@@ -178,7 +194,7 @@ const ResumeApp = () => {
 
       {/* Main content */}
       <main>
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<SuspenseLoader />}>
           <HeroSection
             scrollToSection={scrollToSection}
             heroY={heroY}
@@ -186,39 +202,39 @@ const ResumeApp = () => {
           />
         </Suspense>
 
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<SuspenseLoader />}>
           <AboutSection />
         </Suspense>
 
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<SuspenseLoader />}>
           <SkillsSection />
         </Suspense>
 
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<SuspenseLoader />}>
           <ExperienceSection />
         </Suspense>
 
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<SuspenseLoader />}>
           <ProjectsSection />
         </Suspense>
 
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<SuspenseLoader />}>
           <GitHubStatsSection />
         </Suspense>
 
-        {/* <Suspense fallback={<div>Loading...</div>}>
+        {/* <Suspense fallback={<SuspenseLoader/>}>
           <ServicesSection />
         </Suspense>
 
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<SuspenseLoader/>}>
           <TestimonialsSection />
         </Suspense>
 
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<SuspenseLoader/>}>
           <BlogSection />
         </Suspense> */}
 
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<SuspenseLoader />}>
           <ContactSection downloadResume={downloadResume} />
         </Suspense>
       </main>

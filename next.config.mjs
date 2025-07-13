@@ -7,10 +7,10 @@ const nextConfig = {
     formats: ["image/webp", "image/avif"],
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'api.placeholder.com',
-        port: '',
-        pathname: '/**',
+        protocol: "https",
+        hostname: "api.placeholder.com",
+        port: "",
+        pathname: "/**",
       },
     ],
   },

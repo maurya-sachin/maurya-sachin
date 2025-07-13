@@ -259,7 +259,7 @@ const ProjectsSection = () => {
     activeProjectCategory === "All"
       ? projects
       : projects.filter(
-          (project) => project.category === activeProjectCategory
+          (project) => project.category === activeProjectCategory,
         );
   const featuredProjects = projects.filter((project) => project.featured);
 
@@ -632,7 +632,7 @@ const ProjectsSection = () => {
                               {key}
                             </div>
                           </div>
-                        )
+                        ),
                       )}
                     </div>
                   </div>

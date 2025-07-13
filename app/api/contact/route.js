@@ -1,6 +1,6 @@
 // app/api/contact/route.js
-import { NextResponse } from 'next/server';
-import nodemailer from 'nodemailer';
+import { NextResponse } from "next/server";
+import nodemailer from "nodemailer";
 
 export async function POST(request) {
   try {
@@ -9,8 +9,8 @@ export async function POST(request) {
     // Validate required fields
     if (!name || !email || !subject || !message) {
       return NextResponse.json(
-        { error: 'All fields are required' },
-        { status: 400 }
+        { error: "All fields are required" },
+        { status: 400 },
       );
     }
 
@@ -18,14 +18,14 @@ export async function POST(request) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       return NextResponse.json(
-        { error: 'Invalid email format' },
-        { status: 400 }
+        { error: "Invalid email format" },
+        { status: 400 },
       );
     }
 
     // Create transporter with correct method name
     const transporter = nodemailer.createTransport({
-      service: 'gmail',
+      service: "gmail",
       auth: {
         user: process.env.SMTP_USER,
         pass: process.env.SMTP_PASS,
@@ -61,13 +61,13 @@ export async function POST(request) {
                         <div style="margin-bottom: 15px;">
                             <strong style="color: #495057;">Message:</strong>
                             <div style="background: white; padding: 15px; border-radius: 5px; border-left: 4px solid #007bff; margin-top: 10px;">
-                                <p style="margin: 0; color: #495057; line-height: 1.6;">${message.replace(/\n/g, '<br>')}</p>
+                                <p style="margin: 0; color: #495057; line-height: 1.6;">${message.replace(/\n/g, "<br>")}</p>
                             </div>
                         </div>
                         <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #dee2e6;">
                             <p style="margin: 0; color: #6c757d; font-size: 14px;">
                                 <strong>Sent from:</strong> Portfolio Contact Form<br>
-                                <strong>Time:</strong> ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })} IST
+                                <strong>Time:</strong> ${new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" })} IST
                             </p>
                         </div>
                     </div>
@@ -79,7 +79,7 @@ export async function POST(request) {
     const autoReply = {
       from: process.env.SMTP_USER,
       to: email,
-      subject: 'Thank you for reaching out! - Sachin Maurya',
+      subject: "Thank you for reaching out! - Sachin Maurya",
       html: `
                 <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
                     <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 20px; border-radius: 10px 10px 0 0;">
@@ -98,7 +98,7 @@ export async function POST(request) {
                         
                         <div style="background: white; padding: 15px; border-radius: 5px; border-left: 4px solid #28a745; margin: 20px 0;">
                             <p style="margin: 0; color: #495057;"><strong>Your message:</strong></p>
-                            <p style="margin: 10px 0 0 0; color: #6c757d; font-style: italic;">"${message.length > 100 ? message.substring(0, 100) + '...' : message}"</p>
+                            <p style="margin: 10px 0 0 0; color: #6c757d; font-style: italic;">"${message.length > 100 ? message.substring(0, 100) + "..." : message}"</p>
                         </div>
                         
                         <p style="color: #495057; line-height: 1.6;">
@@ -120,38 +120,42 @@ export async function POST(request) {
     // Send both emails
     await Promise.all([
       transporter.sendMail(mailToOwner),
-      transporter.sendMail(autoReply)
+      transporter.sendMail(autoReply),
     ]);
 
     return NextResponse.json(
       {
-        message: 'Email sent successfully! I\'ll get back to you soon.',
-        success: true
+        message: "Email sent successfully! I'll get back to you soon.",
+        success: true,
       },
-      { status: 200 }
+      { status: 200 },
     );
-
   } catch (error) {
-    console.error('❌ Contact form error:', error);
+    console.error("❌ Contact form error:", error);
 
     // Return different error messages based on the error type
-    if (error.code === 'EAUTH') {
+    if (error.code === "EAUTH") {
       return NextResponse.json(
-        { error: 'Email authentication failed. Please try again later.' },
-        { status: 500 }
+        { error: "Email authentication failed. Please try again later." },
+        { status: 500 },
       );
     }
 
-    if (error.code === 'ECONNECTION') {
+    if (error.code === "ECONNECTION") {
       return NextResponse.json(
-        { error: 'Unable to connect to email service. Please try again later.' },
-        { status: 500 }
+        {
+          error: "Unable to connect to email service. Please try again later.",
+        },
+        { status: 500 },
       );
     }
 
     return NextResponse.json(
-      { error: 'Failed to send email. Please try again later or contact me directly.' },
-      { status: 500 }
+      {
+        error:
+          "Failed to send email. Please try again later or contact me directly.",
+      },
+      { status: 500 },
     );
   }
 }

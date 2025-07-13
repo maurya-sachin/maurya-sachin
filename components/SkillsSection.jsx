@@ -154,7 +154,7 @@ const SkillsSection = () => {
   const skillStats = {
     totalSkills: skills.length,
     avgLevel: Math.round(
-      skills.reduce((acc, skill) => acc + skill.level, 0) / skills.length
+      skills.reduce((acc, skill) => acc + skill.level, 0) / skills.length,
     ),
     totalProjects: skills.reduce((acc, skill) => acc + skill.projects, 0),
     yearsExperience: "2+",

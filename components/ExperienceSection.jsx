@@ -377,7 +377,7 @@ const ExperienceSection = () => {
                                 {achievement}
                               </span>
                             </motion.div>
-                          )
+                          ),
                         )}
                       </div>
 
