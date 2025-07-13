@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import {
   Award,
@@ -12,11 +12,58 @@ import {
   Star,
   TrendingUp,
   CheckCircle,
+  Sparkles,
 } from "lucide-react";
-import { useInView } from "react-intersection-observer";
+
+// Custom intersection observer hook
+const useInView = (options = {}) => {
+  const [inView, setInView] = useState(false);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setInView(entry.isIntersecting);
+      },
+      { threshold: options.threshold || 0.1, ...options }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => {
+      if (ref.current) {
+        observer.unobserve(ref.current);
+      }
+    };
+  }, []);
+
+  return [ref, inView];
+};
 
 const AboutSection = () => {
-  const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true });
+  const [ref, inView] = useInView({ threshold: 0.1 });
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const sectionRef = useRef(null);
+
+  // Mouse tracking for subtle interactive effects
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      if (sectionRef.current) {
+        const rect = sectionRef.current.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        setMousePosition({ x, y });
+      }
+    };
+
+    if (sectionRef.current) {
+      sectionRef.current.addEventListener("mousemove", handleMouseMove);
+      return () =>
+        sectionRef.current?.removeEventListener("mousemove", handleMouseMove);
+    }
+  }, []);
 
   const highlights = [
     {
@@ -91,14 +138,35 @@ const AboutSection = () => {
     { icon: Heart, text: "Continuous learning", color: "text-red-500" },
   ];
 
+  const techStack = [
+    "React.js",
+    "Next.js",
+    "TypeScript",
+    "JavaScript",
+    "Tailwind CSS",
+    "SASS",
+    "Node.js",
+    "GraphQL",
+    "MongoDB",
+    "Git",
+    "Webpack",
+    "Figma",
+  ];
+
   return (
     <section
       id="about"
-      ref={ref}
-      className="py-20 px-4 sm:px-6 lg:px-8 relative bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-800 dark:to-gray-900"
+      ref={sectionRef}
+      className="py-12 px-4 sm:px-6 lg:px-8 relative bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-800 dark:to-gray-900"
     >
       {/* Enhanced background elements */}
       <div className="absolute inset-0 overflow-hidden">
+        <motion.div
+          className="absolute inset-0 opacity-20"
+          style={{
+            background: `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(99, 102, 241, 0.1), transparent 40%)`,
+          }}
+        />
         <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-10"></div>
         {[...Array(8)].map((_, i) => (
           <motion.div
@@ -124,19 +192,31 @@ const AboutSection = () => {
 
       <motion.div
         className="max-w-6xl mx-auto relative z-10"
+        ref={ref}
         initial={{ opacity: 0, y: 50 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.8 }}
       >
         {/* Section Header */}
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-10"
           initial={{ opacity: 0, y: 50 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
         >
+          <motion.div
+            className="inline-flex items-center space-x-2 mb-6 px-4 py-2 rounded-full bg-blue-500/20 border border-blue-300/30 dark:border-blue-600/30"
+            whileHover={{ scale: 1.05 }}
+          >
+            <Sparkles className="w-4 h-4 text-blue-500" />
+            <span className="text-blue-600 dark:text-blue-400 font-medium">
+              Frontend Developer
+            </span>
+            <Sparkles className="w-4 h-4 text-purple-500" />
+          </motion.div>
+
           <motion.h2
-            className="text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
+            className="text-3xl lg:text-4xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
             whileHover={{ scale: 1.02 }}
           >
             About Me
@@ -148,7 +228,7 @@ const AboutSection = () => {
             transition={{ delay: 0.5, duration: 1 }}
           />
           <motion.p
-            className="text-xl leading-relaxed max-w-3xl mx-auto text-gray-600 dark:text-gray-300"
+            className="text-lg leading-relaxed max-w-3xl mx-auto text-gray-600 dark:text-gray-300"
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.3, duration: 0.8 }}
@@ -167,11 +247,12 @@ const AboutSection = () => {
         </motion.div>
 
         {/* Main Content Grid */}
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 mb-16">
-          {/* Highlights Cards */}
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 mb-12">
+          {" "}
+          {/* Left Column - Highlights & Additional Content */}
           <div className="space-y-6">
             <motion.h3
-              className="text-2xl font-bold mb-6 text-gray-900 dark:text-white"
+              className="text-xl font-bold mb-4 text-gray-900 dark:text-white"
               initial={{ opacity: 0, x: -30 }}
               animate={inView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.6 }}
@@ -230,18 +311,43 @@ const AboutSection = () => {
                 </div>
               </motion.div>
             ))}
-          </div>
 
-          {/* Skills & Achievements */}
-          <div className="space-y-8">
-            {/* Quick Skills Overview */}
+            {/* Tech Stack */}
             <motion.div
-              className="p-6 rounded-2xl border backdrop-blur-sm bg-white/70 dark:bg-gray-800/50 border-gray-200 dark:border-gray-700"
+              className="p-4 rounded-2xl border backdrop-blur-sm bg-white/70 dark:bg-gray-800/50 border-gray-200 dark:border-gray-700"
+              initial={{ opacity: 0, x: -30 }}
+              animate={inView ? { opacity: 1, x: 0 } : {}}
+              transition={{ delay: 1, duration: 0.6 }}
+            >
+              <h4 className="text-lg font-semibold mb-4 text-gray-900 dark:text-white">
+                Technologies I Use
+              </h4>
+              <div className="flex flex-wrap gap-2">
+                {techStack.map((tech, index) => (
+                  <motion.span
+                    key={tech}
+                    className="text-xs px-3 py-1 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-blue-100 dark:hover:bg-blue-900/30 transition-colors"
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={inView ? { opacity: 1, scale: 1 } : {}}
+                    transition={{ delay: index * 0.05 + 1.2, duration: 0.3 }}
+                    whileHover={{ scale: 1.1 }}
+                  >
+                    {tech}
+                  </motion.span>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+          {/* Right Column - Skills & Achievements */}
+          <div className="space-y-8">
+            {/* Core Skills */}
+            <motion.div
+              className="p-4 rounded-2xl border backdrop-blur-sm bg-white/70 dark:bg-gray-800/50 border-gray-200 dark:border-gray-700"
               initial={{ opacity: 0, x: 30 }}
               animate={inView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.6 }}
             >
-              <h4 className="text-xl font-bold mb-6 flex items-center text-gray-900 dark:text-white">
+              <h4 className="text-lg font-bold mb-4 flex items-center text-gray-900 dark:text-white">
                 <Star className="w-5 h-5 mr-2 text-yellow-500" />
                 Core Expertise
               </h4>
@@ -282,12 +388,12 @@ const AboutSection = () => {
 
             {/* Key Achievements */}
             <motion.div
-              className="p-6 rounded-2xl border backdrop-blur-sm bg-white/70 dark:bg-gray-800/50 border-gray-200 dark:border-gray-700"
+              className="p-4 rounded-2xl border backdrop-blur-sm bg-white/70 dark:bg-gray-800/50 border-gray-200 dark:border-gray-700"
               initial={{ opacity: 0, x: 30 }}
               animate={inView ? { opacity: 1, x: 0 } : {}}
               transition={{ delay: 0.3, duration: 0.6 }}
             >
-              <h4 className="text-xl font-bold mb-6 flex items-center text-gray-900 dark:text-white">
+              <h4 className="text-lg font-bold mb-4 flex items-center text-gray-900 dark:text-white">
                 <TrendingUp className="w-5 h-5 mr-2 text-green-500" />
                 Key Achievements
               </h4>
@@ -319,12 +425,12 @@ const AboutSection = () => {
 
             {/* Personal Values */}
             <motion.div
-              className="p-6 rounded-2xl border backdrop-blur-sm bg-white/70 dark:bg-gray-800/50 border-gray-200 dark:border-gray-700"
+              className="p-4 rounded-2xl border backdrop-blur-sm bg-white/70 dark:bg-gray-800/50 border-gray-200 dark:border-gray-700"
               initial={{ opacity: 0, x: 30 }}
               animate={inView ? { opacity: 1, x: 0 } : {}}
               transition={{ delay: 0.6, duration: 0.6 }}
             >
-              <h4 className="text-xl font-bold mb-6 flex items-center text-gray-900 dark:text-white">
+              <h4 className="text-lg font-bold mb-4 flex items-center text-gray-900 dark:text-white">
                 <Rocket className="w-5 h-5 mr-2 text-purple-500" />
                 My Values
               </h4>
@@ -357,7 +463,7 @@ const AboutSection = () => {
 
         {/* Bottom CTA */}
         <motion.div
-          className="text-center bg-gradient-to-r from-blue-600/10 to-purple-600/10 rounded-3xl p-8 border border-blue-200 dark:border-blue-800"
+          className="text-center bg-gradient-to-r from-blue-600/10 to-purple-600/10 rounded-3xl p-6 border border-blue-200 dark:border-blue-800"
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
