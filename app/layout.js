@@ -74,7 +74,7 @@ export const metadata = {
     siteName: "Sachin Maurya Portfolio",
     images: [
       {
-        url: "/og-image.png",
+        url: "https://github.com/maurya-sachin.png",
         width: 1200,
         height: 630,
         alt: "Sachin Maurya - Frontend Developer Portfolio",
@@ -87,7 +87,7 @@ export const metadata = {
     title: "Sachin Maurya - Frontend Developer | React.js Specialist",
     description:
       "Frontend Developer specializing in React.js, Next.js, JavaScript. Expert in performance optimization and modern web development.",
-    images: ["/og-image.png"],
+    images: ["https://github.com/maurya-sachin.png"],
   },
   robots: {
     index: true,
@@ -115,8 +115,7 @@ export default function RootLayout({ children }) {
       suppressHydrationWarning
     >
       <head>
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="icon" href="https://github.com/maurya-sachin.png" sizes="any" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/manifest.json" />
         <meta

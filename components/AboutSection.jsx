@@ -157,7 +157,7 @@ const AboutSection = () => {
     <section
       id="about"
       ref={sectionRef}
-      className="py-12 px-4 sm:px-6 lg:px-8 relative bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-800 dark:to-gray-900"
+      className="py-12 px-4 sm:px-6 lg:px-8 relative "
     >
       {/* Enhanced background elements */}
       <div className="absolute inset-0 overflow-hidden">

@@ -71,10 +71,7 @@ const ContactSection = ({ downloadResume }) => {
   ];
 
   return (
-    <section
-      id="contact"
-      className="py-20 px-4 sm:px-6 lg:px-8 relative bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-900 dark:to-gray-800"
-    >
+    <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 relative ">
       {/* Background elements */}
       <div className="absolute inset-0 overflow-hidden">
         {[...Array(6)].map((_, i) => (
