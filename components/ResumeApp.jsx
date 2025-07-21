@@ -228,11 +228,11 @@ const ResumeApp = () => {
 
         <Suspense fallback={<SuspenseLoader/>}>
           <TestimonialsSection />
-        </Suspense>
-
-        <Suspense fallback={<SuspenseLoader/>}>
-          <BlogSection />
         </Suspense> */}
+
+        <Suspense fallback={<SuspenseLoader />}>
+          <BlogSection />
+        </Suspense>
 
         <Suspense fallback={<SuspenseLoader />}>
           <ContactSection downloadResume={downloadResume} />
