@@ -53,7 +53,7 @@ Hi, I’m **Sachin**, a frontend developer focused on building blazing-fast, acc
 <!-- This section will be automatically updated by GitHub Actions -->
 <!-- BLOG-POST-LIST:END -->
 
-> 🛠 _Want to read more? Checkout [Dev.to/@maurya-sachin](https://dev.to/maurya_sachin)_ ✍️
+> 🛠 _Want to read more? Checkout [dev.to/@maurya-sachin](https://dev.to/maurya-sachin)_ ✍️
 
 ---
 
