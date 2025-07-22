@@ -11,8 +11,8 @@ const getLanguageColor = (language) => {
     return colors[language] || "#586e75";
 };
 
-export async function GET(request, { params }) {
-    const { username } = params;
+export async function GET(request, context) {
+    const { username } = await context.params;
 
     if (!username) {
         return NextResponse.json({ message: 'Username is required' }, { status: 400 });
@@ -96,7 +96,12 @@ export async function GET(request, { params }) {
             },
         };
 
-        return NextResponse.json(processedData);
+        return NextResponse.json(processedData, {
+            status: 200,
+            headers: {
+                'Cache-Control': 's-maxage=3600, stale-while-revalidate=60',
+            },
+        });
     } catch (error) {
         console.error('GitHub API Error:', error.message);
         return NextResponse.json({ message: error.message }, { status: 500 });
