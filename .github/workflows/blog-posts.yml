@@ -2,11 +2,11 @@ name: 📝 Latest Dev.to Blog Posts
 
 on:
   schedule:
-    - cron: '0 */12 * * *'  # Runs every 12 hours
-  workflow_dispatch:         # Allows manual trigger
+    - cron: '0 */12 * * *'  # Every 12 hours
+  workflow_dispatch:         # Manual trigger
 
 permissions:
-  contents: write            # Required to push updates to README
+  contents: write            # Needed to update the README
 
 jobs:
   update-readme-with-blog:
@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: ⬇️ Checkout repository
+      - name: ⬇️ Checkout repo
         uses: actions/checkout@v4
 
       - name: 📰 Fetch and insert latest Dev.to posts
@@ -22,5 +22,4 @@ jobs:
         with:
           feed_list: "https://dev.to/feed/maurya-sachin"
           max_post_count: 3
-          enable_commit_message: true
           commit_message: "✨ update: latest Dev.to blog posts in README"
