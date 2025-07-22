@@ -1,0 +1,20 @@
+name: Update Dev.to Blog Posts
+
+on:
+  schedule:
+    - cron: '0 * * * *' # every hour
+  workflow_dispatch:
+
+jobs:
+  update-blog-posts:
+    name: Update Dev.to Posts in README
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: Fetch Blog Posts
+        uses: gautamkrishnar/blog-post-workflow@v1
+        with:
+          feed_list: 'https://dev.to/feed/maurya_sachin'
+          max_post_count: 3
