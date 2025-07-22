@@ -32,7 +32,7 @@
 
 ---
 
-## 👨‍💻 Hey there, I'm Sachin! 
+## 👨‍💻 Hey there, I'm Sachin
 
 I'm a **Frontend Developer** who gets genuinely excited about making web apps load in under a second. Currently at **Kreate Technologies**, where I've turned slow, clunky applications into lightning-fast experiences that users actually enjoy using.
 
@@ -226,7 +226,6 @@ const sachinMaurya = {
 - 🔄 **99.9% uptime** with robust error handling and failover systems
 - 👥 **25+ enterprise teams** using it for critical document workflows
 
-
 ---
 
 ### 🌐 [Kreate Technologies Corporate Website](https://kreatetechnologies.com)
@@ -252,7 +251,6 @@ const sachinMaurya = {
 - 📱 **96+ mobile score** ensuring excellent experience on all devices
 - 🔍 **300% organic traffic increase** through advanced SEO optimization
 - 💰 **Reduced hosting costs by 40%** through efficient code splitting and optimization
-
 
 ---
 
@@ -280,7 +278,6 @@ const sachinMaurya = {
 - 🔄 **99.5% real-time sync accuracy** across multiple concurrent users
 - 📱 **90%+ mobile usage** showing strong cross-platform adoption
 
-
 ---
 
 ## 💼 Professional Experience & Growth
@@ -301,6 +298,7 @@ const sachinMaurya = {
 **🛠️ Technical Leadership**: React.js, Next.js, TypeScript, GraphQL, Tailwind CSS, Redux Toolkit, WebSockets, Performance Optimization
 
 **📊 Measurable Outcomes:**
+
 - Zero performance-related user complaints since optimizations
 - 45% improvement in conversion rates on client websites
 - 99.9% uptime maintained across all frontend applications
@@ -325,6 +323,7 @@ const sachinMaurya = {
 **🛠️ Technical Foundation**: HTML5, CSS3, JavaScript ES6+, React.js, Next.js, Bootstrap, SCSS, Figma, Git/GitHub
 
 **📈 Learning Achievements:**
+
 - Completed 15+ client projects with zero critical bugs in production
 - Achieved 95%+ scores on all accessibility audits
 - Reduced development time by 25% through component reusability
@@ -849,7 +848,7 @@ const workPreferences = {
 
 ---
 
-### 🌟 Thank You for Visiting!
+### 🌟 Thank You for Visiting
 
 If you've made it this far, you're probably as passionate about great web experiences as I am. Let's connect and build something amazing together!
 
