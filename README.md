@@ -43,7 +43,7 @@ const sachin = {
 <!-- BLOG-POST-LIST:END -->
 
 > ⏳ *Auto-updated every 12 hours with [blog-post-workflow](https://github.com/gautamkrishnar/blog-post-workflow)*  
-> 🛠️ [![Dev.to Blog Workflow](https://github.com/maurya-sachin/maurya-sachin/actions/workflows/blog-posts.yml/badge.svg)](https://github.com/maurya-sachin/YOUR-REPO-NAME/actions)
+> 🛠️ [![Dev.to Blog Workflow](https://github.com/maurya-sachin/maurya-sachin/actions/workflows/blog-posts.yml/badge.svg)](https://github.com/maurya-sachin/maurya-sachin/actions)
 
 ---
 
