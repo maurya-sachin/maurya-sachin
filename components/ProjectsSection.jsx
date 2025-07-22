@@ -31,19 +31,7 @@ import {
 	Server,
 	Database,
 } from 'lucide-react';
-
-// Mock store hook for demo
-const useStore = () => {
-	const [activeProjectCategory, setActiveProjectCategory] = useState('All');
-	const [selectedProject, setSelectedProject] = useState(null);
-
-	return {
-		activeProjectCategory,
-		setActiveProjectCategory,
-		selectedProject,
-		setSelectedProject,
-	};
-};
+import useStore from '../store/useStore';
 
 const ProjectsSection = () => {
 	const {
@@ -407,7 +395,10 @@ const ProjectsSection = () => {
 	];
 
 	return (
-		<section className='relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-50 via-blue-50/30 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden'>
+		<section
+			className='relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-50 via-blue-50/30 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden'
+			id='projects'
+		>
 			{/* Enhanced Background decoration */}
 			<div className='absolute inset-0 overflow-hidden pointer-events-none'>
 				{/* Large floating orbs */}

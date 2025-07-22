@@ -547,7 +547,10 @@ const SkillsSection = () => {
 	}, [viewMode, filteredSkills.length, showAllSkills]);
 
 	return (
-		<section className='relative py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-50 via-blue-50/50 to-indigo-50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 overflow-hidden'>
+		<section
+			className='relative py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-50 via-blue-50/50 to-indigo-50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 overflow-hidden'
+			id='skills'
+		>
 			{/* Background effects */}
 			<div className='absolute inset-0'>
 				<motion.div
