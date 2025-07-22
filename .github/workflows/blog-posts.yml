@@ -1,18 +1,22 @@
-name: Dev.to Blog Posts
+name: 📝 Dev.to Blog Posts
 
 on:
   schedule:
-    - cron: '0 */12 * * *' # Runs every 12 hours
-  workflow_dispatch: # Allows manual trigger
+    - cron: '0 */12 * * *'  # Runs every 12 hours
+  workflow_dispatch:        # Allows manual run
 
 jobs:
   update-readme:
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
 
-      - name: Update Dev.to Posts
+    steps:
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v4
+
+      - name: 📰 Fetch latest Dev.to posts
         uses: gautamkrishnar/blog-post-workflow@v1
         with:
-          feed_list: 'https://dev.to/feed/maurya-sachin'
+          feed_list: "https://dev.to/feed/maurya-sachin"
           max_post_count: 3
+          enable_commit_message: true
+          commit_message: "✨ update: latest Dev.to blog posts"
