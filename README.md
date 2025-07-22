@@ -1,135 +1,92 @@
-<div align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:667eea,40:f093fb,100:667eea&height=250&section=header&text=Hey,%20I'm%20Sachin%20Maurya!&fontSize=45&fontColor=fff&desc=Frontend%20Developer%20|%20React%20%7C%20Next.js%20%7C%20TypeScript&descAlign=60&animation=fadeIn" />
-</div>
----
 
-<div align="center">
-  <img src="https://komarev.com/ghpvc/?username=maurya-sachin&style=flat-square&color=blue" alt="Profile Views" />
-  <img src="https://github-profile-trophy.vercel.app/?username=maurya-sachin&theme=onestar&column=6&margin-w=10" alt="Trophies" />
-</div>
----
-
-👋 Who's Sachin?
-
-Hi, I'm Sachin Maurya — a frontend engineer obsessed with building scalable, performant, and accessible UIs that feel buttery smooth. Always shipping, always learning 🚀
-
-🧑‍💻 2 years in UI engineering at Kreate Technologies
-
-🧪 Obsessed with performance: 95+ Lighthouse, micro-frontends, and DX tooling
-
-🌏 Based in Delhi, India, open to remote-first opportunities
-
-✨ Exploring React Server Components, AI-enhanced UIs, and frontend DevOps
-
-
-
----
-
-🛠️ My Tech Stack
 
 <p align="center">
-  <img src="https://skillicons.dev/icons?i=react,nextjs,typescript,javascript,tailwind,redux,graphql,html,css,nodejs,figma,git,github,vscode,webpack&theme=dark" />
+  <a href="https://maurya-sachin.vercel.app" target="_blank">
+    <img src="https://img.shields.io/badge/Portfolio-Live-green?style=for-the-badge&logo=vercel&logoColor=white" />
+  </a>
+  <a href="https://dev.to/maurya-sachin">
+    <img src="https://img.shields.io/badge/Dev.to-Blogs-black?style=for-the-badge&logo=dev.to&logoColor=white" />
+  </a>
+  <a href="https://twitter.com/maurya_sachin">
+    <img src="https://img.shields.io/twitter/follow/maurya_sachin?style=for-the-badge&logo=twitter&color=1DA1F2" />
+  </a>
 </p>
 ---
 
-🔥 GitHub Stats
+🚀 About Me
 
-<p align="center">
-  <img height="180" src="https://github-readme-stats.vercel.app/api?username=maurya-sachin&show_icons=true&theme=tokyonight&hide_border=true" />
-  <img height="180" src="https://github-readme-streak-stats.herokuapp.com/?user=maurya-sachin&theme=tokyonight&hide_border=true" />
-  <img height="180" src="https://github-readme-stats.vercel.app/api/top-langs/?username=maurya-sachin&layout=compact&theme=tokyonight&hide_border=true" />
-</p>
----
+💻 Frontend Developer | React & Next.js lover
 
-📂 Featured Projects
+🎯 Currently working at Kreate Technologies
 
-🧠 AI Document Analyzer
+📈 Focused on performance optimization, clean architecture, and smooth UX
 
-> 98% doc parsing accuracy with full RBAC, search, and analytics
+✍️ Blogging daily on Dev.to | Read here
 
-
-
-⚡ Lighthouse 95+ | 🔐 Role-based control | 📊 Scalable architecture
-
-
-🗂 Kanban Task Board
-
-> Real-time drag-drop board for agile teams
-
-
-
-⚛ Zustand + Redux | 👥 2K+ tasks | 🧩 Modular UI
-
-
-🌐 Kreate Corp Website
-
-> From static to dynamic — SEO-powered corporate site
-
-
-
-🚀 0.8s load | 📱 96+ mobile score | 🧠 GSAP + schema
+📫 Email me at: maurya.sachin.dev@gmail.com
 
 
 
 ---
 
-🧠 Learning Roadmap
+🛠️ Tech Stack
 
-const learning = [
-  "React Server Components",
-  "System Design for Frontend",
-  "Micro-frontends",
-  "DevOps for UI",
-  "AI in UX"
-];
+          
 
 
 ---
 
 ✍️ Latest Blog Posts
 
-<!-- BLOG-POST-LIST:START --><!-- BLOG-POST-LIST:END -->> 📚 More on dev.to/@maurya-sachin
-
-
-
-
+<!-- BLOG-POST-LIST:START --><!-- BLOG-POST-LIST:END -->
 ---
 
-⌛ Coding Activity (via WakaTime)
-
-<!--START_SECTION:waka--><!--END_SECTION:waka-->
----
-
-📜 Quote of the Day
+📊 GitHub Stats
 
 <p align="center">
-  <img src="https://quotes-github-readme.vercel.app/api?type=horizontal&theme=tokyonight" />
+  <img src="https://github-readme-stats.vercel.app/api?username=maurya-sachin&show_icons=true&theme=radical" height="180" />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=maurya-sachin&layout=compact&theme=radical" height="180" />
+</p><p align="center">
+  <img src="https://github-readme-streak-stats.herokuapp.com?user=maurya-sachin&theme=radical" />
 </p>
 ---
 
-🎧 Now Playing
+📌 Featured Projects
 
-<!-- https://github.com/kittinan/spotify-github-profile --><p align="center">
-  <img src="https://spotify-github-profile.vercel.app/api/view?uid=YOUR_SPOTIFY_ID&cover_image=true&theme=novatorem&show_offline=true&background_color=000000&interchange=true&bar_color=53b14f&bar_color_cover=false" />
+Project	Description	Tech
+
+Kanban App	A task board built using React DnD and Tailwind	React, Redux, Tailwind
+Portfolio	My dev portfolio site with Dev.to blog integration	Next.js, Tailwind, GitHub API
+Resume Builder	An intuitive resume builder (coming soon)	React, Zustand, Tailwind
+
+
+
+---
+
+🧠 Currently Learning
+
+Advanced React Patterns
+
+Performance Optimization
+
+Type-Safe API integration with tRPC
+
+
+
+---
+
+🤝 Let’s Connect
+
+LinkedIn: Sachin Maurya
+
+Twitter: @maurya_sachin
+
+Dev.to: @maurya-sachin
+
+
+
+---
+
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=100&section=footer" />
 </p>
----
-
-💬 Connect With Me
-
-🌐 Portfolio
-
-💼 LinkedIn
-
-📧 Email
-
-📝 Blog
-
-
-
----
-
-<div align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:667eea,40:f093fb,100:667eea&height=120&section=footer&text=Thanks%20for%20visiting%20👋&fontSize=22&fontColor=fff" />
-</div>
-
----
