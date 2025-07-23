@@ -90,7 +90,6 @@ export const useGitHubData = (username) => {
       setGithubError(null);
 
       try {
-        console.log(`🔍 Fetching GitHub data for: ${username}`);
 
         const response = await fetch(`/api/github/${username}`);
 
@@ -100,7 +99,6 @@ export const useGitHubData = (username) => {
 
         const data = await response.json();
 
-        console.log(`✅ Successfully fetched data for ${data.user.name}`);
         setGithubData(data);
 
       } catch (error) {
