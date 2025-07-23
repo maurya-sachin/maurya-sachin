@@ -11,6 +11,107 @@ const getLanguageColor = (language) => {
     return colors[language] || "#586e75";
 };
 
+// GraphQL query to get contribution data
+const getContributionsQuery = (username, from, to) => `
+query {
+    user(login: "${username}") {
+        name
+        bio
+        avatarUrl
+        location
+        company
+        websiteUrl
+        followers {
+            totalCount
+        }
+        following {
+            totalCount
+        }
+        repositories(first: 100, ownerAffiliations: OWNER, orderBy: {field: UPDATED_AT, direction: DESC}) {
+            totalCount
+            nodes {
+                name
+                description
+                url
+                stargazerCount
+                forkCount
+                primaryLanguage {
+                    name
+                    color
+                }
+                createdAt
+                updatedAt
+                isPrivate
+                repositoryTopics(first: 10) {
+                    nodes {
+                        topic {
+                            name
+                        }
+                    }
+                }
+            }
+        }
+        contributionsCollection(from: "${from}", to: "${to}") {
+            totalCommitContributions
+            totalIssueContributions
+            totalPullRequestContributions
+            totalPullRequestReviewContributions
+            totalRepositoryContributions
+            contributionCalendar {
+                totalContributions
+                weeks {
+                    contributionDays {
+                        contributionCount
+                        date
+                        weekday
+                    }
+                }
+            }
+            commitContributionsByRepository(maxRepositories: 100) {
+                repository {
+                    name
+                    owner {
+                        login
+                    }
+                }
+                contributions(first: 100) {
+                    totalCount
+                }
+            }
+        }
+    }
+}`;
+
+// Function to fetch data from GitHub GraphQL API
+async function fetchGitHubGraphQL(query) {
+    const githubToken = process.env.GITHUB_TOKEN;
+
+    if (!githubToken) {
+        throw new Error('GitHub token is required for GraphQL API');
+    }
+
+    const response = await fetch('https://api.github.com/graphql', {
+        method: 'POST',
+        headers: {
+            'Authorization': `Bearer ${githubToken}`,
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ query }),
+    });
+
+    if (!response.ok) {
+        throw new Error(`GitHub GraphQL API Error: ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    if (data.errors) {
+        throw new Error(`GraphQL Error: ${data.errors.map(e => e.message).join(', ')}`);
+    }
+
+    return data.data;
+}
+
 export async function GET(request, context) {
     const { username } = await context.params;
 
@@ -19,80 +120,117 @@ export async function GET(request, context) {
     }
 
     try {
-        const headers = {
-            Accept: "application/vnd.github.v3+json",
-            "User-Agent": "Portfolio-Website",
-        };
+        // Get contribution data for the last year
+        const to = new Date().toISOString();
+        const from = new Date(Date.now() - 365 * 24 * 60 * 60 * 1000).toISOString();
 
-        const githubToken = process.env.GITHUB_TOKEN;
-        if (githubToken) {
-            headers["Authorization"] = `token ${githubToken}`;
+        const query = getContributionsQuery(username, from, to);
+        const gitHubData = await fetchGitHubGraphQL(query);
+
+        if (!gitHubData.user) {
+            return NextResponse.json({ message: 'User not found' }, { status: 404 });
         }
 
-        const [userResponse, reposResponse] = await Promise.all([
-            fetch(`https://api.github.com/users/${username}`, { headers }),
-            fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=100`, { headers }),
-        ]);
+        const userData = gitHubData.user;
+        const contributions = userData.contributionsCollection;
 
-        if (!userResponse.ok || !reposResponse.ok) {
-            throw new Error(`GitHub API Error: ${userResponse.status}`);
-        }
+        // Process repositories
+        const repositories = userData.repositories.nodes
+            .filter(repo => !repo.isPrivate)
+            .slice(0, 6)
+            .map(repo => ({
+                name: repo.name,
+                description: repo.description || "",
+                url: repo.url,
+                stargazerCount: repo.stargazerCount,
+                forkCount: repo.forkCount,
+                primaryLanguage: repo.primaryLanguage,
+                createdAt: repo.createdAt,
+                updatedAt: repo.updatedAt,
+                isPrivate: repo.isPrivate,
+                topics: repo.repositoryTopics.nodes.map(t => t.topic.name),
+            }));
 
-        const [userData, reposData] = await Promise.all([
-            userResponse.json(),
-            reposResponse.json()
-        ]);
-
-        // Calculate stats
-        const totalStars = reposData.reduce((acc, repo) => acc + (repo.stargazers_count || 0), 0);
-        const totalForks = reposData.reduce((acc, repo) => acc + (repo.forks_count || 0), 0);
-        const languages = reposData
-            .filter(repo => repo.language)
+        // Calculate language statistics
+        const languages = repositories
+            .filter(repo => repo.primaryLanguage)
             .reduce((acc, repo) => {
-                acc[repo.language] = (acc[repo.language] || 0) + 1;
+                const lang = repo.primaryLanguage.name;
+                acc[lang] = (acc[lang] || 0) + 1;
                 return acc;
             }, {});
 
+        // Process contribution calendar for streak calculation
+        const contributionDays = contributions.contributionCalendar.weeks
+            .flatMap(week => week.contributionDays)
+            .sort((a, b) => new Date(a.date) - new Date(b.date));
+
+        // Calculate current streak
+        let currentStreak = 0;
+        let longestStreak = 0;
+        let tempStreak = 0;
+
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        for (let i = contributionDays.length - 1; i >= 0; i--) {
+            const day = contributionDays[i];
+            const dayDate = new Date(day.date);
+
+            if (day.contributionCount > 0) {
+                tempStreak++;
+                longestStreak = Math.max(longestStreak, tempStreak);
+
+                // Calculate current streak (from today backwards)
+                const daysDiff = Math.floor((today - dayDate) / (1000 * 60 * 60 * 24));
+                if (daysDiff <= currentStreak) {
+                    currentStreak = tempStreak;
+                }
+            } else {
+                tempStreak = 0;
+            }
+        }
+
         const processedData = {
             user: {
-                name: userData.name || userData.login,
+                name: userData.name || username,
                 bio: userData.bio || "",
-                avatarUrl: userData.avatar_url,
+                avatarUrl: userData.avatarUrl,
                 location: userData.location || "",
                 company: userData.company || "",
-                blog: userData.blog || "",
-                followers: { totalCount: userData.followers || 0 },
-                following: { totalCount: userData.following || 0 },
-                repositories: { totalCount: userData.public_repos || 0 },
+                blog: userData.websiteUrl || "",
+                followers: userData.followers,
+                following: userData.following,
+                repositories: { totalCount: userData.repositories.totalCount },
                 contributionsCollection: {
-                    totalCommitContributions: Math.floor(totalStars * 8 + userData.public_repos * 12),
+                    totalCommitContributions: contributions.totalCommitContributions,
+                    totalIssueContributions: contributions.totalIssueContributions,
+                    totalPullRequestContributions: contributions.totalPullRequestContributions,
+                    totalPullRequestReviewContributions: contributions.totalPullRequestReviewContributions,
+                    totalRepositoryContributions: contributions.totalRepositoryContributions,
+                    totalContributions: contributions.contributionCalendar.totalContributions,
+                    currentStreak,
+                    longestStreak,
                 },
             },
-            repositories: reposData
-                .filter(repo => !repo.fork)
-                .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at))
-                .slice(0, 6)
-                .map(repo => ({
-                    name: repo.name,
-                    description: repo.description || "",
-                    url: repo.html_url,
-                    stargazerCount: repo.stargazers_count || 0,
-                    forkCount: repo.forks_count || 0,
-                    primaryLanguage: repo.language ? {
-                        name: repo.language,
-                        color: getLanguageColor(repo.language),
-                    } : null,
-                    createdAt: repo.created_at,
-                    updatedAt: repo.updated_at,
-                    isPrivate: repo.private,
-                    topics: repo.topics || [],
-                })),
+            repositories,
             stats: {
-                totalStars,
-                totalForks,
-                totalRepositories: userData.public_repos || 0,
+                totalStars: repositories.reduce((acc, repo) => acc + repo.stargazerCount, 0),
+                totalForks: repositories.reduce((acc, repo) => acc + repo.forkCount, 0),
+                totalRepositories: userData.repositories.totalCount,
                 languages,
                 topLanguage: Object.keys(languages).sort((a, b) => languages[b] - languages[a])[0] || "JavaScript",
+                contributions: {
+                    total: contributions.contributionCalendar.totalContributions,
+                    commits: contributions.totalCommitContributions,
+                    issues: contributions.totalIssueContributions,
+                    pullRequests: contributions.totalPullRequestContributions,
+                    reviews: contributions.totalPullRequestReviewContributions,
+                    repositories: contributions.totalRepositoryContributions,
+                    currentStreak,
+                    longestStreak,
+                },
+                contributionCalendar: contributions.contributionCalendar,
             },
         };
 
