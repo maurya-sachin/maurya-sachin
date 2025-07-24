@@ -40,9 +40,9 @@ const sachin = {
 ### ✍️ Latest Blog Posts
 
 <!-- BLOG-POST-LIST:START -->
+- [🚦 Understanding Lighthouse, Web Vitals &amp; PageSpeed Reports](https://dev.to/maurya-sachin/understanding-lighthouse-web-vitals-pagespeed-reports-4ji8)
 - [🚀 React Performance Optimization Tips I Wish I Knew Earlier](https://dev.to/maurya-sachin/react-performance-optimization-tips-i-wish-i-knew-earlier-4p2f)
 - [React useState vs useReducer: When &amp; Why to Use Each](https://dev.to/maurya-sachin/react-usestate-vs-usereducer-when-why-to-use-each-53c)
-- [[Boost]](https://dev.to/maurya-sachin/-3c12)
 <!-- BLOG-POST-LIST:END -->
 
 > ⏳ *Auto-updated every 12 hours with [blog-post-workflow](https://github.com/gautamkrishnar/blog-post-workflow)*  
