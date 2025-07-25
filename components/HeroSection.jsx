@@ -1,703 +1,992 @@
-"use client";
-
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from 'react';
+import { motion, useReducedMotion } from 'framer-motion';
+import * as THREE from 'three';
 import {
-  ArrowRight,
-  MapPin,
-  Clock,
-  Rocket,
-  Zap,
-  Calendar,
-  Code,
-  Sparkles,
-  Download,
-  Star,
-  Coffee,
-  Heart,
-  Github,
-  Linkedin,
-  Mail,
-  Target,
-  Layers,
-  Cpu,
-} from "lucide-react";
-import { useGitHubData } from "../hooks/useGitHubData";
+	ArrowRight,
+	MapPin,
+	Rocket,
+	Sparkles,
+	Download,
+	Github,
+	Linkedin,
+	Mail,
+} from 'lucide-react';
 
-const HeroSection = ({ scrollToSection, downloadResume }) => {
-  const [typedText, setTypedText] = useState("");
-  const [currentWordIndex, setCurrentWordIndex] = useState(0);
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [mousePosition, setMousePosition] = useState({ x: 0.5, y: 0.5 });
-  const [currentTime, setCurrentTime] = useState("");
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef(null);
+// Mock GitHub data hook for demo
+const useGitHubData = (username) => {
+	return {
+		githubData: {
+			user: {
+				name: 'Sachin Maurya',
+				bio: 'Crafting exceptional digital experiences with modern web technologies',
+				location: 'Delhi, India',
+			},
+		},
+	};
+};
 
-  // Fetch real GitHub data
-  const { githubData } = useGitHubData("maurya-sachin");
+const HeroSection = ({
+	scrollToSection = () => {},
+	downloadResume = () => {},
+}) => {
+	const [currentTime, setCurrentTime] = useState('');
+	const [mousePosition, setMousePosition] = useState({ x: 0.5, y: 0.5 });
+	const containerRef = useRef(null);
+	const canvasRef = useRef(null);
+	const sceneRef = useRef(null);
+	const rendererRef = useRef(null);
+	const animationRef = useRef(null);
+	const clockRef = useRef(new THREE.Clock());
 
-  const words = [
-    "Frontend Developer",
-    "React Specialist",
-    "UI/UX Enthusiast",
-    "Performance Expert",
-    "Creative Coder",
-  ];
+	const prefersReducedMotion = useReducedMotion();
+	const { githubData } = useGitHubData('maurya-sachin');
 
-  // Initialize visibility
-  useEffect(() => {
-    setIsVisible(true);
-  }, []);
+	// Create text texture for labels
+	const createTextTexture = (text, color = '#ffffff') => {
+		const canvas = document.createElement('canvas');
+		const context = canvas.getContext('2d');
+		canvas.width = 256;
+		canvas.height = 128;
 
-  // Update time
-  useEffect(() => {
-    const updateTime = () => {
-      const now = new Date();
-      setCurrentTime(
-        now.toLocaleTimeString("en-US", {
-          timeZone: "Asia/Kolkata",
-          hour12: false,
-          hour: "2-digit",
-          minute: "2-digit",
-        })
-      );
-    };
-    updateTime();
-    const interval = setInterval(updateTime, 1000);
-    return () => clearInterval(interval);
-  }, []);
+		context.fillStyle = 'rgba(0,0,0,0)';
+		context.fillRect(0, 0, canvas.width, canvas.height);
 
-  // Mouse tracking for dynamic effects
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      if (sectionRef.current) {
-        const rect = sectionRef.current.getBoundingClientRect();
-        setMousePosition({
-          x: (e.clientX - rect.left) / rect.width,
-          y: (e.clientY - rect.top) / rect.height,
-        });
-      }
-    };
+		context.font = 'bold 24px Arial';
+		context.fillStyle = color;
+		context.textAlign = 'center';
+		context.textBaseline = 'middle';
+		context.fillText(text, canvas.width / 2, canvas.height / 2);
 
-    if (sectionRef.current) {
-      sectionRef.current.addEventListener("mousemove", handleMouseMove);
-      return () =>
-        sectionRef.current?.removeEventListener("mousemove", handleMouseMove);
-    }
-  }, []);
+		const texture = new THREE.CanvasTexture(canvas);
+		texture.needsUpdate = true;
+		return texture;
+	};
 
-  // Typing animation
-  useEffect(() => {
-    const typeSpeed = isDeleting ? 50 : 150;
-    const currentWord = words[currentWordIndex];
-    const timer = setTimeout(() => {
-      if (!isDeleting && typedText === currentWord) {
-        setTimeout(() => setIsDeleting(true), 2000);
-      } else if (isDeleting && typedText === "") {
-        setIsDeleting(false);
-        setCurrentWordIndex((prev) => (prev + 1) % words.length);
-      } else {
-        setTypedText((current) =>
-          isDeleting
-            ? currentWord.substring(0, current.length - 1)
-            : currentWord.substring(0, current.length + 1)
-        );
-      }
-    }, typeSpeed);
-    return () => clearTimeout(timer);
-  }, [typedText, isDeleting, currentWordIndex, words]);
+	// Initialize Three.js scene
+	useEffect(() => {
+		if (!canvasRef.current || prefersReducedMotion) return;
 
-  const orbitalElements = [
-    { icon: Code, color: "text-blue-500", radius: 80, duration: 15, delay: 0 },
-    { icon: Zap, color: "text-yellow-500", radius: 65, duration: 18, delay: 3 },
-    {
-      icon: Star,
-      color: "text-purple-500",
-      radius: 95,
-      duration: 12,
-      delay: 6,
-    },
-    { icon: Heart, color: "text-pink-500", radius: 70, duration: 20, delay: 9 },
-    {
-      icon: Coffee,
-      color: "text-orange-500",
-      radius: 85,
-      duration: 16,
-      delay: 12,
-    },
-  ];
+		// Scene setup
+		const scene = new THREE.Scene();
+		const camera = new THREE.PerspectiveCamera(50, 1, 0.1, 1000);
+		const renderer = new THREE.WebGLRenderer({
+			canvas: canvasRef.current,
+			alpha: true,
+			antialias: true,
+			powerPreference: 'high-performance',
+		});
 
-  return (
-    <>
-      <style jsx>{`
-        @keyframes float {
-          0%,
-          100% {
-            transform: translateY(0px) rotate(0deg);
-          }
-          25% {
-            transform: translateY(-15px) rotate(90deg);
-          }
-          50% {
-            transform: translateY(-8px) rotate(180deg);
-          }
-          75% {
-            transform: translateY(-18px) rotate(270deg);
-          }
-        }
+		// Store refs
+		sceneRef.current = scene;
+		rendererRef.current = renderer;
 
-        @keyframes orbit {
-          from {
-            transform: translate(-50%, -50%) rotate(0deg)
-              translateX(var(--radius)) rotate(0deg);
-          }
-          to {
-            transform: translate(-50%, -50%) rotate(360deg)
-              translateX(var(--radius)) rotate(-360deg);
-          }
-        }
+		// Renderer setup
+		renderer.setSize(500, 500);
+		renderer.setClearColor(0x000000, 0);
+		renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // Limit pixel ratio for performance
+		camera.position.z = 8;
 
-        @keyframes pulse-ring {
-          0% {
-            transform: scale(0.9);
-            opacity: 0.8;
-          }
-          50% {
-            transform: scale(1.3);
-            opacity: 0.4;
-          }
-          100% {
-            transform: scale(1.8);
-            opacity: 0;
-          }
-        }
+		// Performance optimizations
+		renderer.shadowMap.enabled = false;
+		renderer.physicallyCorrectLights = false;
 
-        @keyframes gradient-shift {
-          0%,
-          100% {
-            background-position: 0% 50%;
-          }
-          25% {
-            background-position: 100% 50%;
-          }
-          50% {
-            background-position: 50% 100%;
-          }
-          75% {
-            background-position: 0% 100%;
-          }
-        }
+		// Frontend Dev Materials with better performance
+		const reactMaterial = new THREE.MeshStandardMaterial({
+			color: 0x61dafb,
+			roughness: 0.2,
+			metalness: 0.8,
+			emissive: 0x1a1a2e,
+			emissiveIntensity: 0.1,
+		});
 
-        @keyframes bounce-3d {
-          0%,
-          100% {
-            transform: translateY(0) scale(1) rotateZ(0deg);
-          }
-          50% {
-            transform: translateY(-10px) scale(1.03) rotateZ(3deg);
-          }
-        }
+		const jsMaterial = new THREE.MeshStandardMaterial({
+			color: 0xf7df1e,
+			roughness: 0.3,
+			metalness: 0.9,
+		});
 
-        @keyframes rotate-glow {
-          from {
-            transform: rotate(0deg);
-            filter: hue-rotate(0deg);
-          }
-          to {
-            transform: rotate(360deg);
-            filter: hue-rotate(360deg);
-          }
-        }
+		const cssMaterial = new THREE.MeshStandardMaterial({
+			color: 0x1572b6,
+			roughness: 0.4,
+			metalness: 0.7,
+			emissive: 0x0a0a0a,
+			emissiveIntensity: 0.05,
+		});
 
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(30px) scale(0.95);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-          }
-        }
+		const htmlMaterial = new THREE.MeshStandardMaterial({
+			color: 0xe34f26,
+			roughness: 0.3,
+			metalness: 0.8,
+		});
 
-        @keyframes slideInLeft {
-          from {
-            opacity: 0;
-            transform: translateX(-50px) rotateY(-5deg);
-          }
-          to {
-            opacity: 1;
-            transform: translateX(0) rotateY(0deg);
-          }
-        }
+		const nodeMaterial = new THREE.MeshStandardMaterial({
+			color: 0x68a063,
+			roughness: 0.2,
+			metalness: 0.9,
+		});
 
-        @keyframes slideInRight {
-          from {
-            opacity: 0;
-            transform: translateX(50px) rotateY(5deg);
-          }
-          to {
-            opacity: 1;
-            transform: translateX(0) rotateY(0deg);
-          }
-        }
+		// Create React-inspired torus (main focal point)
+		const torusGeometry = new THREE.TorusGeometry(1.5, 0.3, 12, 24);
+		const reactTorus = new THREE.Mesh(torusGeometry, reactMaterial);
+		reactTorus.position.set(0, 0, 0);
+		reactTorus.userData = {
+			originalPosition: { x: 0, y: 0, z: 0 },
+			animationSpeed: { x: 0.8, z: 0.4 },
+		};
 
-        @keyframes morphing-bg {
-          0%,
-          100% {
-            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-            background: linear-gradient(
-              45deg,
-              rgba(59, 130, 246, 0.08),
-              rgba(147, 51, 234, 0.08)
-            );
-          }
-          25% {
-            border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
-            background: linear-gradient(
-              135deg,
-              rgba(147, 51, 234, 0.08),
-              rgba(6, 182, 212, 0.08)
-            );
-          }
-          50% {
-            border-radius: 70% 30% 40% 60% / 40% 50% 60% 50%;
-            background: linear-gradient(
-              225deg,
-              rgba(6, 182, 212, 0.08),
-              rgba(59, 130, 246, 0.08)
-            );
-          }
-          75% {
-            border-radius: 40% 70% 60% 30% / 70% 40% 50% 30%;
-            background: linear-gradient(
-              315deg,
-              rgba(16, 185, 129, 0.08),
-              rgba(147, 51, 234, 0.08)
-            );
-          }
-        }
+		// Create text labels for each technology
+		const textMaterial = new THREE.SpriteMaterial({
+			map: createTextTexture('REACT', '#61dafb'),
+			transparent: true,
+			alphaTest: 0.1,
+		});
+		const reactLabel = new THREE.Sprite(textMaterial);
+		reactLabel.scale.set(2, 1, 1);
+		reactLabel.position.set(0, -2.5, 0);
 
-        .animate-float {
-          animation: float 5s ease-in-out infinite;
-        }
-        .animate-pulse-ring {
-          animation: pulse-ring 3s cubic-bezier(0.455, 0.03, 0.515, 0.955)
-            infinite;
-        }
-        .animate-gradient {
-          animation: gradient-shift 4s ease infinite;
-        }
-        .animate-bounce-3d {
-          animation: bounce-3d 2.5s ease-in-out infinite;
-        }
-        .animate-rotate-glow {
-          animation: rotate-glow 20s linear infinite;
-        }
-        .animate-fadeInUp {
-          animation: fadeInUp 0.8s ease-out forwards;
-        }
-        .animate-slideInLeft {
-          animation: slideInLeft 0.8s ease-out forwards;
-        }
-        .animate-slideInRight {
-          animation: slideInRight 0.8s ease-out forwards;
-        }
-        .animate-morphing-bg {
-          animation: morphing-bg 8s ease-in-out infinite;
-        }
+		// Create orbital elements
+		const orbitRadius = 2.8;
 
-        .delay-100 {
-          animation-delay: 0.1s;
-        }
-        .delay-200 {
-          animation-delay: 0.2s;
-        }
-        .delay-300 {
-          animation-delay: 0.3s;
-        }
-        .delay-400 {
-          animation-delay: 0.4s;
-        }
-        .delay-500 {
-          animation-delay: 0.5s;
-        }
-        .delay-600 {
-          animation-delay: 0.6s;
-        }
-        .delay-700 {
-          animation-delay: 0.7s;
-        }
-        .delay-800 {
-          animation-delay: 0.8s;
-        }
-        .delay-1000 {
-          animation-delay: 1s;
-        }
-        .delay-1200 {
-          animation-delay: 1.2s;
-        }
-        .delay-1500 {
-          animation-delay: 1.5s;
-        }
+		// CSS Cube with label
+		const cssBoxGeometry = new THREE.BoxGeometry(0.6, 0.6, 0.6);
+		const cssBox = new THREE.Mesh(cssBoxGeometry, cssMaterial);
+		cssBox.userData = {
+			orbitAngle: 0,
+			orbitRadius: orbitRadius * 0.8,
+			orbitSpeed: 0.5,
+			rotationSpeed: { x: 0.02, y: 0.015, z: 0.01 },
+		};
 
-        .text-gradient {
-          background: linear-gradient(
-            45deg,
-            #3b82f6,
-            #8b5cf6,
-            #06b6d4,
-            #10b981
-          );
-          background-size: 300% 300%;
-          -webkit-background-clip: text;
-          background-clip: text;
-          -webkit-text-fill-color: transparent;
-          animation: gradient-shift 4s ease infinite;
-        }
+		const cssLabelMaterial = new THREE.SpriteMaterial({
+			map: createTextTexture('CSS3', '#1572b6'),
+			transparent: true,
+			alphaTest: 0.1,
+		});
+		const cssLabel = new THREE.Sprite(cssLabelMaterial);
+		cssLabel.scale.set(1.5, 0.75, 1);
 
-        .hover-3d:hover {
-          transform: translateY(-5px) rotateX(3deg) rotateY(3deg) scale(1.02);
-          box-shadow: 0 20px 40px rgba(59, 130, 246, 0.3);
-          transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
+		// HTML Triangle with label
+		const htmlGeometry = new THREE.ConeGeometry(0.4, 0.8, 3);
+		const htmlCone = new THREE.Mesh(htmlGeometry, htmlMaterial);
+		htmlCone.rotation.set(0, 0, Math.PI / 6);
+		htmlCone.userData = {
+			orbitAngle: Math.PI * 0.7,
+			orbitRadius: orbitRadius * 0.7,
+			orbitSpeed: 0.5,
+			rotationSpeed: { z: 0.025 },
+		};
 
-        .hover-glow:hover {
-          box-shadow:
-            0 0 25px rgba(59, 130, 246, 0.5),
-            0 0 50px rgba(147, 51, 234, 0.3);
-          transition: all 0.3s ease;
-        }
+		const htmlLabelMaterial = new THREE.SpriteMaterial({
+			map: createTextTexture('HTML5', '#e34f26'),
+			transparent: true,
+			alphaTest: 0.1,
+		});
+		const htmlLabel = new THREE.Sprite(htmlLabelMaterial);
+		htmlLabel.scale.set(1.5, 0.75, 1);
 
-        .orbital-element {
-          animation: orbit var(--duration, 15s) linear infinite;
-          animation-delay: var(--delay, 0s);
-        }
+		// JavaScript Sphere with label
+		const jsSphereGeometry = new THREE.SphereGeometry(0.35, 16, 16);
+		const jsSphere = new THREE.Mesh(jsSphereGeometry, jsMaterial);
+		jsSphere.userData = {
+			orbitAngle: Math.PI * 1.4,
+			orbitRadius: orbitRadius * 0.5,
+			orbitSpeed: 0.5,
+			rotationSpeed: { y: 0.04 },
+			bounceAmplitude: 0.1,
+			bounceSpeed: 4,
+		};
 
-        .perspective-1000 {
-          perspective: 1000px;
-        }
-      `}</style>
+		const jsLabelMaterial = new THREE.SpriteMaterial({
+			map: createTextTexture('JS', '#f7df1e'),
+			transparent: true,
+			alphaTest: 0.1,
+		});
+		const jsLabel = new THREE.Sprite(jsLabelMaterial);
+		jsLabel.scale.set(1.2, 0.6, 1);
 
-      <section
-        id="hero"
-        ref={sectionRef}
-        className="min-h-screen relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-gray-900 dark:via-blue-950 dark:to-indigo-950 perspective-1000"
-      >
-        {/* Enhanced Background Effects */}
-        <div className="absolute inset-0">
-          {/* Dynamic mouse-following gradient */}
-          <div
-            className="absolute inset-0 opacity-40 transition-all duration-500 ease-out"
-            style={{
-              background: `
-                radial-gradient(600px circle at ${mousePosition.x * 100}% ${mousePosition.y * 100}%,
-                rgba(59, 130, 246, 0.25),
-                rgba(147, 51, 234, 0.15) 25%,
-                rgba(6, 182, 212, 0.1) 50%,
-                transparent 70%)
-              `,
-            }}
-          />
+		// Node.js Diamond with label
+		const nodeOctaGeometry = new THREE.OctahedronGeometry(0.45);
+		const nodeOcta = new THREE.Mesh(nodeOctaGeometry, nodeMaterial);
+		nodeOcta.userData = {
+			orbitAngle: Math.PI * 0.3,
+			orbitRadius: orbitRadius * 0.6,
+			orbitSpeed: 0.5,
+			rotationSpeed: { x: 0.008, y: 0.012 },
+		};
 
-          {/* Simplified morphing background shapes */}
-          {[...Array(4)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute animate-morphing-bg blur-3xl"
-              style={{
-                width: `${200 + i * 30}px`,
-                height: `${200 + i * 30}px`,
-                left: `${10 + i * 20}%`,
-                top: `${10 + i * 15}%`,
-                animationDelay: `${i * 2}s`,
-                animationDuration: `${6 + i * 2}s`,
-              }}
-            />
-          ))}
+		const nodeLabelMaterial = new THREE.SpriteMaterial({
+			map: createTextTexture('NODE', '#68a063'),
+			transparent: true,
+			alphaTest: 0.1,
+		});
+		const nodeLabel = new THREE.Sprite(nodeLabelMaterial);
+		nodeLabel.scale.set(1.5, 0.75, 1);
 
-          {/* Animated grid with parallax */}
-          <div
-            className="absolute inset-0 opacity-[0.02] dark:opacity-[0.04]"
-            style={{
-              backgroundImage: `
-                linear-gradient(rgba(59, 130, 246, 0.3) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(59, 130, 246, 0.3) 1px, transparent 1px)
-              `,
-              backgroundSize: "50px 50px",
-              transform: `translate(${mousePosition.x * 5}px, ${mousePosition.y * 5}px)`,
-              transition: "transform 0.3s ease",
-            }}
-          />
+		// Create floating symbols
+		const symbolMaterial = new THREE.MeshBasicMaterial({
+			color: 0x8b5cf6,
+			transparent: true,
+			opacity: 0.6,
+		});
 
-          {/* Floating geometric shapes */}
-          {[...Array(6)].map((_, i) => (
-            <div
-              key={`shape-${i}`}
-              className="absolute animate-float"
-              style={{
-                left: `${15 + i * 15}%`,
-                top: `${15 + i * 12}%`,
-                animationDelay: `${i * 1.2}s`,
-                animationDuration: `${4 + i}s`,
-              }}
-            >
-              <div
-                className={`w-3 h-3 ${i % 2 === 0 ? "rounded-full" : "rotate-45"} bg-gradient-to-br ${
-                  i % 2 === 0
-                    ? "from-blue-400/15 to-purple-400/15"
-                    : "from-purple-400/15 to-pink-400/15"
-                } backdrop-blur-sm border border-white/5 shadow-lg`}
-              />
-            </div>
-          ))}
-        </div>
+		const symbols = [];
+		const symbolPositions = [
+			{ x: 3.2, y: 0.8, z: 0.2 },
+			{ x: -3.0, y: -0.5, z: 0.8 },
+			{ x: 0.5, y: 2.8, z: -0.5 },
+		];
 
-        {/* Main Content - Optimized for 1366px */}
-        <div className="relative z-10 min-h-screen flex items-center pb-5 lg:pb-0">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-            <div className="grid lg:grid-cols-12 gap-6 items-center">
-              {/* Left Content - Main Text */}
-              <div
-                className={`lg:col-span-7 ${isVisible ? "animate-slideInLeft" : "opacity-0"}`}
-              >
-                {/* Enhanced Status Badge */}
-                <div
-                  className={`inline-flex items-center bg-white/90 dark:bg-gray-800/90 backdrop-blur-xl border border-emerald-200/60 dark:border-emerald-700/60 text-emerald-600 dark:text-emerald-400 px-4 py-2.5 rounded-full text-sm font-medium mb-6 shadow-xl hover-3d ${isVisible ? "animate-fadeInUp delay-200" : "opacity-0"}`}
-                >
-                  <div className="w-2 h-2 bg-emerald-400 rounded-full mr-3 animate-pulse shadow-lg shadow-emerald-400/50" />
-                  <Sparkles className="w-4 h-4 mr-2 animate-bounce-3d" />
-                  <span className="bg-gradient-to-r from-emerald-600 to-blue-600 bg-clip-text text-transparent font-semibold">
-                    Available for opportunities
-                  </span>
-                </div>
+		symbolPositions.forEach((pos, i) => {
+			const smallTorus = new THREE.TorusGeometry(0.15, 0.04, 6, 8);
+			const symbol = new THREE.Mesh(smallTorus, symbolMaterial);
+			symbol.position.set(pos.x, pos.y, pos.z);
+			symbol.userData = {
+				originalPosition: { ...pos },
+				rotationSpeed: 0.015 + i * 0.002,
+				floatSpeed: 1.5,
+				floatAmplitude: 0.001,
+			};
+			symbols.push(symbol);
+		});
 
-                {/* Enhanced Main Heading */}
-                <div className="mb-6">
-                  <h1
-                    className={`text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight ${isVisible ? "animate-fadeInUp delay-300" : "opacity-0"}`}
-                  >
-                    <span className="block text-gray-900 dark:text-white mb-2">
-                      Hi, I'm{" "}
-                      <span className="relative inline-block text-gradient hover-3d perspective-1000">
-                        {githubData?.user?.name?.split(" ")[0] || "Sachin"}
-                        <div className="absolute -inset-3 bg-gradient-to-r from-blue-600/15 to-purple-600/15 rounded-xl blur-lg opacity-0 hover:opacity-100 transition-opacity duration-500 -z-10" />
-                      </span>
-                    </span>
+		// Create orbital path
+		const wireframeMaterial = new THREE.LineBasicMaterial({
+			color: 0x61dafb,
+			transparent: true,
+			opacity: 0.2,
+		});
 
-                    {/* Enhanced Typing Animation */}
-                    <div className="h-16 sm:h-20 lg:h-24 flex items-center overflow-hidden">
-                      <span className="text-gradient font-extrabold tracking-tight">
-                        {typedText}
-                      </span>
-                      <span className="inline-block w-1 h-12 sm:h-16 lg:h-20 bg-gradient-to-b from-indigo-500 via-purple-500 to-pink-500 ml-2 rounded-full animate-pulse shadow-lg shadow-purple-500/50" />
-                    </div>
-                  </h1>
+		const orbitPoints = [];
+		for (let i = 0; i <= 64; i++) {
+			const angle = (i / 64) * Math.PI * 2;
+			orbitPoints.push(
+				new THREE.Vector3(
+					Math.cos(angle) * orbitRadius * 0.7,
+					Math.sin(angle) * orbitRadius * 0.4,
+					Math.sin(angle * 2) * 0.3
+				)
+			);
+		}
 
-                  {/* Enhanced animated underline */}
-                  <div className="relative mt-4">
-                    <div
-                      className={`h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-full shadow-lg transition-all duration-1500 ease-out ${isVisible ? "w-32 opacity-100" : "w-0 opacity-0"}`}
-                    />
-                    <div
-                      className={`absolute top-0 h-1 bg-gradient-to-r from-cyan-400 to-blue-400 rounded-full animate-pulse transition-all duration-1500 ease-out ${isVisible ? "w-16 opacity-60" : "w-0 opacity-0"}`}
-                      style={{ animationDelay: "0.5s" }}
-                    />
-                  </div>
-                </div>
+		const orbitGeometry = new THREE.BufferGeometry().setFromPoints(orbitPoints);
+		const orbitLine = new THREE.Line(orbitGeometry, wireframeMaterial);
 
-                {/* Enhanced Description with GitHub Bio */}
-                <div
-                  className={`text-base sm:text-lg lg:text-xl mb-8 leading-relaxed max-w-2xl text-gray-600 dark:text-gray-300 ${isVisible ? "animate-fadeInUp delay-600" : "opacity-0"}`}
-                >
-                  <p className="mb-3 font-medium">
-                    {githubData?.user?.bio || "Transforming ideas into"}{" "}
-                    {/* <span className="font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-500 bg-clip-text text-transparent hover-3d inline-block">
-                      exceptional digital experiences
-                    </span>{" "}
-                    with cutting-edge web technologies. */}
-                  </p>
-                  <p className="font-medium">
-                    Specializing in{" "}
-                    <span className="font-bold text-emerald-500 hover-3d inline-block">
-                      React.js, Next.js, and performance optimization
-                    </span>
-                    .
-                  </p>
-                </div>
+		// Group elements for better performance
+		const mainGroup = new THREE.Group();
+		const techGroup = new THREE.Group();
 
-                {/* Enhanced CTA Buttons */}
-                <div
-                  className={`flex flex-col sm:flex-row gap-4 mb-8 ${isVisible ? "animate-fadeInUp delay-800" : "opacity-0"}`}
-                >
-                  <button
-                    onClick={() => scrollToSection("projects")}
-                    className="group relative bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-500 text-white px-6 py-3 rounded-xl font-bold flex items-center justify-center space-x-2 shadow-xl overflow-hidden hover-3d hover-glow transition-all duration-300"
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-r from-purple-600 via-pink-500 to-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    <div className="absolute inset-0 animate-gradient bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100" />
-                    <Rocket className="w-4 h-4 group-hover:rotate-12 group-hover:scale-110 transition-transform duration-300 relative z-10" />
-                    <span className="relative z-10">Explore My Work</span>
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300 relative z-10" />
-                  </button>
+		// Add tech elements to tech group
+		techGroup.add(
+			cssBox,
+			cssLabel,
+			htmlCone,
+			htmlLabel,
+			jsSphere,
+			jsLabel,
+			nodeOcta,
+			nodeLabel
+		);
 
-                  <button
-                    onClick={() => scrollToSection("contact")}
-                    className="group border-2 border-gray-300 dark:border-gray-600 hover:border-blue-500 dark:hover:border-blue-400 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 px-6 py-3 rounded-xl font-bold transition-all duration-300 relative overflow-hidden hover-3d backdrop-blur-sm bg-white/10 dark:bg-gray-800/10"
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    <span className="relative z-10">Let's Connect</span>
-                  </button>
-                </div>
+		// Add all elements to main group
+		mainGroup.add(reactTorus, reactLabel, techGroup, orbitLine);
+		symbols.forEach((symbol) => mainGroup.add(symbol));
+		scene.add(mainGroup);
 
-                {/* Enhanced Social Links */}
-                <div
-                  className={`flex items-center space-x-4 ${isVisible ? "animate-fadeInUp delay-1000" : "opacity-0"}`}
-                >
-                  {[
-                    {
-                      icon: Github,
-                      href: "https://github.com/maurya-sachin",
-                      color: "hover:text-gray-900 dark:hover:text-white",
-                      bg: "hover:bg-gray-100 dark:hover:bg-gray-700",
-                    },
-                    {
-                      icon: Linkedin,
-                      href: "https://www.linkedin.com/in/maurya-sachin/",
-                      color: "hover:text-blue-600",
-                      bg: "hover:bg-blue-50 dark:hover:bg-blue-900/30",
-                    },
-                    {
-                      icon: Mail,
-                      href: "sachinmaurya1710@gmail.com",
-                      color: "hover:text-red-500",
-                      bg: "hover:bg-red-50 dark:hover:bg-red-900/30",
-                    },
-                  ].map((social, index) => (
-                    <a
-                      key={index}
-                      href={social.href}
-                      className={`p-3 rounded-xl bg-white/70 dark:bg-gray-800/70 backdrop-blur-xl border border-gray-200/50 dark:border-gray-700/50 text-gray-600 dark:text-gray-400 ${social.color} ${social.bg} transition-all duration-300 shadow-lg hover-3d hover-glow`}
-                    >
-                      <social.icon className="w-4 h-4" />
-                    </a>
-                  ))}
-                </div>
-              </div>
+		// Optimized lighting setup
+		const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
+		const directionalLight = new THREE.DirectionalLight(0xffffff, 0.6);
+		directionalLight.position.set(8, 8, 5);
 
-              {/* Right Content - Compact Avatar & Info */}
-              <div
-                className={`lg:col-span-5 flex flex-col items-center ${isVisible ? "animate-slideInRight delay-400" : "opacity-0"}`}
-              >
-                {/* Compact Avatar with Orbital System */}
-                <div className="relative mb-6 perspective-1000">
-                  {/* Central Avatar - Much Smaller */}
-                  <div className="relative z-30">
-                    <div className="relative w-44 h-44 sm:w-52 sm:h-52 rounded-full overflow-hidden border-3 border-white/30 dark:border-gray-700/30 shadow-xl hover-3d transition-all duration-500 backdrop-blur-xl">
-                      <img
-                        src={
-                          githubData?.user?.avatarUrl ||
-                          "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face"
-                        }
-                        alt={githubData?.user?.name || "Sachin Maurya"}
-                        className="object-cover w-full h-full"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/25 via-transparent to-purple-500/25 animate-rotate-glow" />
+		scene.add(ambientLight, directionalLight);
 
-                      {/* Optimized Pulse rings */}
-                      <div className="absolute inset-0 rounded-full border-2 border-blue-400/30 animate-pulse-ring" />
-                      <div
-                        className="absolute inset-0 rounded-full border-2 border-purple-400/30 animate-pulse-ring"
-                        style={{ animationDelay: "1s" }}
-                      />
-                    </div>
-                  </div>
+		// Store animation objects
+		const animationObjects = {
+			mainGroup,
+			techGroup,
+			reactTorus,
+			cssBox,
+			cssLabel,
+			htmlCone,
+			htmlLabel,
+			jsSphere,
+			jsLabel,
+			nodeOcta,
+			nodeLabel,
+			symbols,
+		};
 
-                  {/* Compact Orbital Elements */}
-                  {orbitalElements.map((orbit, index) => (
-                    <div
-                      key={index}
-                      className="absolute top-1/2 left-1/2 z-20"
-                      style={{
-                        "--radius": `${orbit.radius}px`,
-                        "--duration": `${orbit.duration}s`,
-                        "--delay": `${orbit.delay}s`,
-                      }}
-                    >
-                      <div
-                        className={`orbital-element w-10 h-10 rounded-xl bg-white/95 dark:bg-gray-800/95 backdrop-blur-xl border border-gray-200/50 dark:border-gray-700/50 shadow-xl flex items-center justify-center ${orbit.color} hover-3d transition-all duration-300`}
-                      >
-                        <orbit.icon className="w-4 h-4" />
-                        <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-white/20 to-transparent opacity-50" />
-                      </div>
-                    </div>
-                  ))}
-                </div>
+		// Optimized animation loop with delta time
+		const animate = () => {
+			const deltaTime = clockRef.current.getDelta();
+			const elapsedTime = clockRef.current.getElapsedTime();
 
-                {/* Compact Quick Info Panel */}
-                <div
-                  className={`w-full max-w-xs bg-white/95 dark:bg-gray-800/95 backdrop-blur-xl border border-gray-200/50 dark:border-gray-700/50 rounded-xl p-4 shadow-xl hover-3d transition-all duration-300 ${isVisible ? "animate-fadeInUp delay-1200" : "opacity-0"}`}
-                >
-                  <h3 className="text-base font-bold mb-3 text-gradient text-center">
-                    Quick Info
-                  </h3>
+			// Gentle main group rotation
+			mainGroup.rotation.y = elapsedTime * 0.03;
+			mainGroup.rotation.x = Math.sin(elapsedTime * 0.2) * 0.02;
 
-                  <div className="space-y-3">
-                    <div className="flex items-center space-x-2 text-gray-600 dark:text-gray-400 hover:text-blue-500 transition-colors cursor-pointer group">
-                      <div className="p-1.5 rounded-lg bg-blue-50 dark:bg-blue-900/30 group-hover:bg-blue-100 dark:group-hover:bg-blue-900/50 transition-colors">
-                        <MapPin className="w-3 h-3" />
-                      </div>
-                      <span className="font-medium text-sm">
-                        {githubData?.user?.location || "Delhi, India"}
-                      </span>
-                    </div>
+			// React torus animation
+			reactTorus.rotation.x =
+				elapsedTime * reactTorus.userData.animationSpeed.x;
+			reactTorus.rotation.z =
+				elapsedTime * reactTorus.userData.animationSpeed.z;
+			reactTorus.position.y = Math.sin(elapsedTime * 1.5) * 0.05;
 
-                    <div className="flex items-center space-x-2 text-gray-600 dark:text-gray-400 hover:text-green-500 transition-colors cursor-pointer group">
-                      <div className="p-1.5 rounded-lg bg-green-50 dark:bg-green-900/30 group-hover:bg-green-100 dark:group-hover:bg-green-900/50 transition-colors">
-                        <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse shadow-lg shadow-green-500/50" />
-                      </div>
-                      <span className="font-medium text-sm">Remote Ready</span>
-                    </div>
+			// Orbital animations for tech elements
+			const orbitTime = elapsedTime * 0.5;
 
-                    <div className="flex items-center space-x-2 text-gray-600 dark:text-gray-400 hover:text-purple-500 transition-colors cursor-pointer group">
-                      <div className="p-1.5 rounded-lg bg-purple-50 dark:bg-purple-900/30 group-hover:bg-purple-100 dark:group-hover:bg-purple-900/50 transition-colors">
-                        <Clock className="w-3 h-3" />
-                      </div>
-                      <span className="font-medium text-sm">
-                        {currentTime} IST
-                      </span>
-                    </div>
-                  </div>
+			// CSS animation
+			const cssAngle = orbitTime + cssBox.userData.orbitAngle;
+			cssBox.position.x = Math.cos(cssAngle) * cssBox.userData.orbitRadius;
+			cssBox.position.y =
+				Math.sin(cssAngle) * cssBox.userData.orbitRadius * 0.375;
+			cssBox.position.z = Math.sin(cssAngle * 2) * 0.3;
+			cssBox.rotation.x += cssBox.userData.rotationSpeed.x;
+			cssBox.rotation.y += cssBox.userData.rotationSpeed.y;
+			cssBox.rotation.z += cssBox.userData.rotationSpeed.z;
 
-                  <button
-                    onClick={downloadResume}
-                    className="w-full mt-4 bg-gradient-to-r from-gray-800 via-gray-900 to-black dark:from-gray-700 dark:via-gray-800 dark:to-gray-900 text-white px-4 py-2.5 rounded-lg font-bold flex items-center justify-center space-x-2 hover-3d hover-glow transition-all duration-300 shadow-lg text-sm"
-                  >
-                    <Download className="w-4 h-4 animate-bounce-3d" />
-                    <span>Download Resume</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+			// Update CSS label position
+			cssLabel.position.copy(cssBox.position);
+			cssLabel.position.y -= 1;
 
-        {/* Enhanced Scroll Indicator */}
-        <div
-          className={`absolute bottom-6 left-1/2 transform -translate-x-1/2 z-20 ${isVisible ? "animate-fadeInUp delay-1500" : "opacity-0"} hidden lg:flex flex-col items-center`}
-        >
-          <div
-            className="w-6 h-10 border-2 border-gray-400 dark:border-gray-600 rounded-full flex justify-center cursor-pointer backdrop-blur-xl bg-white/20 dark:bg-gray-800/20 hover-3d transition-all duration-300 animate-bounce-3d"
-            onClick={() => scrollToSection("about")}
-          >
-            <div className="w-1 h-2.5 bg-gradient-to-b from-blue-500 via-purple-500 to-pink-500 rounded-full mt-1.5 animate-pulse shadow-lg" />
-          </div>
-          <div className="mt-1 text-xs text-gray-500 dark:text-gray-400 text-center font-medium">
-            Scroll to explore
-          </div>
-        </div>
-      </section>
-    </>
-  );
+			// HTML animation
+			const htmlAngle = orbitTime + htmlCone.userData.orbitAngle;
+			htmlCone.position.x = Math.cos(htmlAngle) * htmlCone.userData.orbitRadius;
+			htmlCone.position.y =
+				Math.sin(htmlAngle) * htmlCone.userData.orbitRadius * 0.571;
+			htmlCone.position.z = Math.sin(htmlAngle * 2) * 0.3;
+			htmlCone.rotation.z += htmlCone.userData.rotationSpeed.z;
+
+			// Update HTML label position
+			htmlLabel.position.copy(htmlCone.position);
+			htmlLabel.position.y -= 1;
+
+			// JS animation with bounce
+			const jsAngle = orbitTime + jsSphere.userData.orbitAngle;
+			jsSphere.position.x = Math.cos(jsAngle) * jsSphere.userData.orbitRadius;
+			jsSphere.position.y =
+				Math.sin(jsAngle) * jsSphere.userData.orbitRadius * 1.2 +
+				Math.sin(elapsedTime * jsSphere.userData.bounceSpeed) *
+					jsSphere.userData.bounceAmplitude;
+			jsSphere.position.z = Math.sin(jsAngle * 2) * 0.3;
+			jsSphere.rotation.y += jsSphere.userData.rotationSpeed.y;
+
+			// Update JS label position
+			jsLabel.position.copy(jsSphere.position);
+			jsLabel.position.y -= 0.8;
+
+			// Node animation
+			const nodeAngle = orbitTime + nodeOcta.userData.orbitAngle;
+			nodeOcta.position.x = Math.cos(nodeAngle) * nodeOcta.userData.orbitRadius;
+			nodeOcta.position.y =
+				Math.sin(nodeAngle) * nodeOcta.userData.orbitRadius * 0.833;
+			nodeOcta.position.z = Math.sin(nodeAngle * 2) * 0.3;
+			nodeOcta.rotation.x += nodeOcta.userData.rotationSpeed.x;
+			nodeOcta.rotation.y += nodeOcta.userData.rotationSpeed.y;
+
+			// Update Node label position
+			nodeLabel.position.copy(nodeOcta.position);
+			nodeLabel.position.y -= 1;
+
+			// Animate floating symbols
+			symbols.forEach((symbol, index) => {
+				symbol.rotation.z += symbol.userData.rotationSpeed;
+				symbol.position.y =
+					symbol.userData.originalPosition.y +
+					Math.sin(elapsedTime * symbol.userData.floatSpeed + index * 2) *
+						symbol.userData.floatAmplitude;
+			});
+
+			renderer.render(scene, camera);
+			animationRef.current = requestAnimationFrame(animate);
+		};
+
+		animate();
+
+		// Handle resize with throttling
+		let resizeTimeout;
+		const handleResize = () => {
+			if (resizeTimeout) clearTimeout(resizeTimeout);
+			resizeTimeout = setTimeout(() => {
+				const container = canvasRef.current?.parentElement;
+				if (container) {
+					const width = Math.min(container.offsetWidth, 500);
+					const height = Math.min(container.offsetHeight, 500);
+					camera.aspect = width / height;
+					camera.updateProjectionMatrix();
+					renderer.setSize(width, height);
+				}
+			}, 100);
+		};
+
+		window.addEventListener('resize', handleResize);
+		handleResize();
+
+		return () => {
+			window.removeEventListener('resize', handleResize);
+			if (resizeTimeout) clearTimeout(resizeTimeout);
+			if (animationRef.current) {
+				cancelAnimationFrame(animationRef.current);
+			}
+
+			// Comprehensive cleanup
+			[
+				torusGeometry,
+				cssBoxGeometry,
+				htmlGeometry,
+				jsSphereGeometry,
+				nodeOctaGeometry,
+				orbitGeometry,
+			].forEach((geo) => geo?.dispose());
+
+			[
+				reactMaterial,
+				jsMaterial,
+				cssMaterial,
+				htmlMaterial,
+				nodeMaterial,
+				symbolMaterial,
+				wireframeMaterial,
+				textMaterial,
+				cssLabelMaterial,
+				htmlLabelMaterial,
+				jsLabelMaterial,
+				nodeLabelMaterial,
+			].forEach((mat) => mat?.dispose());
+
+			symbols.forEach((symbol) => {
+				symbol.geometry?.dispose();
+				symbol.material?.dispose();
+			});
+
+			// Dispose textures
+			[
+				textMaterial,
+				cssLabelMaterial,
+				htmlLabelMaterial,
+				jsLabelMaterial,
+				nodeLabelMaterial,
+			].forEach((material) => material.map?.dispose());
+
+			renderer?.dispose();
+		};
+	}, [prefersReducedMotion]);
+
+	// Time update
+	useEffect(() => {
+		const updateTime = () => {
+			const now = new Date();
+			setCurrentTime(
+				now.toLocaleTimeString('en-US', {
+					timeZone: 'Asia/Kolkata',
+					hour12: false,
+					hour: '2-digit',
+					minute: '2-digit',
+				})
+			);
+		};
+		updateTime();
+		const interval = setInterval(updateTime, 60000);
+		return () => clearInterval(interval);
+	}, []);
+
+	// Throttled mouse tracking
+	const handleMouseMove = useCallback(
+		(e) => {
+			if (prefersReducedMotion || !containerRef.current) return;
+
+			const rect = containerRef.current.getBoundingClientRect();
+			const x = (e.clientX - rect.left) / rect.width;
+			const y = (e.clientY - rect.top) / rect.height;
+			setMousePosition({ x, y });
+
+			// Subtle mouse interaction
+			if (sceneRef.current) {
+				const mainGroup = sceneRef.current.children.find(
+					(child) => child.type === 'Group'
+				);
+				if (mainGroup) {
+					const targetRotationY = (x - 0.5) * 0.1;
+					const targetRotationX = (y - 0.5) * 0.1;
+
+					// Smooth interpolation for mouse interaction
+					mainGroup.rotation.y +=
+						(targetRotationY - mainGroup.rotation.y) * 0.05;
+					mainGroup.rotation.x +=
+						(targetRotationX - mainGroup.rotation.x) * 0.05;
+				}
+			}
+		},
+		[prefersReducedMotion]
+	);
+
+	useEffect(() => {
+		if (prefersReducedMotion) return;
+
+		let rafId;
+		const throttledMouseMove = (e) => {
+			if (rafId) return;
+			rafId = requestAnimationFrame(() => {
+				handleMouseMove(e);
+				rafId = null;
+			});
+		};
+
+		document.addEventListener('mousemove', throttledMouseMove, {
+			passive: true,
+		});
+		return () => {
+			document.removeEventListener('mousemove', throttledMouseMove);
+			if (rafId) cancelAnimationFrame(rafId);
+		};
+	}, [handleMouseMove, prefersReducedMotion]);
+
+	const Scene3DFallback = () => (
+		<div className='w-full h-full flex items-center justify-center relative'>
+			<div className='relative perspective-1000'>
+				{/* Central React torus */}
+				<motion.div
+					className='w-40 h-40 border-8 border-cyan-400/40 rounded-full relative flex items-center justify-center'
+					animate={{
+						rotate: [0, 360],
+					}}
+					transition={{
+						duration: 15,
+						repeat: Infinity,
+						ease: 'linear',
+					}}
+				>
+					<div className='absolute inset-6 border-4 border-cyan-300/30 rounded-full' />
+					<div className='w-4 h-4 bg-cyan-400 rounded-full' />
+					<div className='absolute -bottom-12 text-cyan-400 font-bold text-sm'>
+						REACT
+					</div>
+				</motion.div>
+
+				{/* Orbiting elements with labels */}
+				<motion.div
+					className='absolute w-6 h-6 bg-blue-500/40 backdrop-blur-sm'
+					animate={{
+						rotate: [0, 360],
+						x: [60, 0, -60, 0, 60],
+						y: [0, 40, 0, -40, 0],
+					}}
+					transition={{
+						duration: 8,
+						repeat: Infinity,
+						ease: 'easeInOut',
+					}}
+					style={{
+						left: '50%',
+						top: '50%',
+						transformOrigin: 'center',
+					}}
+				>
+					<div className='absolute -bottom-8 -left-3 text-blue-500 font-bold text-xs whitespace-nowrap'>
+						CSS3
+					</div>
+				</motion.div>
+
+				<motion.div
+					className='absolute w-0 h-0 border-l-4 border-r-4 border-b-6 border-l-transparent border-r-transparent border-b-orange-500/40'
+					animate={{
+						rotate: [0, -360],
+						x: [-50, -35, 50, 35, -50],
+						y: [35, -50, -35, 50, 35],
+					}}
+					transition={{
+						duration: 10,
+						repeat: Infinity,
+						ease: 'linear',
+					}}
+					style={{
+						left: '50%',
+						top: '50%',
+						transformOrigin: 'center',
+					}}
+				>
+					<div className='absolute -bottom-8 -left-4 text-orange-500 font-bold text-xs whitespace-nowrap'>
+						HTML5
+					</div>
+				</motion.div>
+
+				<motion.div
+					className='absolute w-5 h-5 bg-yellow-400/50 rounded-full'
+					animate={{
+						x: [-40, 20, 50, -20, -40],
+						y: [-50, -20, 30, 50, -50],
+						scale: [1, 1.2, 1, 1.2, 1],
+					}}
+					transition={{
+						duration: 6,
+						repeat: Infinity,
+						ease: 'easeInOut',
+					}}
+					style={{
+						left: '50%',
+						top: '50%',
+						transformOrigin: 'center',
+					}}
+				>
+					<div className='absolute -bottom-6 -left-2 text-yellow-400 font-bold text-xs'>
+						JS
+					</div>
+				</motion.div>
+
+				<motion.div
+					className='absolute w-4 h-4 bg-green-500/40 transform rotate-45'
+					animate={{
+						rotate: [45, 405],
+						x: [45, -15, -55, -15, 45],
+						y: [-15, -45, 15, 55, -15],
+					}}
+					transition={{
+						duration: 12,
+						repeat: Infinity,
+						ease: 'linear',
+					}}
+					style={{
+						left: '50%',
+						top: '50%',
+						transformOrigin: 'center',
+					}}
+				>
+					<div className='absolute -bottom-8 -left-4 text-green-500 font-bold text-xs whitespace-nowrap rotate-[-45deg]'>
+						NODE
+					</div>
+				</motion.div>
+			</div>
+		</div>
+	);
+
+	return (
+		<>
+			<style
+				jsx
+				global
+			>{`
+				@keyframes gradient-shift {
+					0%,
+					100% {
+						background-position: 0% 50%;
+					}
+					50% {
+						background-position: 100% 50%;
+					}
+				}
+
+				@keyframes pulse-soft {
+					0%,
+					100% {
+						opacity: 0.8;
+						transform: scale(1);
+					}
+					50% {
+						opacity: 1;
+						transform: scale(1.05);
+					}
+				}
+
+				@keyframes shimmer {
+					0% {
+						background-position: -200% center;
+					}
+					100% {
+						background-position: 200% center;
+					}
+				}
+
+				.text-gradient {
+					background: linear-gradient(
+						135deg,
+						#3b82f6 0%,
+						#8b5cf6 25%,
+						#06b6d4 50%,
+						#10b981 75%,
+						#3b82f6 100%
+					);
+					background-size: 300% 300%;
+					-webkit-background-clip: text;
+					background-clip: text;
+					-webkit-text-fill-color: transparent;
+					animation: gradient-shift 4s ease infinite;
+				}
+
+				.glass {
+					backdrop-filter: blur(16px);
+					background: rgba(255, 255, 255, 0.8);
+					border: 1px solid rgba(255, 255, 255, 0.2);
+					box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+				}
+
+				.dark .glass {
+					background: rgba(17, 24, 39, 0.8);
+					border: 1px solid rgba(255, 255, 255, 0.1);
+					box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+				}
+
+				.animate-pulse-soft {
+					animation: pulse-soft 3s ease-in-out infinite;
+				}
+				.text-shimmer {
+					background: linear-gradient(
+						90deg,
+						transparent 0%,
+						rgba(255, 255, 255, 0.4) 50%,
+						transparent 100%
+					);
+					background-size: 200% 100%;
+					animation: shimmer 3s infinite;
+				}
+
+				.hover-lift {
+					transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+				}
+				.hover-lift:hover {
+					transform: translateY(-3px) scale(1.02);
+				}
+				.perspective-1000 {
+					perspective: 1000px;
+					transform-style: preserve-3d;
+				}
+
+				@media (prefers-reduced-motion: reduce) {
+					.text-gradient,
+					.text-shimmer,
+					.animate-pulse-soft {
+						animation: none !important;
+					}
+					.text-gradient {
+						background: linear-gradient(135deg, #3b82f6, #8b5cf6, #06b6d4);
+						-webkit-background-clip: text;
+						background-clip: text;
+						-webkit-text-fill-color: transparent;
+					}
+				}
+
+				.gpu-accelerated {
+					transform: translateZ(0);
+					will-change: transform;
+					backface-visibility: hidden;
+				}
+			`}</style>
+
+			<section
+				ref={containerRef}
+				id='hero'
+				className='relative min-h-screen overflow-hidden bg-gradient-to-br from-gray-50 via-white to-blue-50/30 dark:from-gray-950 dark:via-gray-900 dark:to-blue-950/30 pt-20 sm:pt-24 lg:pt-0'
+				role='banner'
+			>
+				{/* Background Effects */}
+				<div className='absolute inset-0 z-0'>
+					{!prefersReducedMotion && (
+						<div
+							className='absolute inset-0 opacity-30 transition-all duration-1000 ease-out gpu-accelerated'
+							style={{
+								background: `radial-gradient(800px circle at ${mousePosition.x * 100}% ${mousePosition.y * 100}%, rgba(59, 130, 246, 0.15), rgba(139, 92, 246, 0.08) 50%, transparent 70%)`,
+							}}
+						/>
+					)}
+
+					<div className='absolute top-1/4 left-1/6 w-40 h-40 bg-gradient-to-br from-blue-400/8 to-purple-400/8 rounded-full blur-3xl animate-pulse-soft' />
+					<div
+						className='absolute bottom-1/3 right-1/5 w-52 h-52 bg-gradient-to-br from-purple-400/8 to-pink-400/8 rounded-full blur-3xl animate-pulse-soft'
+						style={{ animationDelay: '3s' }}
+					/>
+				</div>
+
+				{/* Main Content */}
+				<div className='relative z-10 min-h-screen'>
+					<div className='max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 w-full'>
+						<div className='grid lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-screen py-16'>
+							{/* Left Content */}
+							<motion.div
+								initial={{ opacity: 0, x: -30 }}
+								animate={{ opacity: 1, x: 0 }}
+								transition={{ duration: 0.8 }}
+								className='space-y-8 z-20 relative'
+							>
+								{/* Status Badge */}
+								<motion.div
+									initial={{ opacity: 0, y: 20 }}
+									animate={{ opacity: 1, y: 0 }}
+									transition={{ delay: 0.2 }}
+									className='inline-flex items-center glass text-emerald-600 dark:text-emerald-400 px-4 py-2.5 rounded-full text-sm font-semibold'
+								>
+									<div className='w-2.5 h-2.5 bg-emerald-400 rounded-full mr-2.5 animate-pulse-soft' />
+									<Sparkles className='w-4 h-4 mr-2' />
+									<span>Available • {currentTime} IST</span>
+								</motion.div>
+
+								{/* Main Heading */}
+								<div className='space-y-6'>
+									<motion.h1
+										initial={{ opacity: 0, y: 30 }}
+										animate={{ opacity: 1, y: 0 }}
+										transition={{ delay: 0.3, duration: 0.8 }}
+										className='text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight'
+									>
+										<span className='block text-gray-900 dark:text-white mb-4'>
+											Hi, I'm{' '}
+											<span className='text-gradient relative'>
+												{githubData?.user?.name?.split(' ')[0] || 'Sachin'}
+												<div className='absolute inset-0 text-shimmer opacity-20' />
+											</span>
+										</span>
+
+										{/* Professional Title */}
+										<span className='block text-gradient font-bold text-3xl sm:text-4xl lg:text-5xl'>
+											Frontend Developer
+										</span>
+									</motion.h1>
+
+									{/* Description */}
+									<motion.div
+										initial={{ opacity: 0, y: 20 }}
+										animate={{ opacity: 1, y: 0 }}
+										transition={{ delay: 0.5 }}
+										className='text-base sm:text-lg lg:text-xl leading-relaxed text-gray-600 dark:text-gray-300 space-y-3 max-w-xl'
+									>
+										<p className='font-semibold text-lg sm:text-xl text-gray-800 dark:text-gray-200'>
+											{githubData?.user?.bio ||
+												'Crafting exceptional digital experiences with modern web technologies'}
+										</p>
+										<p>
+											Specialized in{' '}
+											<span className='font-bold text-gradient'>
+												React, Next.js & Performance Optimization
+											</span>
+										</p>
+									</motion.div>
+								</div>
+
+								{/* CTA Buttons */}
+								<motion.div
+									initial={{ opacity: 0, y: 20 }}
+									animate={{ opacity: 1, y: 0 }}
+									transition={{ delay: 0.7 }}
+									className='flex flex-col sm:flex-row gap-4 max-w-md'
+								>
+									<motion.button
+										onClick={() => scrollToSection('projects')}
+										className='group relative bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3.5 rounded-xl font-semibold flex items-center space-x-2.5 shadow-lg overflow-hidden hover-lift gpu-accelerated'
+										whileHover={!prefersReducedMotion ? { scale: 1.02 } : {}}
+										whileTap={!prefersReducedMotion ? { scale: 0.98 } : {}}
+									>
+										<div className='absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300' />
+										<Rocket className='w-5 h-5 relative z-10 group-hover:rotate-12 transition-transform duration-300' />
+										<span className='relative z-10'>View Projects</span>
+										<ArrowRight className='w-5 h-5 relative z-10 group-hover:translate-x-0.5 transition-transform duration-300' />
+									</motion.button>
+
+									<motion.button
+										onClick={() => scrollToSection('contact')}
+										className='glass hover:bg-white/90 dark:hover:bg-gray-800/90 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 px-6 py-3.5 rounded-xl font-semibold transition-all duration-300 hover-lift'
+										whileHover={!prefersReducedMotion ? { scale: 1.02 } : {}}
+										whileTap={!prefersReducedMotion ? { scale: 0.98 } : {}}
+									>
+										Get In Touch
+									</motion.button>
+								</motion.div>
+
+								{/* Social Links */}
+								<motion.div
+									initial={{ opacity: 0, y: 20 }}
+									animate={{ opacity: 1, y: 0 }}
+									transition={{ delay: 0.9 }}
+									className='flex space-x-4'
+								>
+									{[
+										{
+											icon: Github,
+											href: 'https://github.com/maurya-sachin',
+											color: 'hover:text-gray-900 dark:hover:text-white',
+										},
+										{
+											icon: Linkedin,
+											href: 'https://www.linkedin.com/in/maurya-sachin/',
+											color: 'hover:text-blue-600',
+										},
+										{
+											icon: Mail,
+											href: 'mailto:sachinmaurya1710@gmail.com',
+											color: 'hover:text-emerald-600',
+										},
+									].map((social, index) => (
+										<motion.a
+											key={index}
+											href={social.href}
+											target='_blank'
+											rel='noopener noreferrer'
+											className={`p-3 rounded-xl glass text-gray-600 dark:text-gray-400 ${social.color} transition-all duration-300 hover-lift gpu-accelerated`}
+											whileHover={!prefersReducedMotion ? { scale: 1.05 } : {}}
+											whileTap={!prefersReducedMotion ? { scale: 0.95 } : {}}
+											initial={{ opacity: 0, y: 20 }}
+											animate={{ opacity: 1, y: 0 }}
+											transition={{ delay: 0.9 + index * 0.1 }}
+										>
+											<social.icon className='w-5 h-5' />
+										</motion.a>
+									))}
+								</motion.div>
+
+								{/* Footer Info */}
+								<motion.div
+									initial={{ opacity: 0, y: 20 }}
+									animate={{ opacity: 1, y: 0 }}
+									transition={{ delay: 1.1 }}
+									className='flex flex-col sm:flex-row items-start sm:items-center space-y-3 sm:space-y-0 sm:space-x-6 text-sm text-gray-500 dark:text-gray-400'
+								>
+									<div className='flex items-center space-x-2'>
+										<MapPin className='w-4 h-4' />
+										<span>{githubData?.user?.location || 'Delhi, India'}</span>
+									</div>
+
+									<motion.button
+										onClick={downloadResume}
+										className='flex items-center space-x-2 bg-gray-900 dark:bg-gray-800 text-white px-4 py-2.5 rounded-lg font-medium hover-lift transition-all duration-300'
+										whileHover={!prefersReducedMotion ? { scale: 1.02 } : {}}
+										whileTap={!prefersReducedMotion ? { scale: 0.98 } : {}}
+									>
+										<Download className='w-4 h-4' />
+										<span>Resume</span>
+									</motion.button>
+								</motion.div>
+							</motion.div>
+
+							{/* Right Content - 3D Scene */}
+							<motion.div
+								initial={{ opacity: 0, x: 30 }}
+								animate={{ opacity: 1, x: 0 }}
+								transition={{ delay: 0.4, duration: 0.8 }}
+								className='relative h-[500px] lg:h-[600px] w-full flex items-center justify-center'
+							>
+								{!prefersReducedMotion ? (
+									<canvas
+										ref={canvasRef}
+										className='max-w-full max-h-full'
+										style={{
+											filter: 'drop-shadow(0 0 20px rgba(59, 130, 246, 0.3))',
+										}}
+									/>
+								) : (
+									<Scene3DFallback />
+								)}
+
+								{/* Glassmorphism overlay for depth */}
+								<div className='absolute inset-0 pointer-events-none'>
+									<div className='absolute top-1/4 left-1/4 w-20 h-20 glass rounded-full opacity-10 animate-pulse-soft' />
+									<div
+										className='absolute bottom-1/3 right-1/4 w-28 h-28 glass rounded-full opacity-8 animate-pulse-soft'
+										style={{ animationDelay: '2s' }}
+									/>
+								</div>
+							</motion.div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</>
+	);
 };
 
 export default HeroSection;
