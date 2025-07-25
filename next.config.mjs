@@ -1,8 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Basic optimizations
   experimental: {
-    optimizePackageImports: ["lucide-react", "framer-motion"],
+    optimizePackageImports: ["lucide-react", "framer-motion", "recharts"],
   },
+
+  // Image optimization
   images: {
     formats: ["image/webp", "image/avif"],
     remotePatterns: [
@@ -12,11 +15,21 @@ const nextConfig = {
         port: "",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "github.com",
+        port: "",
+        pathname: "/**",
+      },
     ],
   },
+
+  // Remove console.log in production
   compiler: {
     removeConsole: process.env.NODE_ENV === "production",
   },
+
+  // Basic headers
   async headers() {
     return [
       {
@@ -31,4 +44,5 @@ const nextConfig = {
     ];
   },
 };
+
 export default nextConfig;
