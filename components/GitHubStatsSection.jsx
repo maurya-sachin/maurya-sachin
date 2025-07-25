@@ -110,7 +110,7 @@ const GitHubStatsSection = () => {
 	return (
 		<section
 			className='relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-50 via-indigo-50/30 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden'
-			id='stats'
+			id='github-stats'
 		>
 			{/* Animated Background Elements */}
 			<div className='absolute inset-0'>

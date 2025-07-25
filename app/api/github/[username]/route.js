@@ -82,7 +82,6 @@ query {
     }
 }`;
 
-// Function to fetch data from GitHub GraphQL API
 async function fetchGitHubGraphQL(query) {
     const githubToken = process.env.GITHUB_TOKEN;
 
