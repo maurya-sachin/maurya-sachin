@@ -40,9 +40,9 @@ const sachin = {
 ### ✍️ Latest Blog Posts
 
 <!-- BLOG-POST-LIST:START -->
+- [React Performance Optimization — Part 4: Debouncing, Throttling &amp; Request Batching](https://dev.to/maurya-sachin/react-performance-optimization-part-4-debouncing-throttling-request-batching-3h8p)
 - [Lazy Loading in React &amp; Next.js: Boost Performance the Smart Way](https://dev.to/maurya-sachin/lazy-loading-in-react-nextjs-boost-performance-the-smart-way-4bgg)
 - [🚦 Understanding Lighthouse, Web Vitals &amp; PageSpeed Reports](https://dev.to/maurya-sachin/understanding-lighthouse-web-vitals-pagespeed-reports-4ji8)
-- [🚀 React Performance Optimization Tips I Wish I Knew Earlier](https://dev.to/maurya-sachin/react-performance-optimization-tips-i-wish-i-knew-earlier-4p2f)
 <!-- BLOG-POST-LIST:END -->
 
 > ⏳ *Auto-updated every 12 hours with [blog-post-workflow](https://github.com/gautamkrishnar/blog-post-workflow)*  
