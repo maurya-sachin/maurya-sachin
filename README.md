@@ -40,9 +40,9 @@ const sachin = {
 ### ✍️ Latest Blog Posts
 
 <!-- BLOG-POST-LIST:START -->
+- [State Management Showdown – Redux Toolkit vs Zustand vs React Query](https://dev.to/maurya-sachin/state-management-showdown-redux-toolkit-vs-zustand-vs-react-query-p44)
 - [Code Splitting, Dynamic Imports &amp; Bundle Analysis](https://dev.to/maurya-sachin/code-splitting-dynamic-imports-bundle-analysis-3an2)
 - [React Performance Optimization — Part 4: Debouncing, Throttling &amp; Request Batching](https://dev.to/maurya-sachin/react-performance-optimization-part-4-debouncing-throttling-request-batching-3h8p)
-- [Lazy Loading in React &amp; Next.js: Boost Performance the Smart Way](https://dev.to/maurya-sachin/lazy-loading-in-react-nextjs-boost-performance-the-smart-way-4bgg)
 <!-- BLOG-POST-LIST:END -->
 
 > ⏳ *Auto-updated every 12 hours with [blog-post-workflow](https://github.com/gautamkrishnar/blog-post-workflow)*  
