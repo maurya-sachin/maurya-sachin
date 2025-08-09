@@ -40,9 +40,9 @@ const sachin = {
 ### ✍️ Latest Blog Posts
 
 <!-- BLOG-POST-LIST:START -->
-- [Lazy Loading in React &amp; Next.js: Boost Performance the Smart Way](https://dev.to/maurya-sachin/lazy-loading-in-react-nextjs-boost-performance-the-smart-way-4bgg)
-- [🚦 Understanding Lighthouse, Web Vitals &amp; PageSpeed Reports](https://dev.to/maurya-sachin/understanding-lighthouse-web-vitals-pagespeed-reports-4ji8)
-- [🚀 React Performance Optimization Tips I Wish I Knew Earlier](https://dev.to/maurya-sachin/react-performance-optimization-tips-i-wish-i-knew-earlier-4p2f)
+- [⚡ Critical Rendering Path Optimization — The Missing Piece in Your Performance Toolkit](https://dev.to/maurya-sachin/critical-rendering-path-optimization-the-missing-piece-in-your-performance-toolkit-385e)
+- [🌍 WCAG 2.1 Complete Guide for Developers – Practical Tips from Real Audits](https://dev.to/maurya-sachin/wcag-21-complete-guide-for-developers-practical-tips-from-real-audits-3l35)
+- [React Memoization: `React.memo`, `useCallback`, and `useMemo` Explained with Real Use Cases](https://dev.to/maurya-sachin/react-memoization-reactmemo-usecallback-and-usememo-explained-with-real-use-cases-48e8)
 <!-- BLOG-POST-LIST:END -->
 
 > ⏳ *Auto-updated every 12 hours with [blog-post-workflow](https://github.com/gautamkrishnar/blog-post-workflow)*  
