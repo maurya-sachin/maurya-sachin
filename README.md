@@ -40,9 +40,9 @@ const sachin = {
 ### ✍️ Latest Blog Posts
 
 <!-- BLOG-POST-LIST:START -->
+- [React Component Design Patterns for Real-World Projects](https://dev.to/maurya-sachin/react-component-design-patterns-for-real-world-projects-5b04)
 - [⚡ Critical Rendering Path Optimization — The Missing Piece in Your Performance Toolkit](https://dev.to/maurya-sachin/critical-rendering-path-optimization-the-missing-piece-in-your-performance-toolkit-385e)
 - [🌍 WCAG 2.1 Complete Guide for Developers – Practical Tips from Real Audits](https://dev.to/maurya-sachin/wcag-21-complete-guide-for-developers-practical-tips-from-real-audits-3l35)
-- [React Memoization: `React.memo`, `useCallback`, and `useMemo` Explained with Real Use Cases](https://dev.to/maurya-sachin/react-memoization-reactmemo-usecallback-and-usememo-explained-with-real-use-cases-48e8)
 <!-- BLOG-POST-LIST:END -->
 
 > ⏳ *Auto-updated every 12 hours with [blog-post-workflow](https://github.com/gautamkrishnar/blog-post-workflow)*  
