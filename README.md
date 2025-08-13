@@ -40,9 +40,9 @@ const sachin = {
 ### ✍️ Latest Blog Posts
 
 <!-- BLOG-POST-LIST:START -->
+- [React Performance Profiling: Finding and Fixing Bottlenecks](https://dev.to/maurya-sachin/react-performance-profiling-finding-and-fixing-bottlenecks-ja5)
 - [Virtualization for Large Lists](https://dev.to/maurya-sachin/virtualization-for-large-lists-in8)
 - [React Component Design Patterns for Real-World Projects](https://dev.to/maurya-sachin/react-component-design-patterns-for-real-world-projects-5b04)
-- [⚡ Critical Rendering Path Optimization — The Missing Piece in Your Performance Toolkit](https://dev.to/maurya-sachin/critical-rendering-path-optimization-the-missing-piece-in-your-performance-toolkit-385e)
 <!-- BLOG-POST-LIST:END -->
 
 > ⏳ *Auto-updated every 12 hours with [blog-post-workflow](https://github.com/gautamkrishnar/blog-post-workflow)*  
