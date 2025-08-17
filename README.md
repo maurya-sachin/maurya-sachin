@@ -40,9 +40,9 @@ const sachin = {
 ### ✍️ Latest Blog Posts
 
 <!-- BLOG-POST-LIST:START -->
+- [Reducing JavaScript Bundle Size in Next.js — Practical Guide for Faster Apps](https://dev.to/maurya-sachin/reducing-javascript-bundle-size-in-nextjs-practical-guide-for-faster-apps-h0)
 - [React Performance Profiling: Finding and Fixing Bottlenecks](https://dev.to/maurya-sachin/react-performance-profiling-finding-and-fixing-bottlenecks-ja5)
 - [Virtualization for Large Lists](https://dev.to/maurya-sachin/virtualization-for-large-lists-in8)
-- [React Component Design Patterns for Real-World Projects](https://dev.to/maurya-sachin/react-component-design-patterns-for-real-world-projects-5b04)
 <!-- BLOG-POST-LIST:END -->
 
 > ⏳ *Auto-updated every 12 hours with [blog-post-workflow](https://github.com/gautamkrishnar/blog-post-workflow)*  
