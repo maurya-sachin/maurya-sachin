@@ -40,9 +40,9 @@ const sachin = {
 ### ✍️ Latest Blog Posts
 
 <!-- BLOG-POST-LIST:START -->
+- [From Code to User Experience: What I Learned Taking Meta&#39;s UX/UI Design Course as a React Developer](https://dev.to/maurya-sachin/from-code-to-user-experience-what-i-learned-taking-metas-uxui-design-course-as-a-react-developer-32al)
 - [Reducing JavaScript Bundle Size in Next.js — Practical Guide for Faster Apps](https://dev.to/maurya-sachin/reducing-javascript-bundle-size-in-nextjs-practical-guide-for-faster-apps-h0)
 - [React Performance Profiling: Finding and Fixing Bottlenecks](https://dev.to/maurya-sachin/react-performance-profiling-finding-and-fixing-bottlenecks-ja5)
-- [Virtualization for Large Lists](https://dev.to/maurya-sachin/virtualization-for-large-lists-in8)
 <!-- BLOG-POST-LIST:END -->
 
 > ⏳ *Auto-updated every 12 hours with [blog-post-workflow](https://github.com/gautamkrishnar/blog-post-workflow)*  
