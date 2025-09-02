@@ -40,9 +40,9 @@ const sachin = {
 ### ✍️ Latest Blog Posts
 
 <!-- BLOG-POST-LIST:START -->
+- [The 10-Line Architecture That Scaled to 50+ Pages](https://dev.to/maurya-sachin/the-10-line-architecture-that-scaled-to-50-pages-4na0)
 - [Why Error States Define the Quality of Your UI](https://dev.to/maurya-sachin/why-error-states-define-the-quality-of-your-ui-11lc)
 - [React Error Boundaries &amp; Practical Error Handling: Building Resilient Frontend Applications](https://dev.to/maurya-sachin/react-error-boundaries-practical-error-handling-building-resilient-frontend-applications-1i4a)
-- [Caching &amp; Revalidation in Next.js — ISR, Segment Options, and Tag-Based Revalidate &lpar;with real examples&rpar;](https://dev.to/maurya-sachin/caching-revalidation-in-nextjs-isr-segment-options-and-tag-based-revalidate-with-real-16da)
 <!-- BLOG-POST-LIST:END -->
 
 > ⏳ *Auto-updated every 12 hours with [blog-post-workflow](https://github.com/gautamkrishnar/blog-post-workflow)*  
