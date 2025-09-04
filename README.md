@@ -40,9 +40,9 @@ const sachin = {
 ### ✍️ Latest Blog Posts
 
 <!-- BLOG-POST-LIST:START -->
+- [One Hook That Killed 23 Components: The Context-Aware API Pattern](https://dev.to/maurya-sachin/one-hook-that-killed-23-components-the-context-aware-api-pattern-144)
 - [The 10-Line Architecture That Scaled to 50+ Pages](https://dev.to/maurya-sachin/the-10-line-architecture-that-scaled-to-50-pages-4na0)
 - [Why Error States Define the Quality of Your UI](https://dev.to/maurya-sachin/why-error-states-define-the-quality-of-your-ui-11lc)
-- [React Error Boundaries &amp; Practical Error Handling: Building Resilient Frontend Applications](https://dev.to/maurya-sachin/react-error-boundaries-practical-error-handling-building-resilient-frontend-applications-1i4a)
 <!-- BLOG-POST-LIST:END -->
 
 > ⏳ *Auto-updated every 12 hours with [blog-post-workflow](https://github.com/gautamkrishnar/blog-post-workflow)*  
