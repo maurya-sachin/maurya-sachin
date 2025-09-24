@@ -40,9 +40,9 @@ const sachin = {
 ### ✍️ Latest Blog Posts
 
 <!-- BLOG-POST-LIST:START -->
+- [Mastering React’s useTransition: Smooth UI Updates Without Blocking the Main Thread](https://dev.to/maurya-sachin/mastering-reacts-usetransition-smooth-ui-updates-without-blocking-the-main-thread-2ngk)
 - [Rendering Strategies in Next.js: CSR, SSR, SSG, ISR Explained](https://dev.to/maurya-sachin/rendering-strategies-in-nextjs-csr-ssr-ssg-isr-explained-417n)
 - [Frontend System Design: Principles for Scalable React Applications](https://dev.to/maurya-sachin/frontend-system-design-principles-for-scalable-react-applications-1i4)
-- [99.9% Uptime with Self-Healing Components: Building Bulletproof React Applications](https://dev.to/maurya-sachin/999-uptime-with-self-healing-components-building-bulletproof-react-applications-4kpb)
 <!-- BLOG-POST-LIST:END -->
 
 > ⏳ *Auto-updated every 12 hours with [blog-post-workflow](https://github.com/gautamkrishnar/blog-post-workflow)*  
