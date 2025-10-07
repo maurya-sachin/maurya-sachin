@@ -40,9 +40,9 @@ const sachin = {
 ### ✍️ Latest Blog Posts
 
 <!-- BLOG-POST-LIST:START -->
+- [Lessons I Took Away from the Meta Front-End Developer Career Certificate](https://dev.to/maurya-sachin/lessons-i-took-away-from-the-meta-front-end-developer-career-certificate-2l1b)
 - [Mastering React’s useTransition: Smooth UI Updates Without Blocking the Main Thread](https://dev.to/maurya-sachin/mastering-reacts-usetransition-smooth-ui-updates-without-blocking-the-main-thread-2ngk)
 - [Rendering Strategies in Next.js: CSR, SSR, SSG, ISR Explained](https://dev.to/maurya-sachin/rendering-strategies-in-nextjs-csr-ssr-ssg-isr-explained-417n)
-- [Frontend System Design: Principles for Scalable React Applications](https://dev.to/maurya-sachin/frontend-system-design-principles-for-scalable-react-applications-1i4)
 <!-- BLOG-POST-LIST:END -->
 
 > ⏳ *Auto-updated every 12 hours with [blog-post-workflow](https://github.com/gautamkrishnar/blog-post-workflow)*  
