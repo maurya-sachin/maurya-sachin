@@ -65,10 +65,11 @@ const sachin = {
 
 ### 🔥 Featured Projects
 
-| Name | Tech Stack | Link |
-|------|------------|------|
-| 🗂️ **Kanban Board App** | React, Redux Toolkit, Tailwind, React DnD | [Live](https://kanban-sachin.vercel.app) • [Code](https://github.com/maurya-sachin/kanban-app) |
-| 📄 **Resume Builder** | Next.js, Tailwind, Zustand | [Live](https://resume-maurya.vercel.app) • [Code](https://github.com/maurya-sachin/resume-app) |
+| Name                               | Tech Stack                                                   | Link                                                                                                                                    |
+| ---------------------------------- | ------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------- |
+| 🌐 **Kreate Technologies Website** | Next.js 14, TypeScript, React Query, Tailwind, Framer Motion | [Live](https://kreatetechnologies.com) |
+| 🧠 **GENAI Document Analyzer**     | React, TypeScript, Zustand, Tailwind, REST APIs              |  |
+| ⚡ **Kreate Energy**                | Next.js, GraphQL, React Query                                | [Live](https://kreatenergy.com) |
 
 ---
 
