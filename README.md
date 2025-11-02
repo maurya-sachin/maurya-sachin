@@ -40,9 +40,9 @@ const sachin = {
 ### ✍️ Latest Blog Posts
 
 <!-- BLOG-POST-LIST:START -->
+- [650+ Frontend Interview Questions &lpar;JavaScript, React, Next.js &amp; More&rpar; — My Complete Prep Journey](https://dev.to/maurya-sachin/650-frontend-interview-questions-javascript-react-nextjs-more-my-complete-prep-journey-12in)
 - [The Cost of Re-Renders: How to Make React Apps Actually Reactive](https://dev.to/maurya-sachin/the-cost-of-re-renders-how-to-make-react-apps-actually-reactive-3mc6)
 - [Optimizing for Perceived Performance: The Psychology Behind Fast UIs](https://dev.to/maurya-sachin/optimizing-for-perceived-performance-the-psychology-behind-fast-uis-4c11)
-- [Lessons I Took Away from the Meta Front-End Developer Career Certificate](https://dev.to/maurya-sachin/lessons-i-took-away-from-the-meta-front-end-developer-career-certificate-2l1b)
 <!-- BLOG-POST-LIST:END -->
 
 > ⏳ *Auto-updated every 12 hours with [blog-post-workflow](https://github.com/gautamkrishnar/blog-post-workflow)*  
