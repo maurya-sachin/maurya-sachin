@@ -2,11 +2,11 @@ name: 📝 Latest Dev.to Blog Posts
 
 on:
   schedule:
-    - cron: '0 */12 * * *' # Every 12 hours
-  workflow_dispatch: # Manual trigger
+    - cron: '0 2 * * *' # once per day at ~7:30 AM IST
+  workflow_dispatch:
 
 permissions:
-  contents: write # Needed to update the README
+  contents: write
 
 jobs:
   update-readme-with-blog:
@@ -23,3 +23,5 @@ jobs:
           feed_list: 'https://dev.to/feed/maurya-sachin'
           max_post_count: 3
           commit_message: '✨ update: latest Dev.to blog posts in README'
+          committer_username: maurya-sachin
+          committer_email: 123874179+maurya-sachin@users.noreply.github.com
