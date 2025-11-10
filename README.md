@@ -1,99 +1,106 @@
-<h1 align="center">Hey there! I'm Sachin Maurya 👋</h1>
+<!-- Banner -->
+<p align="center">
+  <img src="https://img.shields.io/badge/-sachin.ts-29ABE2?style=for-the-badge&logo=typescript&logoColor=white" />
+</p>
+
+<h1 align="center">Sachin Maurya</h1>
+<h3 align="center">Frontend Engineer — Performance & Accessibility Focus</h3>
 
 <p align="center">
-  <a href="https://maurya-sachin.vercel.app" target="_blank">
-    <img alt="Portfolio" src="https://img.shields.io/badge/Portfolio-Visit-29ABE2?style=for-the-badge&logo=vercel&logoColor=white"/>
-  </a>
-  <a href="https://dev.to/maurya-sachin" target="_blank">
-    <img alt="Dev.to" src="https://img.shields.io/badge/Dev.to-Blog-0A0A0A?style=for-the-badge&logo=dev.to&logoColor=white"/>
-  </a>
-  <a href="https://linkedin.com/in/maurya-sachin" target="_blank">
-    <img alt="LinkedIn" src="https://img.shields.io/badge/LinkedIn-Connect-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"/>
-  </a>
+  <a href="https://maurya-sachin.vercel.app">Portfolio</a> •
+  <a href="https://dev.to/maurya-sachin">Blog</a> •
+  <a href="https://linkedin.com/in/maurya-sachin">LinkedIn</a>
 </p>
 
 ---
 
-### 👨‍💻 About Me
+### About Me
+
+I build interfaces that **feel instant**.
+
+I care deeply about shipping UI that not only looks clean — but also moves without friction, responds without delay, and respects accessibility standards.
+
+I write, I benchmark, I measure.
 
 ```ts
-const sachin = {
-  title: "Frontend Developer",
-  experience: "2 years",
-  currentStack: ["React", "Next.js", "TypeScript", "TailwindCSS"],
-  tools: ["Redux Toolkit", "React Query", "GraphQL", "GitHub API", "Dev.to API"],
-  workingOn: "Building performance-first, accessible, and elegant UI experiences",
-  hobbies: ["Anime", "Adventure", "Blogging", "Self-Improvement"],
-};
+export const focus = [
+  "High FPS interactions",
+  "Real world performance tuning",
+  "WCAG 2.1 AA accessibility",
+];
 ```
 
 ---
 
-### 🚀 Tech Stack
+### Core Stack
 
 <p align="center">
-  <img src="https://skillicons.dev/icons?i=html,css,js,ts,react,nextjs,tailwind,redux,graphql,git,github,vscode,figma&perline=7" alt="Tech stack"/>
+<img src="https://skillicons.dev/icons?i=ts,react,nextjs,tailwind,redux,graphql,nodejs,git,github,vscode,figma&perline=7" />
 </p>
 
 ---
 
-### ✍️ Latest Blog Posts
+### Performance Wins
+
+> I optimize interfaces until they feel instantaneous.
+
+| Improvement | Before | After |
+|---|---:|---:|
+| Lighthouse Performance Score | < 40 | **90+** |
+| KreateEnergy.com Initial Load | 20+ sec | **~2 sec** |
+
+Speed is a product feature — not a luxury.
+
+---
+
+### Featured Work
+
+| Project | Stack | Impact | Link |
+|---|---|---|---|
+| Kreate Technologies Website | Next.js, TS, RQ, FM | +45% conversions | https://kreatetechnologies.com |
+| GENAI Document Analyzer | React, Zustand, TS | 98% AI doc accuracy | private demo only |
+| Kreate Energy Platform | Next.js, GraphQL, RQ | 20% latency reduction | https://kreatenergy.com |
+
+---
+
+### Latest Articles
 
 <!-- BLOG-POST-LIST:START -->
-- [650+ Frontend Interview Questions &lpar;JavaScript, React, Next.js &amp; More&rpar; — My Complete Prep Journey](https://dev.to/maurya-sachin/650-frontend-interview-questions-javascript-react-nextjs-more-my-complete-prep-journey-12in)
-- [The Cost of Re-Renders: How to Make React Apps Actually Reactive](https://dev.to/maurya-sachin/the-cost-of-re-renders-how-to-make-react-apps-actually-reactive-3mc6)
-- [Optimizing for Perceived Performance: The Psychology Behind Fast UIs](https://dev.to/maurya-sachin/optimizing-for-perceived-performance-the-psychology-behind-fast-uis-4c11)
 <!-- BLOG-POST-LIST:END -->
 
-> ⏳ *Auto-updated every 12 hours with [blog-post-workflow](https://github.com/gautamkrishnar/blog-post-workflow)*  
-> 🛠️ [![Dev.to Blog Workflow](https://github.com/maurya-sachin/maurya-sachin/actions/workflows/blog-posts.yml/badge.svg)](https://github.com/maurya-sachin/maurya-sachin/actions)
+> I publish breakdowns of real performance cases & UX decisions.
 
 ---
 
-### 📊 GitHub Stats
+### Currently Leveling Up
+
+- component patterns + system design thinking  
+- GraphQL caching strategies  
+- deeper rendering performance metrics (INP, TTI, CLS)
+
+---
+
+### GitHub Analytics
 
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=maurya-sachin&show_icons=true&theme=github_dark&hide=issues&border_radius=10" height="165"/>
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=maurya-sachin&theme=github-dark&border_radius=10" height="165"/>
+<img src="https://github-readme-stats.vercel.app/api?username=maurya-sachin&show_icons=true&theme=transparent&hide=issues" height="165"/>
+<img src="https://github-readme-streak-stats.herokuapp.com/?user=maurya-sachin&theme=transparent" height="165"/>
 </p>
 
 <p align="center">
-  <img src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=maurya-sachin&theme=github_dark" />
-</p>
-
----
-
-### 🔥 Featured Projects
-
-| Name                               | Tech Stack                                                   | Link                                                                                                                                    |
-| ---------------------------------- | ------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------- |
-| 🌐 **Kreate Technologies Website** | Next.js 14, TypeScript, React Query, Tailwind, Framer Motion | [Live](https://kreatetechnologies.com) |
-| 🧠 **GENAI Document Analyzer**     | React, TypeScript, Zustand, Tailwind, REST APIs              |  |
-| ⚡ **Kreate Energy**                | Next.js, GraphQL, React Query                                | [Live](https://kreatenergy.com) |
-
----
-
-### 📚 Currently Learning
-
-- Advanced React (via Meta Frontend Dev Career Track)
-- Component design patterns & performance optimization
-- GraphQL best practices
-
----
-
-### 📬 Let's Connect
-
-<p>
-  <a href="mailto:sachinmaurya.dev@gmail.com">
-    <img src="https://img.shields.io/badge/Gmail-Email_Edition-D14836?style=flat-square&logo=gmail&logoColor=white"/>
-  </a>
-  <a href="https://linkedin.com/in/maurya-sachin">
-    <img src="https://img.shields.io/badge/LinkedIn-Professional_Connect-0077B5?style=flat-square&logo=linkedin&logoColor=white"/>
-  </a>
+<img src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=maurya-sachin&theme=transparent" />
 </p>
 
 ---
 
+### Contact
+
+- Email: **sachinmaurya.dev@gmail.com**
+- LinkedIn: **linkedin.com/in/maurya-sachin**
+- Portfolio: **maurya-sachin.vercel.app**
+
+---
+
 <p align="center">
-  <img src="https://readme-typing-svg.herokuapp.com?font=JetBrains+Mono&size=18&duration=2500&pause=1000&color=29ABE2&center=true&vCenter=true&width=500&height=30&lines=Happy+to+collaborate+on+frontend+projects!;Always+learning+something+new+💡;Let's+build+cool+stuff+together+🚀" />
+  <i>performance is not something I hope for — it's something I engineer.</i>
 </p>
