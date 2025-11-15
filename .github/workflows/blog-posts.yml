@@ -1,8 +1,8 @@
-name: 📝 Latest Dev.to Blog Posts
+name: Latest Dev.to Blog Posts
 
 on:
   schedule:
-    - cron: '0 2 * * *' # once per day at ~7:30 AM IST
+    - cron: '0 2 * * *'
   workflow_dispatch:
 
 permissions:
@@ -10,18 +10,12 @@ permissions:
 
 jobs:
   update-readme-with-blog:
-    name: 🔄 Update README with latest blogs
     runs-on: ubuntu-latest
-
     steps:
-      - name: ⬇️ Checkout repo
-        uses: actions/checkout@v4
-
-      - name: 📰 Fetch and insert latest Dev.to posts
-        uses: gautamkrishnar/blog-post-workflow@v1
+      - uses: actions/checkout@v4
+      - uses: gautamkrishnar/blog-post-workflow@v1
         with:
-          feed_list: 'https://dev.to/feed/maurya-sachin'
+          feed_list: "https://dev.to/feed/maurya-sachin"
           max_post_count: 3
-          commit_message: '✨ update: latest Dev.to blog posts in README'
-          committer_username: maurya-sachin
-          committer_email: 123874179+maurya-sachin@users.noreply.github.com
+          committer_username: "maurya-sachin"
+          committer_email: "123874179+maurya-sachin@users.noreply.github.com"
