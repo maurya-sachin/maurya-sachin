@@ -10,9 +10,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: creyD/prettier_action@v4
+
+      - name: Run Prettier
+        uses: creyD/prettier_action@v3.3
         with:
           prettier_options: "--write README.md"
-      - uses: stefanzweifel/git-auto-commit-action@v5
+
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "Auto-format README"
