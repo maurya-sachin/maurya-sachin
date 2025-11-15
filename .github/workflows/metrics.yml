@@ -9,6 +9,7 @@ jobs:
   metrics:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - uses: lowlighter/metrics@latest
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
