@@ -1,221 +1,76 @@
-<!-- ===========================
-🌌 PREMIUM VERCEL + FUTURISTIC GLOW HEADER
-=========================== -->
-
-<br/>
-<div align="center">
-  <h1 style="font-size: 42px; font-weight: 700; margin-bottom: 0;">
-    Sachin Maurya
-  </h1>
-  <p style="font-size: 18px; margin-top: 4px;">
-    Frontend Engineer — Performance • Rendering • Accessibility
-  </p>
-
-  <!-- Subtle Glow Accent Line (hosted in /assets) -->
-  <img src="./assets/glow-divider.svg" width="260" alt="glow divider"/>
-</div>
-<br/>
-
-<!-- Animated Text (Clean + Premium) -->
+<!-- HERO BANNER -->
 <p align="center">
-  <img src="https://readme-typing-svg.herokuapp.com?font=Inter&weight=500&size=20&duration=2600&pause=900&color=A586FF&center=true&vCenter=true&width=650&lines=Engineering+Instant+Interfaces;React+%7C+Next.js+%7C+Performance;Rendering+Systems+%7C+Accessibility;Clean+Architecture+%7C+Scalable+UI+Design;" />
+  <img 
+    src="https://socialify.git.ci/maurya-sachin/maurya-sachin/image?custom_language=TypeScript&font=JetBrains+Mono&language=1&pattern=Circuit+Board&stargazers=1&theme=Dark" 
+    alt="maurya-sachin" 
+    width="850"
+  />
+</p>
+
+<!-- ROLE -->
+<h2 align="center">Frontend Engineer — Performance • Rendering • Accessibility</h2>
+
+<!-- ANIMATED SUBTEXT -->
+<p align="center">
+  <img src="https://readme-typing-svg.herokuapp.com?font=Inter&weight=500&size=18&duration=2500&pause=800&color=9A6AFF&center=true&vCenter=true&width=600&lines=Engineering+Instant+Interfaces;Optimizing+INP+%7C+Rendering+Pipelines;React+%7C+Next.js+%7C+RSC+%7C+Performance;Accessibility+as+a+Core+Engineering+Principle" />
 </p>
 
 ---
 
 ## 🟣 About Me
-
-I’m a **Frontend Engineer** focused on creating interfaces that feel **instant**, behave **predictably**, and scale **efficiently**.
-
-My strengths lie in:
-
-- ⚡ **Performance engineering (INP, CLS, TTI, profiling)**  
-- ⚛️ **React rendering systems (RSC, Suspense, concurrency)**  
-- 🧠 **UI architecture & state design (RTK, Zustand, RQ)**  
-- 🔌 **GraphQL & API data pipelines**  
-- ♿ **WCAG 2.1 AA accessibility**  
-- 🎨 **Smooth interactions using Framer Motion & GSAP**  
-
-I believe **performance is a product feature**, not a bonus.
+I build **fast**, **predictable**, and **accessible** user interfaces.  
+My work focuses on **INP optimization**, **React rendering systems**, and **frontend architecture** that scales smoothly without regressions.
 
 ---
 
-## 🟣 Engineering Domains
-
-<div align="center">
-  <img src="./assets/glow-underline.svg" width="700" alt="domains underline"/>
-</div>
-
-### ⚛ Rendering Systems  
-React Fiber • Suspense • RSC • hydration pipelines • memoization • flamecharts.
-
-### 🚀 Performance Engineering  
-Web Vitals • lazy hydration • streaming • profiling • caching layers.
-
-### 🗄 API & Data Layer  
-GraphQL • REST • batching • WebSockets • orchestrated caching.
-
-### 🎨 Architecture  
-Component libraries • scalable UI patterns • systemized design.
-
-### 🧪 Quality  
-Jest • React Testing Library • Cypress • a11y audits.
-
----
-
-## 🟣 Skill Matrix
-
-<table>
-<tr>
-<td width="33%" valign="top">
-
-### ⚛ Frontend Core
-• React, Next.js 14  
-• TypeScript  
-• SCSS, Tailwind  
-• Framer Motion, GSAP  
-• Responsive UI  
-• Modular components  
-• Reusable UI systems  
-
-</td>
-<td width="33%" valign="top">
-
-### 🚀 Performance Engineering
-• INP, CLS, TTI, TTFB  
-• React Profiler  
-• Suspense & Streaming  
-• Bundle Splitting  
-• State Isolation  
-• Caching Strategies  
-• Flamechart Analysis  
-
-</td>
-<td width="33%" valign="top">
-
-### 🔧 Tools & Backend
-**Backend:**  
-• REST  
-• GraphQL  
-• Axios  
-• WebSockets  
-
-**Tooling:**  
-• Vite  
-• Webpack  
-• ESLint  
-• Prettier  
-
-**Testing:**  
-• Jest  
-• RTL  
-• Cypress  
-
-**Deployments:**  
-• Vercel  
-• Netlify  
-• AWS  
-• GitHub CI/CD  
-
-</td>
-</tr>
-</table>
-
----
-
-## 🟣 Featured Work
-
-### ⭐ Kreate Technologies — Next.js 14
-• Lighthouse: **95+** (from <40)  
-• **+45% conversions**  
-• React Query • Framer Motion  
-🔗 https://kreatetechnologies.com
-
----
-
-### ⭐ Kreate Energy Platform — GraphQL
-• **20% API latency reduction**  
-• Custom GraphQL caching middleware  
-🔗 https://kreatenergy.com
-
----
-
-### ⭐ GENAI Document Analyzer
-• **98% document extraction accuracy**  
-• Zustand + modular UI design
-
----
-
-### ⭐ WCAG Government Portal
-• Fully **WCAG 2.1 AA**  
-• Passed complete accessibility audit
-
----
-
-## 🟣 Tech Stack
-
+## 🟣 Core Stack
 <p align="center">
-  <img src="https://skillicons.dev/icons?i=ts,react,nextjs,redux,graphql,tailwind,scss,nodejs,express,jest,cypress,py,figma,git,github,vscode,webpack,vite&theme=dark&perline=10" />
+  <img src="https://skillicons.dev/icons?i=ts,react,nextjs,redux,graphql,tailwind,scss,vite,webpack,nodejs,jest,cypress,figma&theme=dark&perline=10" />
 </p>
 
 ---
 
-## 🟣 GitHub Analytics
-
+## 🟣 GitHub Metrics
 <p align="center">
-  <!-- metrics svg generated by workflow; stays in repo root -->
-  <img src="./github-metrics.svg" width="100%" alt="github metrics"/>
-</p>
-
-<p align="center">
-  <img height="160" src="https://github-readme-stats.vercel.app/api?username=maurya-sachin&show_icons=true&theme=tokyonight&hide_title=true&hide_border=true" />
-  <img height="160" src="https://github-readme-streak-stats.herokuapp.com?user=maurya-sachin&theme=tokyonight&hide_border=true" />
+  <img src="./github-metrics.svg" alt="GitHub Metrics" width="95%" />
 </p>
 
 ---
 
-## 🟣 Achievements & Trophy Wall
-
+## 🟣 Activity Graph
 <p align="center">
-  <img src="https://github-profile-trophy.vercel.app/?username=maurya-sachin&theme=matrix&no-frame=true&margin-w=12" />
+  <img src="https://github-readme-activity-graph.vercel.app/graph?username=maurya-sachin&theme=github-dark&hide_border=true" width="95%"/>
 </p>
 
 ---
 
-## 🟣 Contribution Snake
-
+## 🟣 Trophy Wall
 <p align="center">
-  <img src="./output/github-contribution-grid-snake.svg" width="95%" alt="contribution snake"/>
+  <img src="https://github-profile-trophy.vercel.app/?username=maurya-sachin&theme=tokyonight&no-frame=true&row=1&margin-w=10" />
 </p>
 
 ---
 
-## 🟣 Latest Blog Posts
+## 🟣 Identity (YAML Snapshot)
 
-<!-- BLOG-POST-LIST:START -->
-- [I just shipped v2.0 of Frontend Master Prep Series — 1,020+ Q&amp;A + 185 coding problems + 600 flashcards](https://dev.to/maurya-sachin/i-just-shipped-v20-of-frontend-master-prep-series-1020-qa-185-coding-problems-600-33j7)
-- [650+ Frontend Interview Questions &lpar;JavaScript, React, Next.js &amp; More&rpar; — My Complete Prep Journey](https://dev.to/maurya-sachin/650-frontend-interview-questions-javascript-react-nextjs-more-my-complete-prep-journey-12in)
-- [The Cost of Re-Renders: How to Make React Apps Actually Reactive](https://dev.to/maurya-sachin/the-cost-of-re-renders-how-to-make-react-apps-actually-reactive-3mc6)
-<!-- BLOG-POST-LIST:END -->
-
----
-
-## 🟣 Current Focus
-• INP Optimization  
-• RSC + Streaming  
-• GraphQL Caching  
-• Frontend System Design  
-• AWS Learning Path
+```yaml
+role: "Frontend Engineer"
+specialties: ["Performance", "Rendering", "A11y"]
+philosophy: "Performance isn't magic — it's engineered."
+location: "Delhi, India"
+learning: ["RSC", "GraphQL Caching", "AWS Cloud"]
+````
 
 ---
 
-## 🟣 Connect With Me  
-Portfolio: **https://sachin-gilt.vercel.app**  
-LinkedIn: **https://linkedin.com/in/maurya-sachin**  
-Email: **sachinmaurya1710@gmail.com**
+## 🟣 Connect With Me
+
+**Portfolio:** [https://sachin-gilt.vercel.app](https://sachin-gilt.vercel.app)
+**LinkedIn:** [https://linkedin.com/in/maurya-sachin](https://linkedin.com/in/maurya-sachin)
+**Email:** [sachinmaurya1710@gmail.com](mailto:sachinmaurya1710@gmail.com)
+
+---
 
 <p align="center">
-  <img src="./assets/glow-accent.svg" width="260" alt="glow footer"/>
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=70&section=footer"/>
 </p>
-
-<p align="center"><b>“Performance isn’t magic — it’s engineered.”</b></p>
