@@ -70,6 +70,9 @@ learning: ["RSC", "GraphQL Caching", "AWS Cloud"]
 ## 🟣 Latest Blog Posts
 
 <!-- BLOG-POST-LIST:START -->
+- [I just shipped v2.0 of Frontend Master Prep Series — 1,020+ Q&amp;A + 185 coding problems + 600 flashcards](https://dev.to/maurya-sachin/i-just-shipped-v20-of-frontend-master-prep-series-1020-qa-185-coding-problems-600-33j7)
+- [650+ Frontend Interview Questions &lpar;JavaScript, React, Next.js &amp; More&rpar; — My Complete Prep Journey](https://dev.to/maurya-sachin/650-frontend-interview-questions-javascript-react-nextjs-more-my-complete-prep-journey-12in)
+- [The Cost of Re-Renders: How to Make React Apps Actually Reactive](https://dev.to/maurya-sachin/the-cost-of-re-renders-how-to-make-react-apps-actually-reactive-3mc6)
 <!-- BLOG-POST-LIST:END -->
 
 ---
