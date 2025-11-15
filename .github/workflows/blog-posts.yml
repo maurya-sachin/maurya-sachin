@@ -2,7 +2,7 @@ name: Latest Dev.to Blog Posts
 
 on:
   schedule:
-    - cron: '0 2 * * *'
+    - cron: "0 2 * * *"
   workflow_dispatch:
 
 permissions:
@@ -13,9 +13,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - uses: gautamkrishnar/blog-post-workflow@v1
         with:
           feed_list: "https://dev.to/feed/maurya-sachin"
           max_post_count: 3
+          commit_message: "update: latest blog posts"
           committer_username: "maurya-sachin"
           committer_email: "sachinmaurya1710@gmail.com"
