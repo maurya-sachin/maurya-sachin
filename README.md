@@ -48,13 +48,6 @@ My work focuses on **INP optimization**, **React rendering systems**, and scalab
 
 ---
 
-## 🟣 Contribution Snake
-<p align="center">
-  <img src="https://raw.githubusercontent.com/maurya-sachin/maurya-sachin/output/github-contribution-grid-snake.svg" width="95%" />
-</p>
-
----
-
 ## 🟣 Identity (YAML Snapshot)
 
 ```
