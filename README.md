@@ -63,9 +63,9 @@ learning: ["RSC", "GraphQL Caching", "AWS Cloud"]
 ## 🟣 Latest Blog Posts
 
 <!-- BLOG-POST-LIST:START -->
+- [Building a Multi-Layer Caching Strategy in Next.js App Router: From Static to Real-Time](https://dev.to/maurya-sachin/building-a-multi-layer-caching-strategy-in-nextjs-app-router-from-static-to-real-time-4che)
 - [A More Structured Version of Frontend Master Prep Series](https://dev.to/maurya-sachin/a-more-structured-version-of-frontend-master-prep-series-1300)
 - [I just shipped v3.0 of Frontend Master Prep Series — Study Paths, 374+ Q&amp;A, 65 Coding Problems &amp; 500+ Flashcards](https://dev.to/maurya-sachin/i-just-shipped-v30-of-frontend-master-prep-series-study-paths-374-qa-65-coding-problems--44mi)
-- [The 7 Mistakes I Made as a Junior Frontend Developer &lpar;and the Engineering Fixes That Helped Me Grow Faster&rpar;](https://dev.to/maurya-sachin/the-7-mistakes-i-made-as-a-junior-frontend-developer-and-the-engineering-fixes-that-helped-me-grow-26ii)
 <!-- BLOG-POST-LIST:END -->
 
 ---
