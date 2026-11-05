@@ -1,18 +1,16 @@
 # Sachin Maurya
 
-Frontend Engineer — React, Next.js, TypeScript, React Native WebView.
-
-I enjoy building fast, accessible product UI: dashboards, form-heavy flows, and API-driven screens, with a focus on performance and clean, reusable patterns.
+Frontend Engineer at Jumbo, Delhi. React, Next.js and TypeScript for fintech and government products: dashboards, KYC flows, and web apps that run inside React Native clients.
 
 ### Projects & Writing
 
-- **[Portfolio](https://sachinmaurya.com)** — resume, projects, and writing
-- **[Frontend Master Prep Series](https://github.com/maurya-sachin/Frontend-Master-Prep-Series)** — open-source frontend interview prep covering JavaScript, React, Next.js, accessibility, performance, and architecture
-- **[Dev.to articles](https://dev.to/maurya-sachin)** — caching strategies in Next.js, frontend system design, and more
+- **[isobath](https://learn.sachinmaurya.com)** ([source](https://github.com/maurya-sachin/javascript-interview-deep-dive)) — engineering interview questions answered in depth, from the language and spec down to the engine. Started as the Frontend Master Prep Series.
+- **[Portfolio](https://sachinmaurya.com)** — case studies, resume, and contact
+- **[Dev.to](https://dev.to/maurya-sachin)** — notes on performance, caching in Next.js, and frontend architecture
 
 ### Stack
 
-`React` · `Next.js` · `TypeScript` · `React Native WebView` · `Tailwind CSS` · `Redux Toolkit` · `Zustand` · `React Query` · `GraphQL` · `Jest` · `Cypress`
+`React` · `Next.js` · `TypeScript` · `Vite` · `React Native WebView` · `TanStack Query` · `React Hook Form` · `Zod` · `Tailwind CSS` · `Vitest` · `Playwright`
 
 ---
 
