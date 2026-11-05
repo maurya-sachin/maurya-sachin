@@ -4,7 +4,7 @@ Frontend Engineer at Jumbo, Delhi. React, Next.js and TypeScript for fintech and
 
 ### Projects & Writing
 
-- **[isobath](https://learn.sachinmaurya.com)** ([source](https://github.com/maurya-sachin/javascript-interview-deep-dive)) — engineering interview questions answered in depth, from the language and spec down to the engine. Started as the Frontend Master Prep Series.
+- **[isobath](https://learn.sachinmaurya.com)** ([source](https://github.com/maurya-sachin/isobath)) — engineering interview questions answered in depth, from the language and spec down to the engine. Started as the Frontend Master Prep Series.
 - **[Portfolio](https://sachinmaurya.com)** — case studies, resume, and contact
 - **[Dev.to](https://dev.to/maurya-sachin)** — notes on performance, caching in Next.js, and frontend architecture
 
